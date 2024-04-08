@@ -13,6 +13,25 @@
             max-width: 100%;
             height: auto;
         }
+
+        /* Media queries for tablets */
+        @media screen and (max-width: 768px) {
+            .text_1, .sub_center, .skills, .credit_nikolai {
+                font-size: 14px;
+                margin: 10px;
+            }
+        }
+
+        /* Media queries for mobile phones */
+        @media screen and (max-width: 480px) {
+            .text_1, .sub_center, .skills, .credit_nikolai {
+                font-size: 12px;
+                margin: 5px;
+            }
+            .container_1 {
+                flex-direction: column;
+            }
+        }
     </style>
     <link rel="icon" href="pictures/hockey_icon_version_2.jpeg">
     <link rel="stylesheet" href="image.css">
