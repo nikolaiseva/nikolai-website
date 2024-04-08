@@ -15,22 +15,34 @@
         }
 
         /* Media queries for tablets */
-        @media screen and (max-width: 768px) {
-            .text_1, .sub_center, .skills, .credit_nikolai {
-                font-size: 14px;
-                margin: 10px;
+        @media only screen and (max-width: 768px) {
+            .centered {
+                font-size: 24px; /* Adjust font size */
+                -webkit-text-stroke: 1px black; /* Adjust text stroke */
+            }
+            .sub_center {
+                font-size: 18px;
+                -webkit-text-stroke: 1px black;
+            }
+            .skills, .credit_nikolai {
+                font-size: 16px;
             }
         }
 
         /* Media queries for mobile phones */
-        @media screen and (max-width: 480px) {
-            .text_1, .sub_center, .skills, .credit_nikolai {
-                font-size: 12px;
-                margin: 5px;
+        @media only screen and (max-width: 480px) {
+            .centered {
+                font-size: 20px; /* Further reduce font size for smaller phones */
+                -webkit-text-stroke: 0.5px black; /* Reduce text stroke */
             }
-            .container_1 {
-                flex-direction: column;
+            .sub_center {
+                font-size: 15px;
+                -webkit-text-stroke: 0.5px black;
             }
+            .skills, .credit_nikolai {
+                font-size: 14px;
+            }
+            /* Add more specific styles to adjust layout elements if necessary */
         }
 
         .container_1 {
