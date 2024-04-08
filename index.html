@@ -32,6 +32,18 @@
                 flex-direction: column;
             }
         }
+
+        .container_1 {
+            display: flex;
+            flex-direction: row; /* Default layout */
+        }
+
+        @media screen and (max-width: 768px) {
+            .container_1 {
+                flex-direction: column; /* Stack elements vertically on smaller screens */
+            }
+        }
+
     </style>
     <link rel="icon" href="pictures/hockey_icon_version_2.jpeg">
     <link rel="stylesheet" href="image.css">
