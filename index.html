@@ -3,116 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nikolai Seva's Portfolio</title>
+    <title>Home | Nikolai Seva's Portfolio</title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
             background-color: #D3D3D3;
-            margin: 0;
-            padding: 0;
         }
-        .container img {
-            width: 100%;
+        img {
+            max-width: 100%;
             height: auto;
         }
-        .centered {
-            text-align: center;
-            color: #ffffff;
-            -webkit-text-stroke: 1.5px black;
-            font-size: 50px; /* This will be your base size on desktop */
-        }
-        .sub_center {
-            text-align: center;
-            -webkit-text-stroke: 1.25px black;
-            font-size: 30px;
-        }
-        .lower_center {
-            text-align: center;
-        }
-        .lower_center img {
-            width: 30px;
-            height: 30px;
-        }
-        .skills {
-            text-align: center;
-            -webkit-text-stroke: 0.25px black;
-            font-size: 16px;
-        }
-        .credit_nikolai {
-            text-align: center;
-            -webkit-text-stroke: 0.8px black;
-            font-size: 20px;
-        }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
+        /* Media queries for tablets */
+        @media only screen and (max-width: 768px) {
             .centered {
-                font-size: 24px;
-                -webkit-text-stroke: 1px black;
+                font-size: 24px; /* Adjust font size */
+                -webkit-text-stroke: 1px black; /* Adjust text stroke */
             }
             .sub_center {
                 font-size: 18px;
-                -webkit-text-stroke: 0.8px black;
+                -webkit-text-stroke: 1px black;
             }
-            .skills {
-                font-size: 14px;
-            }
-            .credit_nikolai {
+            .skills, .credit_nikolai {
                 font-size: 16px;
             }
         }
 
-        @media (max-width: 480px) {
+        /* Media queries for mobile phones */
+        @media only screen and (max-width: 480px) {
             .centered {
-                font-size: 20px;
-                -webkit-text-stroke: 0.5px black;
+                font-size: 20px; /* Further reduce font size for smaller phones */
+                -webkit-text-stroke: 0.5px black; /* Reduce text stroke */
             }
             .sub_center {
                 font-size: 15px;
                 -webkit-text-stroke: 0.5px black;
             }
-            .skills {
-                font-size: 12px;
-            }
-            .credit_nikolai {
+            .skills, .credit_nikolai {
                 font-size: 14px;
             }
+            /* Add more specific styles to adjust layout elements if necessary */
         }
+
+        .container_1 {
+            display: flex;
+            flex-direction: row; /* Default layout */
+        }
+
+        @media screen and (max-width: 768px) {
+            .container_1 {
+                flex-direction: column; /* Stack elements vertically on smaller screens */
+            }
+        }
+
     </style>
+    <link rel="icon" href="pictures/hockey_icon_version_2.jpeg">
+    <link rel="stylesheet" href="image.css">
+    <link rel="stylesheet" href="typewriter_effect.css">
+    <link rel="stylesheet" href="text_wrap.css">
 </head>
 <body>
+
+
 <div class="container">
-    <img src="pictures/hockey_icon_version_2.jpeg" alt="Nikolai_Background_Photo">
+    <img src="pictures/hockey_icon_version_2.jpeg" alt="Nikolai_Background_Photo" style="width: 100%">
     <div class="typewriter">
-        <h1 class="centered">Hi, my name is Nikolai!</h1>
+        <h1 style="text-align: center; color:#ffffff;-webkit-text-stroke: 1.5px black; font-size: 50px" class="centered">Hi, my name is Nikolai!</h1></div>
+    <div style="text-align: center; -webkit-text-stroke: 1.25px black; font-size: 30px" class="sub_center">MEng in Mechanical Engineering Student at UC Berkeley
+        <br> BASc Biomedical Engineering at UBC 2022</div>
+    <div style="text-align: center" class="lower_center">
+        <a href="https://www.instagram.com/nikolai_seva/?hl=en"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" style="width:30px;height:30px;"></a>
+        <a href="https://www.linkedin.com/in/nikolai-seva/"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="width:30px;height:30px;"></a>
+        <a href="https://www.youtube.com/@nikolaioftime"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/YouTube_social_red_circle_%282017%29.svg" alt="YouTube" style="width:30px;height:30px;"></a>
     </div>
-    <div class="sub_center">
-        MEng in Mechanical Engineering Student at UBC
-        <br> BASc Biomedical Engineering at UBC 2022
-    </div>
-    <div class="lower_center">
-        <a href="https://www.instagram.com/nikolai_seva/?hl=en">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
-        </a>
-        <a href="https://www.linkedin.com/in/nikolai-seva/">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
-        </a>
-        <a href="https://www.youtube.com/@nikolaioftime">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/YouTube_social_red_circle_%282017%29.svg" alt="YouTube">
-        </a>
-    </div>
-    <p class="skills">
-        Skills
+
+    <p style="text-align: center; -webkit-text-stroke: 0.25px black" class="skills">Skills
         <br> Computer-Aided Design: Solidworks, AutoCAD, AutoCAD Inventor, Fusion 360, Meshmixer
         <br> Equipment: FDM Printing, Laser-Cutting, SLA Printing, Powder Printing, Fibre-Glassing
         <br> Software: Arduino, Python, C Programming, Java, JavaScript, MATLAB, R, HTML
     </p>
-    <div class="credit_nikolai">
+
+    <div style="text-align: center; -webkit-text-stroke: 0.8px black; font-size: 20px" class="credit_nikolai">
         Website Coded by Nikolai Seva using HTML!
     </div>
 </div>
-</body>
-
 
 <h1 style="text-align: center">About Me</h1>
 
