@@ -30,10 +30,11 @@
         --accent:#0ea5e9;
         --bg:#f7f7f8;
         --text:#111111;
-        --muted:#374151;          /* body copy / secondary text */
-        --mutedSoft:#6b7280;      /* placeholders / meta */
+        --muted:#374151;
+        --mutedSoft:#6b7280;
         --card:#ffffffF2;
         --border:#e5e7eb;
+        --radius:16px;
       }
       @media (prefers-color-scheme: dark){
         :root{
@@ -53,7 +54,10 @@
         font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
         color:var(--text);
         background:var(--bg);
+        -webkit-text-size-adjust:100%; /* iOS font scaling sanity */
       }
+      img, video{max-width:100%; height:auto} /* fluid media */
+
       a{color:var(--accent); text-decoration:none}
       a:hover{text-decoration:underline}
       .container{max-width:1000px; margin-inline:auto; padding:clamp(16px,2vw,24px)}
@@ -68,36 +72,53 @@
       nav ul{display:flex; gap:16px; list-style:none; margin:0; padding:0}
       nav #nav-list[hidden]{display:none}
       .brand{display:flex; align-items:center; gap:.5rem; font-weight:700; color:var(--text)}
-      .button{display:inline-block; padding:.7rem 1rem; border-radius:9999px; background:var(--accent); color:#fff; font-weight:600; border:0; cursor:pointer}
-      .hero{display:grid; grid-template-columns:1.2fr 1fr; align-items:center; gap:clamp(16px,4vw,48px); padding-block:clamp(32px,7vw,96px)}
-      .hero h1{font-size:clamp(28px,6vw,56px); margin:0 0 12px; color:var(--text)}
+      .button{
+        display:inline-block; padding:.85rem 1.1rem; border-radius:9999px;
+        background:var(--accent); color:#fff; font-weight:700; border:0; cursor:pointer
+      }
+
+      /* ---------- HERO (image slightly larger on desktop) ---------- */
+      .hero{
+        display:grid; grid-template-columns:1fr 1.12fr; align-items:center;
+        gap:clamp(16px,4vw,48px); padding-block:clamp(28px,7vw,96px)
+      }
+      .hero h1{font-size:clamp(28px,6vw,56px); margin:0 0 12px; color:var(--text); line-height:1.1}
       .hero p{font-size:clamp(16px,2.4vw,20px); color:var(--muted)}
-      section{scroll-margin-top:80px; padding-block:clamp(32px,6vw,72px)}
+
+      section{scroll-margin-top:88px; padding-block:clamp(32px,6vw,72px)}
       h2,h3,h4{color:var(--text); margin:0 0 16px}
       p, li, label, small{color:var(--muted)}
       .grid{display:grid; gap:24px}
       .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-      .card{border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--card)}
+      .card{border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--card)}
       .card > img{display:block; width:100%; height:auto}
       figure.card{margin:0}
       footer{border-top:1px solid var(--border); padding-block:32px; text-align:center; opacity:.95}
       .meta{color:var(--mutedSoft); font-size:.95rem}
       .visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
 
-      /* Responsive tweaks */
-      @media (max-width: 860px){ .hero{grid-template-columns:1fr}}
-      @media (max-width: 640px){
+      /* ---------- MOBILE-FIRST TWEAKS ---------- */
+      @media (max-width: 900px){ .hero{grid-template-columns:1fr}}
+      @media (max-width: 720px){
         nav ul{flex-direction:column; align-items:flex-start; gap:12px; padding:12px 0}
+        .hero{ text-align:center }
+        .hero .meta{ justify-content:center }
+        .hero figure{ order:-1 } /* image first on narrow screens */
+      }
+      @media (max-width:640px){
+        #contact .grid{ grid-template-columns:1fr !important; }
+        .button{ width:100%; max-width:420px }
+        .hero h1{ font-size:clamp(28px,9vw,44px) }
       }
 
-      /* Responsive embeds (if you add videos later) */
+      /* Responsive embeds */
       .responsive-embed{position:relative; width:100%; aspect-ratio:16/9}
       .responsive-embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
 
-      /* ---------- FORM: Always readable in light & dark ---------- */
+      /* ---------- FORM ---------- */
       .input{
         width:100%;
-        padding:.75rem;
+        padding:.9rem;
         border-radius:12px;
         border:1px solid #cfcfcf;
         font:inherit;
@@ -107,8 +128,6 @@
       }
       .input:focus{outline:3px solid rgba(14,165,233,.25); border-color:#0ea5e9}
       .input::placeholder{color:var(--mutedSoft)}
-
-      /* Dark mode container adjustments */
       @media (prefers-color-scheme: dark){
         header{ background:rgba(20,20,22,.75) }
         .input{
@@ -119,8 +138,6 @@
         .input::placeholder{ color:#6b7280; }
         .card{ background:var(--card); border-color:var(--border); }
       }
-
-      /* Autofill readability on Safari/Chrome */
       .input:-webkit-autofill,
       .input:-webkit-autofill:hover,
       .input:-webkit-autofill:focus{
@@ -129,13 +146,30 @@
         box-shadow:0 0 0px 1000px #ffffff inset;
       }
 
-      /* Mobile: stack the two inputs in Contact */
-      @media (max-width:640px){
-        #contact .grid{ grid-template-columns:1fr !important; }
-      }
-
       .error{color:#b00020}
       .success{color:#16a34a}
+
+      /* ---------- TYPEWRITER (two-line) ---------- */
+      .typewriter{
+        position:relative;
+        white-space:nowrap;
+        color:var(--accent);
+      }
+      .type-line{ display:inline-block; min-width:1px }
+      .typewriter::after{
+        content:"";
+        display:inline-block;
+        width:1ch;
+        height:1em;
+        translate:0 .15em;
+        border-right:2px solid var(--accent);
+        animation:blink 1s steps(1,end) infinite;
+      }
+      .name-break{ display:block; line-height:.45 } /* tight stack */
+      @keyframes blink{ 50%{ border-right-color:transparent; } }
+      @media (prefers-reduced-motion: reduce){
+        .typewriter::after{ animation:none; border-right-color:transparent }
+      }
     </style>
   </head>
   <body>
@@ -144,7 +178,7 @@
       <div class="container">
         <nav aria-label="Primary">
           <a class="brand" href="#home" aria-label="Home"><span aria-hidden="true">🧊</span> <span>Nikolai A. Seva</span></a>
-          <button id="nav-toggle" class="button" style="padding:.5rem .75rem;" aria-expanded="false" aria-controls="nav-list">
+          <button id="nav-toggle" class="button" style="padding:.6rem .9rem;" aria-expanded="false" aria-controls="nav-list">
             <i class='bx bx-menu' aria-hidden="true"></i><span class="visually-hidden">Menu</span>
           </button>
           <ul id="nav-list" hidden>
@@ -164,7 +198,16 @@
       <!-- HOME / HERO -->
       <section id="home" class="container hero" aria-label="Hero">
         <div>
-          <h1>Hi, I’m <span style="color:var(--accent)">Nikolai A. Seva</span>.</h1>
+          <h1>
+            Hi, I’m
+            <span style="color:var(--accent)"> </span>
+            <!-- Two-line typewriter -->
+            <span id="typewrap" class="typewriter" aria-label="Nikolai A. Seva">
+              <span id="line1" class="type-line"></span>
+              <br class="name-break" />
+              <span id="line2" class="type-line"></span>
+            </span>
+          </h1>
           <p><strong>Mechanical/Biomechanics Engineer</strong> with a product mindset — MEng Mechanical Engineering (UC Berkeley) & BASc Biomedical Engineering (UBC). I design, prototype, and validate hardware that’s manufacturable, reliable, and delightful to use.</p>
           <p><a class="button" href="#contact">Get in touch</a></p>
           <p class="meta">
@@ -174,7 +217,7 @@
           </p>
         </div>
         <figure>
-          <img src="pictures/Hockey_Cover_Photo_Portfolio.jpg" alt="Nikolai on the ice—portfolio cover" width="1000" height="700" style="border-radius:16px; border:1px solid var(--border)" />
+          <img src="pictures/Hockey_Cover_Photo_Portfolio.jpg" alt="Nikolai on the ice—portfolio cover" width="1000" height="700" style="border-radius:var(--radius); border:1px solid var(--border)" />
         </figure>
       </section>
 
@@ -509,6 +552,48 @@
           }
         });
       }
+
+      // ---------- Typewriter (two lines) ----------
+      (function(){
+        const wrap = document.getElementById('typewrap');
+        const l1 = document.getElementById('line1');
+        const l2 = document.getElementById('line2');
+        if (!wrap || !l1 || !l2) return;
+
+        const text1 = 'Nikolai A.';
+        const text2 = 'Seva';
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReduced){
+          l1.textContent = text1;
+          l2.textContent = text2;
+          return;
+        }
+
+        const speed = 70; // ms per char
+        let i = 0, j = 0;
+
+        function typeFirst(){
+          if (i <= text1.length){
+            l1.textContent = text1.slice(0, i++);
+            setTimeout(typeFirst, speed);
+          } else {
+            setTimeout(typeSecond, 250);
+          }
+        }
+        function typeSecond(){
+          if (j <= text2.length){
+            l2.textContent = text2.slice(0, j++);
+            setTimeout(typeSecond, speed);
+          }
+        }
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive'){
+          setTimeout(typeFirst, 250);
+        } else {
+          document.addEventListener('DOMContentLoaded', () => setTimeout(typeFirst, 250));
+        }
+      })();
     </script>
 
     <!-- JSON-LD -->
