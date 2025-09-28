@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Home · Nikolai Seva</title>
+    <title>Home · Nikolai A. Seva</title>
     <meta name="description" content="Nikolai Seva – Mechanical/Biomechanics engineer. UC Berkeley MEng, UBC BASc. Projects, experience, and contact." />
     <link rel="canonical" href="https://example.com/" />
 
     <!-- Favicons -->
-    <link rel="icon" href="pictures/hockey_icon_version_2.jpeg" sizes="any" />
+    <link rel="icon" href="pictures/hockey_about_me.jpeg" sizes="any" />
 
     <!-- Icons -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -37,7 +37,7 @@
       nav ul{display:flex; gap:16px; list-style:none; margin:0; padding:0}
       nav #nav-list[hidden]{display:none}
       .brand{display:flex; align-items:center; gap:.5rem; font-weight:700; color:#111}
-      .button{display:inline-block; padding:.7rem 1rem; border-radius:9999px; background:var(--accent); color:#fff; font-weight:600; border:0}
+      .button{display:inline-block; padding:.7rem 1rem; border-radius:9999px; background:var(--accent); color:#fff; font-weight:600; border:0; cursor:pointer}
       .hero{display:grid; grid-template-columns: 1.2fr 1fr; align-items:center; gap: clamp(16px, 4vw, 48px); padding-block: clamp(32px, 7vw, 96px)}
       .hero h1{font-size:clamp(28px, 6vw, 56px); margin:0 0 12px}
       .hero p{font-size: clamp(16px, 2.4vw, 20px); color:#333}
@@ -51,7 +51,19 @@
       footer{border-top:1px solid #eaeaea; padding-block:32px; text-align:center; opacity:.9}
       .meta{color:var(--muted); font-size:.95rem}
       .visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
+      /* Responsive tweaks */
       @media (max-width: 860px){ .hero{grid-template-columns: 1fr}}
+      @media (max-width: 640px){
+        nav ul{flex-direction:column; align-items:flex-start; gap:12px; padding:12px 0}
+      }
+      /* Responsive embeds (if you add videos later) */
+      .responsive-embed{position:relative; width:100%; aspect-ratio:16/9}
+      .responsive-embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+      /* Form inputs */
+      .input{width:100%; padding:.75rem; border-radius:12px; border:1px solid #ccc; font:inherit}
+      .input:focus{outline:3px solid rgba(14,165,233,.3); border-color:#0ea5e9}
+      .error{color:#b00020}
+      .success{color:#0a7f2e}
     </style>
   </head>
   <body>
@@ -59,7 +71,7 @@
     <header>
       <div class="container">
         <nav aria-label="Primary">
-          <a class="brand" href="/" aria-label="Home"><span aria-hidden="true">🧊</span> <span>Nikolai Seva</span></a>
+          <a class="brand" href="#home" aria-label="Home"><span aria-hidden="true">🧊</span> <span>Nikolai Seva</span></a>
           <button id="nav-toggle" class="button" style="padding:.5rem .75rem;" aria-expanded="false" aria-controls="nav-list">
             <i class='bx bx-menu' aria-hidden="true"></i><span class="visually-hidden">Menu</span>
           </button>
@@ -80,11 +92,9 @@
       <!-- HOME / HERO -->
       <section id="home" class="container hero" aria-label="Hero">
         <div>
-          <h1>Hi, I’m <span style="color:var(--accent)">Nikolai Seva</span>.</h1>
-          <p><strong>Mechanical/biomechanics engineer</strong> with a product mindset—MEng Mechanical Engineering (UC Berkeley) & BASc Biomedical Engineering (UBC). I design, prototype, and validate hardware that’s manufacturable, reliable, and delightful to use.</p>
-          <p>
-            <a class="button" href="#contact">Get in touch</a>
-          </p>
+          <h1>Hi, I’m <span style="color:var(--accent)">Nikolai A. Seva</span>.</h1>
+          <p><strong>Mechanical/Biomechanics engineer</strong> with a product mindset - MEng Mechanical Engineering (UC Berkeley) & BASc Biomedical Engineering (UBC). I design, prototype, and validate hardware that’s manufacturable, reliable, and delightful to use.</p>
+          <p><a class="button" href="#contact">Get in touch</a></p>
           <p class="meta">
             <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a> ·
             <a href="https://www.instagram.com/nikolai_seva/" target="_blank" rel="noopener">Instagram</a> ·
@@ -96,7 +106,7 @@
         </figure>
       </section>
 
-      <!-- ABOUT (tailored for big tech) -->
+      <!-- ABOUT -->
       <section id="about" class="container" aria-labelledby="about-heading">
         <h2 id="about-heading">About</h2>
         <div class="grid" style="grid-template-columns: 1fr 1.2fr; align-items:start;">
@@ -104,17 +114,17 @@
             <img src="pictures/UC_Berkeley_Grad_Photo.jpg" alt="Nikolai Seva at UC Berkeley graduation" loading="lazy" width="800" height="1000">
           </figure>
           <div>
-            <h3>Hello! 👋</h3>
+            <h3>Hello!</h3>
             <p>
-              I build hardware that ships. My sweet spot is where **human factors**, **mechanical design**, and **fast iteration** meet. I work end‑to‑end: concept → CAD/FEA → prototyping → validation → DFM/DFA handoff—partnering closely with EE/SW, reliability, and operations.
+              I build hardware that ships. My sweet spot is where human factors, mechanical design, and fast iteration meet. I work end-to-end: concept → CAD/FEA → prototyping → validation → DFM/DFA handoff—partnering closely with EE/SW, reliability, and operations.
             </p>
             <p>
-              I’ve contributed to medical devices, automotive seating at Tesla, and wearables like a prosthetic pointe shoe. I care about **clear problem framing**, **data‑driven decisions**, and **simple mechanisms** that perform reliably at scale. I thrive in product teams at Apple, Meta, Google, or Tesla—where craftsmanship, rigor, and user empathy matter.
+              I’ve contributed to medical devices, automotive seating at Tesla, and wearables like a prosthetic pointe shoe. I care about clear problem framing, data-driven decisions, and simple mechanisms that perform reliably at scale. I thrive in product teams at Apple, Meta, Google, or Tesla—where craftsmanship, rigor, and user empathy matter.
             </p>
             <ul>
-              <li><strong>Strengths:</strong> CAD (3DX/CATIA, SolidWorks, Fusion 360, Rhino), FEA (linear/non‑linear, fatigue), tolerance stacks/GD&T, design reviews, bring‑up & test.</li>
-              <li><strong>Build:</strong> 3D printing, quick jigs/fixtures, basic machining, lab instrumentation, EMG/IMU prototypes.</li>
-              <li><strong>Software:</strong> Python/MATLAB for analysis; Arduino/C/C++ for demos; HTML/JS for tooling.</li>
+              <li><strong>Strengths:</strong> CAD & FEA (3DX/CATIA, SolidWorks, Fusion 360, ANSYS), GD&T & tolerance stacks, design reviews, and test bring-up.</li>
+              <li><strong>Build:</strong> Rapid prototyping (3D printing, CNC, laser cutting), acoustic fixture design, material characterization, lab instrumentation, EMG/IMU prototypes.</li>
+              <li><strong>Software:</strong> MATLAB/Python for analysis (NumPy, Pandas), Monte Carlo simulations, signal processing (EMG), Arduino/C/C++, HTML/JS for tooling, <strong>Unity</strong>, <strong>Unreal Engine 5</strong> for XR/VR simulation and visualization.</li>
             </ul>
           </div>
         </div>
@@ -124,29 +134,39 @@
       <section id="skills" class="container" aria-labelledby="skills-heading">
         <h2 id="skills-heading">Skills</h2>
         <div class="grid cols-3">
-          <article class="card" aria-label="CAD">
+          <article class="card" aria-label="Technical Skills">
             <div style="padding:16px;">
-              <h3><i class='bx bxs-cog'></i> CAD</h3>
+              <h3><i class='bx bxs-cog'></i> Technical Skills</h3>
               <ul>
-                <li>3DX, CATIA, SolidWorks, Fusion 360, Rhino 3D</li>
-                <li>AutoCAD, Inventor</li>
+                <li>3D CAD (CATIA v5, SolidWorks, Fusion 360)</li>
+                <li>GD&T, Tolerance Stack-Up Analysis</li>
+                <li>FEA (ANSYS, COMSOL)</li>
+                <li>Rapid Prototyping (3D Printing, CNC, Laser Cutting)</li>
+                <li>DFM/DFA, Sensor Integration, Mechanical Testing</li>
+                <li>Acoustic Fixture Design, Material Characterization</li>
+                <li>Lab Instrumentation (force gauges, micrometers, calipers)</li>
+                <li>Wearables Engineering</li>
               </ul>
             </div>
           </article>
-          <article class="card" aria-label="Prototyping & Equipment">
+          <article class="card" aria-label="Data Analysis Skills">
             <div style="padding:16px;">
-              <h3><i class='bx bxs-wrench'></i> Prototyping & Equipment</h3>
+              <h3><i class='bx bxs-bar-chart-alt-2'></i> Data Analysis Skills</h3>
               <ul>
-                <li>3D printing, CNC machining, laser cutting</li>
-                <li>Prototyping, sewing, soldering, woodworking</li>
+                <li>MATLAB, Python (NumPy, Pandas)</li>
+                <li>Excel (Pivot Tables, Solver, Graphing)</li>
+                <li>Monte Carlo Simulations, Statistical Analysis</li>
+                <li>Signal Processing (EMG), Experimental Design</li>
+                <li>FMEA, 5 Whys</li>
               </ul>
             </div>
           </article>
-          <article class="card" aria-label="Software">
+          <article class="card" aria-label="Software & Programming">
             <div style="padding:16px;">
-              <h3><i class='bx bxl-javascript'></i> Software</h3>
+              <h3><i class='bx bxl-javascript'></i> Software & Programming</h3>
               <ul>
                 <li>Arduino IDE, C/C++, MATLAB, Python, R</li>
+                <li>Unity, Unreal Engine 5 (XR/VR prototyping, animation)</li>
                 <li>HTML, Java, JavaScript</li>
               </ul>
             </div>
@@ -190,7 +210,7 @@
               <h3>Engineering Instructor & R&D Engineer · Zen Maker Lab</h3>
               <p class="meta">May 2018 – Present</p>
               <ul>
-                <li>Created hands‑on STEM workshops (CAD, 3D printing, Arduino) that reached 300+ students and boosted enrollments.</li>
+                <li>Created hands-on STEM workshops (CAD, 3D printing, Arduino) that reached 300+ students and boosted enrollments.</li>
                 <li>Built robotics and VR demos used in classrooms; helped the lab win additional school contracts.</li>
                 <li>Mentored junior instructors to standardize labs and improve student outcomes.</li>
               </ul>
@@ -204,7 +224,7 @@
               <h3>Mechanical Engineer · Salyx Medical</h3>
               <p class="meta">Feb 2023 – Apr 2024</p>
               <ul>
-                <li>Designed patient‑monitoring enclosures in Fusion 360; manufacturing feedback loop reduced assembly time by ~15%.</li>
+                <li>Designed patient-monitoring enclosures in Fusion 360; manufacturing feedback loop reduced assembly time by ~15%.</li>
                 <li>Partnered with EE/SW to integrate electronics and accelerate prototype validation.</li>
               </ul>
             </div>
@@ -227,7 +247,7 @@
           <article class="card" style="display:grid; grid-template-columns: 120px 1fr; gap:16px; align-items:start; padding:16px;">
             <img src="pictures/Texavie.png" alt="Texavie" width="120" height="120" />
             <div>
-              <h3>Biomedical Engineering Co‑op · UBC / Texavie</h3>
+              <h3>Biomedical Engineering Co-op · UBC / Texavie</h3>
               <p class="meta">Sept 2021 – Dec 2021</p>
               <ul>
                 <li>Integrated IMUs into wearables; produced motion datasets that informed design iterations.</li>
@@ -240,11 +260,11 @@
           <article class="card" style="display:grid; grid-template-columns: 120px 1fr; gap:16px; align-items:start; padding:16px;">
             <img src="pictures/hexis.jpeg" alt="Hexis Robotics" width="120" height="120" />
             <div>
-              <h3>Robotics Engineering Co‑op · Hexis Robotics</h3>
+              <h3>Robotics Engineering Co-op · Hexis Robotics</h3>
               <p class="meta">Jan 2021 – Apr 2021</p>
               <ul>
-                <li>Programmed and tested UV‑disinfection robots; refined paths to cut cycle times.</li>
-                <li>Built simulations and reports that guided the next‑gen platform.</li>
+                <li>Programmed and tested UV-disinfection robots; refined paths to cut cycle times.</li>
+                <li>Built simulations and reports that guided the next-gen platform.</li>
               </ul>
             </div>
           </article>
@@ -253,7 +273,7 @@
           <article class="card" style="display:grid; grid-template-columns: 120px 1fr; gap:16px; align-items:start; padding:16px;">
             <img src="pictures/solaires.jpeg" alt="Solaires Enterprises" width="120" height="120" />
             <div>
-              <h3>Product Innovation Engineering Co‑op · Solaires Enterprises</h3>
+              <h3>Product Innovation Engineering Co-op · Solaires Enterprises</h3>
               <p class="meta">Sept 2020 – Dec 2020</p>
               <ul>
                 <li>Drafted patent applications and proposed design improvements adopted into R&D.</li>
@@ -269,16 +289,17 @@
         <h2 id="work-heading">Projects</h2>
         <div class="grid cols-3">
           <article class="card">
-            <div style="padding:16px; text-align:center;">
+            <img src="pictures/meta_quest_ski.gif" alt="Meta Quest 3S Prosthetic Ski demo" loading="lazy" width="800" height="600" />
+            <div style="padding:16px;">
               <h3>Meta Quest 3S Prosthetic Ski Fit</h3>
-              <p>Using VR anthropometric analysis to validate prosthetic ski fit for amputees. <em>More coming soon!</em></p>
+              <p>Using VR anthropometric analysis to validate prosthetic ski fit for amputees. More visuals and results coming soon!</p>
             </div>
           </article>
           <article class="card">
             <img src="pictures/bionic_pointe_shoe.gif" alt="Bionic Pointe Shoe prototype" loading="lazy" width="800" height="600" />
             <div style="padding:16px;">
               <h3>Bionic Pointe Shoe (Jun 2025 – Present)</h3>
-              <p>Upgrading prosthetic pointe shoe with dual MyoWare EMG control; 3D‑printed mechanism enables rapid iteration.</p>
+              <p>Upgrading prosthetic pointe shoe with dual MyoWare EMG control; 3D-printed mechanism enables rapid iteration.</p>
             </div>
           </article>
           <article class="card">
@@ -300,7 +321,7 @@
             <img src="pictures/media_pipe_AI.png" alt="AI motion capture demo" loading="lazy" width="800" height="600" />
             <div style="padding:16px;">
               <h3>AI Motion Capture</h3>
-              <p>MediaPipe‑based mocap driving a 3D character.</p>
+              <p>MediaPipe-based mocap driving a 3D character.</p>
               <p><a href="https://www.youtube.com/watch?v=kVLjrgHGUG0" target="_blank" rel="noopener">Watch video →</a></p>
             </div>
           </article>
@@ -321,15 +342,15 @@
           <article class="card">
             <img src="pictures/arduino_obstacle_avoidance_robot.jpeg" alt="Arduino obstacle avoidance robot" loading="lazy" width="800" height="600" />
             <div style="padding:16px;">
-              <h3>Arduino Obstacle‑Avoidance Robot</h3>
+              <h3>Arduino Obstacle-Avoidance Robot</h3>
               <p>Autonomous navigation via simple sensor algorithm on Arduino.</p>
             </div>
           </article>
           <article class="card">
-            <img src="pictures/faceshields.jpeg" alt="3D‑printed face shields for hospitals" loading="lazy" width="800" height="600" />
+            <img src="pictures/faceshields.jpeg" alt="3D-printed face shields for hospitals" loading="lazy" width="800" height="600" />
             <div style="padding:16px;">
-              <h3>Emergency COVID‑19 Face Shields</h3>
-              <p>Organized and fabricated mass 3D‑printed PPE for local hospitals in Vancouver.</p>
+              <h3>Emergency COVID-19 Face Shields</h3>
+              <p>Organized and fabricated mass 3D-printed PPE for local hospitals in Vancouver.</p>
             </div>
           </article>
         </div>
@@ -338,30 +359,38 @@
       <!-- CONTACT -->
       <section id="contact" class="container" aria-labelledby="contact-heading">
         <h2 id="contact-heading">Contact</h2>
-        <form class="card" action="" method="post" style="padding:16px;" novalidate>
+
+        <!-- Use Formspree (replace the action URL with your real endpoint) -->
+        <form class="card" action="https://formspree.io/f/your_form_id" method="POST" style="padding:16px;" novalidate>
           <div class="grid" style="grid-template-columns:1fr 1fr;">
             <p>
               <label for="name">Name</label><br>
-              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Jane Doe" style="width:100%; padding:.75rem; border-radius:12px; border:1px solid #ccc;">
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Jane Doe" class="input">
             </p>
             <p>
               <label for="email">Email</label><br>
-              <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" style="width:100%; padding:.75rem; border-radius:12px; border:1px solid #ccc;">
+              <!-- Formspree reads _replyto for reply-to -->
+              <input id="email" name="_replyto" type="email" autocomplete="email" required placeholder="you@example.com" class="input">
             </p>
           </div>
           <p>
             <label for="message">Message</label><br>
-            <textarea id="message" name="message" rows="6" required placeholder="How can I help?" style="width:100%; padding:.75rem; border-radius:12px; border:1px solid #ccc;"></textarea>
+            <textarea id="message" name="message" rows="6" required placeholder="How can I help?" class="input"></textarea>
           </p>
+
+          <!-- Optional: subject + honeypot -->
+          <input type="hidden" name="_subject" value="Portfolio contact from website">
+          <input type="text" name="_gotcha" style="display:none">
+
           <p><button type="submit" class="button">Send</button></p>
-          <p aria-live="polite" id="form-status" style="margin:0"></p>
+          <p aria-live="polite" id="form-status" class="meta" style="margin:0"></p>
         </form>
       </section>
     </main>
 
     <footer>
       <div class="container">
-        <p><strong>Nikolai Seva</strong> · © <span id="year"></span></p>
+        <p><strong>Nikolai A. Seva</strong> · © <span id="year"></span></p>
         <p>
           <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a> ·
           <a href="https://www.instagram.com/nikolai_seva/" target="_blank" rel="noopener">Instagram</a> ·
@@ -382,21 +411,41 @@
           if (open) list.setAttribute('hidden',''); else list.removeAttribute('hidden');
         });
       }
+
       // Footer year
       document.getElementById('year').textContent = new Date().getFullYear();
-      // Dummy form handler (replace with your backend)
+
+      // Contact form (Formspree)
       const form = document.querySelector('#contact form');
       const status = document.getElementById('form-status');
-      if (form){
+
+      if (form && status){
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
           status.textContent = 'Sending…';
-          try{
-            await new Promise(r=>setTimeout(r,600));
-            form.reset();
-            status.textContent = 'Thanks! I\'ll get back to you soon.';
-          }catch(err){
-            status.textContent = 'Something went wrong. Please email me instead.';
+
+          try {
+            const data = new FormData(form);
+            const res = await fetch(form.action, {
+              method: 'POST',
+              body: data,
+              headers: { 'Accept': 'application/json' }
+            });
+
+            if (res.ok) {
+              form.reset();
+              status.textContent = 'Thanks! I’ll get back to you soon.';
+              status.className = 'success';
+            } else {
+              // Try to parse error for nicer message
+              let msg = 'Hmm, there was a problem. Please email me instead.';
+              try { const j = await res.json(); if (j.errors && j.errors.length) msg = j.errors.map(e => e.message).join(', ');} catch {}
+              status.textContent = msg;
+              status.className = 'error';
+            }
+          } catch (err) {
+            status.textContent = 'Network error. Please email me instead.';
+            status.className = 'error';
           }
         });
       }
