@@ -25,40 +25,117 @@
     <meta property="og:url" content="https://example.com/" />
 
     <style>
-      :root { --accent:#0ea5e9; --text:#222; --muted:#666; --card:#ffffffF2; }
+      /* ---------- THEME TOKENS ---------- */
+      :root{
+        --accent:#0ea5e9;
+        --bg:#f7f7f8;
+        --text:#111111;
+        --muted:#374151;          /* body copy / secondary text */
+        --mutedSoft:#6b7280;      /* placeholders / meta */
+        --card:#ffffffF2;
+        --border:#e5e7eb;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg:#0b0b0c;
+          --text:#e7e7e7;
+          --muted:#cfd3da;
+          --mutedSoft:#a1a1aa;
+          --card:#161618;
+          --border:#2a2a2a;
+        }
+      }
+
+      /* ---------- BASE ---------- */
       *{box-sizing:border-box}
       html,body{margin:0;padding:0}
-      body{font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"; color:var(--text); background:#f7f7f8}
+      body{
+        font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+        color:var(--text);
+        background:var(--bg);
+      }
       a{color:var(--accent); text-decoration:none}
       a:hover{text-decoration:underline}
       .container{max-width:1000px; margin-inline:auto; padding:clamp(16px,2vw,24px)}
-      header{position:sticky; top:0; background:#ffffffcc; backdrop-filter:saturate(160%) blur(8px); border-bottom:1px solid #eaeaea; z-index:10}
+      header{
+        position:sticky; top:0;
+        background:color-mix(in oklab, var(--card), transparent 20%);
+        backdrop-filter:saturate(160%) blur(8px);
+        border-bottom:1px solid var(--border);
+        z-index:10
+      }
       nav{display:flex; align-items:center; justify-content:space-between; gap:16px}
       nav ul{display:flex; gap:16px; list-style:none; margin:0; padding:0}
       nav #nav-list[hidden]{display:none}
-      .brand{display:flex; align-items:center; gap:.5rem; font-weight:700; color:#111}
+      .brand{display:flex; align-items:center; gap:.5rem; font-weight:700; color:var(--text)}
       .button{display:inline-block; padding:.7rem 1rem; border-radius:9999px; background:var(--accent); color:#fff; font-weight:600; border:0; cursor:pointer}
       .hero{display:grid; grid-template-columns:1.2fr 1fr; align-items:center; gap:clamp(16px,4vw,48px); padding-block:clamp(32px,7vw,96px)}
-      .hero h1{font-size:clamp(28px,6vw,56px); margin:0 0 12px}
-      .hero p{font-size:clamp(16px,2.4vw,20px); color:#333}
+      .hero h1{font-size:clamp(28px,6vw,56px); margin:0 0 12px; color:var(--text)}
+      .hero p{font-size:clamp(16px,2.4vw,20px); color:var(--muted)}
       section{scroll-margin-top:80px; padding-block:clamp(32px,6vw,72px)}
-      h2{margin:0 0 16px}
+      h2,h3,h4{color:var(--text); margin:0 0 16px}
+      p, li, label, small{color:var(--muted)}
       .grid{display:grid; gap:24px}
       .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-      .card{border:1px solid #eaeaea; border-radius:16px; overflow:hidden; background:var(--card)}
+      .card{border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--card)}
       .card > img{display:block; width:100%; height:auto}
       figure.card{margin:0}
-      footer{border-top:1px solid #eaeaea; padding-block:32px; text-align:center; opacity:.9}
-      .meta{color:var(--muted); font-size:.95rem}
+      footer{border-top:1px solid var(--border); padding-block:32px; text-align:center; opacity:.95}
+      .meta{color:var(--mutedSoft); font-size:.95rem}
       .visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
+
+      /* Responsive tweaks */
       @media (max-width: 860px){ .hero{grid-template-columns:1fr}}
-      @media (max-width: 640px){ nav ul{flex-direction:column; align-items:flex-start; gap:12px; padding:12px 0}}
+      @media (max-width: 640px){
+        nav ul{flex-direction:column; align-items:flex-start; gap:12px; padding:12px 0}
+      }
+
+      /* Responsive embeds (if you add videos later) */
       .responsive-embed{position:relative; width:100%; aspect-ratio:16/9}
       .responsive-embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
-      .input{width:100%; padding:.75rem; border-radius:12px; border:1px solid #ccc; font:inherit; background:#fff}
-      .input:focus{outline:3px solid rgba(14,165,233,.3); border-color:#0ea5e9}
+
+      /* ---------- FORM: Always readable in light & dark ---------- */
+      .input{
+        width:100%;
+        padding:.75rem;
+        border-radius:12px;
+        border:1px solid #cfcfcf;
+        font:inherit;
+        background:#ffffff;        /* keep inputs light on both themes */
+        color:#111111;             /* dark text for contrast */
+        transition:border-color .15s ease, box-shadow .15s ease;
+      }
+      .input:focus{outline:3px solid rgba(14,165,233,.25); border-color:#0ea5e9}
+      .input::placeholder{color:var(--mutedSoft)}
+
+      /* Dark mode container adjustments */
+      @media (prefers-color-scheme: dark){
+        header{ background:rgba(20,20,22,.75) }
+        .input{
+          background:#ffffff;
+          color:#111111;
+          border-color:#d1d5db;
+        }
+        .input::placeholder{ color:#6b7280; }
+        .card{ background:var(--card); border-color:var(--border); }
+      }
+
+      /* Autofill readability on Safari/Chrome */
+      .input:-webkit-autofill,
+      .input:-webkit-autofill:hover,
+      .input:-webkit-autofill:focus{
+        -webkit-text-fill-color:#111111;
+        -webkit-box-shadow:0 0 0px 1000px #ffffff inset;
+        box-shadow:0 0 0px 1000px #ffffff inset;
+      }
+
+      /* Mobile: stack the two inputs in Contact */
+      @media (max-width:640px){
+        #contact .grid{ grid-template-columns:1fr !important; }
+      }
+
       .error{color:#b00020}
-      .success{color:#0a7f2e}
+      .success{color:#16a34a}
     </style>
   </head>
   <body>
@@ -97,7 +174,7 @@
           </p>
         </div>
         <figure>
-          <img src="pictures/Hockey_Cover_Photo_Portfolio.jpg" alt="Nikolai on the ice—portfolio cover" width="1000" height="700" style="border-radius:16px; border:1px solid #eaeaea" />
+          <img src="pictures/Hockey_Cover_Photo_Portfolio.jpg" alt="Nikolai on the ice—portfolio cover" width="1000" height="700" style="border-radius:16px; border:1px solid var(--border)" />
         </figure>
       </section>
 
@@ -353,7 +430,7 @@
             </p>
             <p>
               <label for="email">Email</label><br>
-              <input id="email" name="_replyto" type="email" autocomplete="email" required placeholder="you@example.com" class="input">
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" class="input">
             </p>
           </div>
           <p>
