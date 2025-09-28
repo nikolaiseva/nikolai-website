@@ -25,39 +25,37 @@
     <meta property="og:url" content="https://example.com/" />
 
     <style>
-      :root { --accent:#0ea5e9; --text:#222; --muted:#666; --card: #ffffffF2; }
+      :root { --accent:#0ea5e9; --text:#222; --muted:#666; --card:#ffffffF2; }
       *{box-sizing:border-box}
       html,body{margin:0;padding:0}
-      body{font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; color:var(--text); background:#f7f7f8}
+      body{font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"; color:var(--text); background:#f7f7f8}
       a{color:var(--accent); text-decoration:none}
       a:hover{text-decoration:underline}
-      .container{max-width: 1000px; margin-inline:auto; padding: clamp(16px, 2vw, 24px)}
+      .container{max-width:1000px; margin-inline:auto; padding:clamp(16px,2vw,24px)}
       header{position:sticky; top:0; background:#ffffffcc; backdrop-filter:saturate(160%) blur(8px); border-bottom:1px solid #eaeaea; z-index:10}
       nav{display:flex; align-items:center; justify-content:space-between; gap:16px}
       nav ul{display:flex; gap:16px; list-style:none; margin:0; padding:0}
       nav #nav-list[hidden]{display:none}
       .brand{display:flex; align-items:center; gap:.5rem; font-weight:700; color:#111}
       .button{display:inline-block; padding:.7rem 1rem; border-radius:9999px; background:var(--accent); color:#fff; font-weight:600; border:0; cursor:pointer}
-      .hero{display:grid; grid-template-columns: 1.2fr 1fr; align-items:center; gap: clamp(16px, 4vw, 48px); padding-block: clamp(32px, 7vw, 96px)}
-      .hero h1{font-size:clamp(28px, 6vw, 56px); margin:0 0 12px}
-      .hero p{font-size: clamp(16px, 2.4vw, 20px); color:#333}
-      section{scroll-margin-top:80px; padding-block: clamp(32px, 6vw, 72px)}
+      .hero{display:grid; grid-template-columns:1.2fr 1fr; align-items:center; gap:clamp(16px,4vw,48px); padding-block:clamp(32px,7vw,96px)}
+      .hero h1{font-size:clamp(28px,6vw,56px); margin:0 0 12px}
+      .hero p{font-size:clamp(16px,2.4vw,20px); color:#333}
+      section{scroll-margin-top:80px; padding-block:clamp(32px,6vw,72px)}
       h2{margin:0 0 16px}
       .grid{display:grid; gap:24px}
-      .grid.cols-3{grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))}
+      .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
       .card{border:1px solid #eaeaea; border-radius:16px; overflow:hidden; background:var(--card)}
       .card > img{display:block; width:100%; height:auto}
       figure.card{margin:0}
       footer{border-top:1px solid #eaeaea; padding-block:32px; text-align:center; opacity:.9}
       .meta{color:var(--muted); font-size:.95rem}
       .visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
-      /* Responsive tweaks */
-      @media (max-width: 860px){ .hero{grid-template-columns: 1fr}}
-      @media (max-width: 640px){
-        nav ul{flex-direction:column; align-items:flex-start; gap:12px; padding:12px 0}
-      }
-      /* Form inputs */
-      .input{width:100%; padding:.75rem; border-radius:12px; border:1px solid #ccc; font:inherit}
+      @media (max-width: 860px){ .hero{grid-template-columns:1fr}}
+      @media (max-width: 640px){ nav ul{flex-direction:column; align-items:flex-start; gap:12px; padding:12px 0}}
+      .responsive-embed{position:relative; width:100%; aspect-ratio:16/9}
+      .responsive-embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+      .input{width:100%; padding:.75rem; border-radius:12px; border:1px solid #ccc; font:inherit; background:#fff}
       .input:focus{outline:3px solid rgba(14,165,233,.3); border-color:#0ea5e9}
       .error{color:#b00020}
       .success{color:#0a7f2e}
@@ -87,7 +85,261 @@
 
     <main id="main">
       <!-- HOME / HERO -->
-      <!-- (keep your existing hero, about, skills, education, experience, projects sections unchanged) -->
+      <section id="home" class="container hero" aria-label="Hero">
+        <div>
+          <h1>Hi, I’m <span style="color:var(--accent)">Nikolai A. Seva</span>.</h1>
+          <p><strong>Mechanical/Biomechanics Engineer</strong> with a product mindset — MEng Mechanical Engineering (UC Berkeley) & BASc Biomedical Engineering (UBC). I design, prototype, and validate hardware that’s manufacturable, reliable, and delightful to use.</p>
+          <p><a class="button" href="#contact">Get in touch</a></p>
+          <p class="meta">
+            <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a> ·
+            <a href="https://www.instagram.com/nikolai_seva/" target="_blank" rel="noopener">Instagram</a> ·
+            <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a>
+          </p>
+        </div>
+        <figure>
+          <img src="pictures/Hockey_Cover_Photo_Portfolio.jpg" alt="Nikolai on the ice—portfolio cover" width="1000" height="700" style="border-radius:16px; border:1px solid #eaeaea" />
+        </figure>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="container" aria-labelledby="about-heading">
+        <h2 id="about-heading">About</h2>
+        <div class="grid" style="grid-template-columns:1fr 1.2fr; align-items:start;">
+          <figure class="card">
+            <img src="pictures/UC_Berkeley_Grad_Photo.jpg" alt="Nikolai Seva at UC Berkeley graduation" loading="lazy" width="800" height="1000">
+          </figure>
+          <div>
+            <h3>Hello!</h3>
+            <p>I build hardware that ships. My sweet spot is where human factors, mechanical design, and fast iteration meet. I work end-to-end: concept → CAD/FEA → prototyping → validation → DFM/DFA handoff—partnering closely with EE/SW, reliability, and operations.</p>
+            <p>I’ve contributed to medical devices, automotive seating at Tesla, and wearables like a prosthetic pointe shoe. I care about clear problem framing, data-driven decisions, and simple mechanisms that perform reliably at scale. I thrive in product teams at Apple, Meta, Google, or Tesla—where craftsmanship, rigor, and user empathy matter.</p>
+            <ul>
+              <li><strong>Strengths:</strong> CAD & FEA (3DX/CATIA, SolidWorks, Fusion 360, ANSYS), GD&T & tolerance stacks, design reviews, and test bring-up.</li>
+              <li><strong>Build:</strong> Rapid prototyping (3D printing, CNC, laser cutting), acoustic fixture design, material characterization, lab instrumentation, EMG/IMU prototypes.</li>
+              <li><strong>Software:</strong> MATLAB/Python for analysis (NumPy, Pandas), Monte Carlo simulations, signal processing (EMG), Arduino/C/C++, HTML/JS for tooling, <strong>Unity</strong>, <strong>Unreal Engine 5</strong> for XR/VR simulation and visualization.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="container" aria-labelledby="skills-heading">
+        <h2 id="skills-heading">Skills</h2>
+        <div class="grid cols-3">
+          <article class="card" aria-label="Technical Skills">
+            <div style="padding:16px;">
+              <h3><i class='bx bxs-cog'></i> Technical Skills</h3>
+              <ul>
+                <li>3D CAD (CATIA v5, SolidWorks, Fusion 360)</li>
+                <li>GD&T, Tolerance Stack-Up Analysis</li>
+                <li>FEA (ANSYS, COMSOL)</li>
+                <li>Rapid Prototyping (3D Printing, CNC, Laser Cutting)</li>
+                <li>DFM/DFA, Sensor Integration, Mechanical Testing</li>
+                <li>Acoustic Fixture Design, Material Characterization</li>
+                <li>Lab Instrumentation (force gauges, micrometers, calipers)</li>
+                <li>Wearables Engineering</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card" aria-label="Data Analysis Skills">
+            <div style="padding:16px;">
+              <h3><i class='bx bxs-bar-chart-alt-2'></i> Data Analysis Skills</h3>
+              <ul>
+                <li>MATLAB, Python (NumPy, Pandas)</li>
+                <li>Excel (Pivot Tables, Solver, Graphing)</li>
+                <li>Monte Carlo Simulations, Statistical Analysis</li>
+                <li>Signal Processing (EMG), Experimental Design</li>
+                <li>FMEA, 5 Whys</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card" aria-label="Software & Programming">
+            <div style="padding:16px;">
+              <h3><i class='bx bxl-javascript'></i> Software & Programming</h3>
+              <ul>
+                <li>Arduino IDE, C/C++, MATLAB, Python, R</li>
+                <li>Unity, Unreal Engine 5 (XR/VR prototyping, animation)</li>
+                <li>HTML, Java, JavaScript</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="education" class="container" aria-labelledby="edu-heading">
+        <h2 id="edu-heading">Education</h2>
+        <div class="grid">
+          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:center; padding:16px;">
+            <img src="pictures/berkeley-logo.png" alt="UC Berkeley" width="120" height="120" />
+            <div>
+              <h3>MEng Mechanical Engineering · UC Berkeley</h3>
+              <p class="meta">Aug 2024 – May 2025 · GPA 3.94/4.0</p>
+              <p><strong>Capstone:</strong> Revolutionizing Footwear: Blending Biomechanics with Fashion Design</p>
+              <p><strong>Coursework:</strong> Orthopaedic Biomechanics (A-), Design for the Human Body (A)</p>
+              <p><strong>Awards:</strong> Opportunity Grant $15,000 USD</p>
+            </div>
+          </article>
+          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:center; padding:16px;">
+            <img src="pictures/ubc_logo.jpg" alt="UBC" width="120" height="120" />
+            <div>
+              <h3>BASc Biomedical Engineering · UBC</h3>
+              <p class="meta">2018 – 2022 · GPA 3.6/4.0 · Biomechanics & Biomaterials stream</p>
+              <p>Irving K. Barber Transfer Scholarship (2018)</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="container" aria-labelledby="exp-heading">
+        <h2 id="exp-heading">Work Experience</h2>
+        <div class="grid">
+          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
+            <img src="pictures/zen_maker_lab.jpeg" alt="Zen Maker Lab" width="120" height="120" />
+            <div>
+              <h3>Engineering Instructor & R&D Engineer · Zen Maker Lab</h3>
+              <p class="meta">May 2018 – Present</p>
+              <ul>
+                <li>Created hands-on STEM workshops (CAD, 3D printing, Arduino) that reached 300+ students and boosted enrollments.</li>
+                <li>Built robotics and VR demos used in classrooms; helped the lab win additional school contracts.</li>
+                <li>Mentored junior instructors to standardize labs and improve student outcomes.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
+            <img src="pictures/salyx_medical.jpeg" alt="Salyx Medical" width="120" height="120" />
+            <div>
+              <h3>Mechanical Engineer · Salyx Medical</h3>
+              <p class="meta">Feb 2023 – Apr 2024</p>
+              <ul>
+                <li>Designed patient-monitoring enclosures in Fusion 360; manufacturing feedback loop reduced assembly time by ~15%.</li>
+                <li>Partnered with EE/SW to integrate electronics and accelerate prototype validation.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
+            <img src="pictures/LINKEDIN_Tesla_Animation_Offer.gif" alt="Tesla" width="120" height="120" />
+            <div>
+              <h3>Mechanical Design Engineering Intern · Tesla (Seating)</h3>
+              <p class="meta">Sept 2023 – Jan 2024</p>
+              <ul>
+                <li>Prototyped comfort/ergonomics improvements; tests showed reduced pressure points and higher comfort scores.</li>
+                <li>Addressed durability concerns; design tweaks improved cycle life by ~10%.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
+            <img src="pictures/Texavie.png" alt="Texavie" width="120" height="120" />
+            <div>
+              <h3>Biomedical Engineering Co-op · UBC / Texavie</h3>
+              <p class="meta">Sept 2021 – Dec 2021</p>
+              <ul>
+                <li>Integrated IMUs into wearables; produced motion datasets that informed design iterations.</li>
+                <li>Improved harness ergonomics, reducing user discomfort during trials.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
+            <img src="pictures/hexis.jpeg" alt="Hexis Robotics" width="120" height="120" />
+            <div>
+              <h3>Robotics Engineering Co-op · Hexis Robotics</h3>
+              <p class="meta">Jan 2021 – Apr 2021</p>
+              <ul>
+                <li>Programmed and tested UV-disinfection robots; refined paths to cut cycle times.</li>
+                <li>Built simulations and reports that guided the next-gen platform.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
+            <img src="pictures/solaires.jpeg" alt="Solaires Enterprises" width="120" height="120" />
+            <div>
+              <h3>Product Innovation Engineering Co-op · Solaires Enterprises</h3>
+              <p class="meta">Sept 2020 – Dec 2020</p>
+              <ul>
+                <li>Drafted patent applications and proposed design improvements adopted into R&D.</li>
+                <li>Generated concepts that contributed to the company’s IP pipeline.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="work" class="container" aria-labelledby="work-heading">
+        <h2 id="work-heading">Projects</h2>
+        <div class="grid cols-3">
+          <article class="card">
+            <img src="pictures/meta_quest_ski.gif" alt="Meta Quest 3S Prosthetic Ski demo" loading="lazy" width="800" height="600" />
+            <div style="padding:16px;">
+              <h3>Meta Quest 3S Prosthetic Ski Fit</h3>
+              <p>Using VR anthropometric analysis to validate prosthetic ski fit for amputees. More visuals and results coming soon!</p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="pictures/bionic_pointe_shoe.gif" alt="Bionic Pointe Shoe prototype" loading="lazy" width="800" height="600" />
+            <div style="padding:16px;">
+              <h3>Bionic Pointe Shoe (Jun 2025 – Present)</h3>
+              <p>Upgrading prosthetic pointe shoe with dual MyoWare EMG control; 3D-printed mechanism enables rapid iteration.</p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="pictures/prosthetic_pointe_shoe.jpeg" alt="Prosthetic Pointe Shoe prototype" loading="lazy" width="800" height="600" />
+            <div style="padding:16px;">
+              <h3>Prosthetic Pointe Shoe</h3>
+              <p>SolidWorks design + FEA; prototype withstood ~2300 lbs compression for safe pointe standing.</p>
+              <p><a href="https://www.youtube.com/watch?v=IQiN9kiXcWA" target="_blank" rel="noopener">Watch video →</a></p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="pictures/dress_shoe.png" alt="3D printed dress shoe prototype" loading="lazy" width="800" height="600" />
+            <div style="padding:16px;">
+              <h3>Capstone: Biomechanics × Fashion</h3>
+              <p>Rhino modeling and rapid prototyping to evaluate comfort and fit for dress shoes.</p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="pictures/media_pipe_AI.png" alt="AI motion capture demo" loading="lazy" width="800" height="600" />
+            <div style="padding:16px;">
+              <h3>AI Motion Capture</h3>
+              <p>MediaPipe-based mocap driving a 3D character.</p>
+              <p><a href="https://www.youtube.com/watch?v=kVLjrgHGUG0" target="_blank" rel="noopener">Watch video →</a></p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="pictures/Fortnite_Whiteout.png" alt="Unreal Engine Fortnite animation" loading="lazy" width="800" height="600" />
+            <div style="padding:16px;">
+              <h3>Unreal Engine 5 – Fortnite</h3>
+              <p><a href="https://www.youtube.com/watch?v=90GnBBd50P4" target="_blank" rel="noopener">Watch video →</a></p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="pictures/fifa_unreal_engine_5.png" alt="Unreal Engine FIFA animation" loading="lazy" width="800" height="600" />
+            <div style="padding:16px;">
+              <h3>Unreal Engine 5 – FIFA</h3>
+              <p><a href="https://www.youtube.com/watch?v=RPeLFil1UhY" target="_blank" rel="noopener">Watch video →</a></p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="pictures/arduino_obstacle_avoidance_robot.jpeg" alt="Arduino obstacle avoidance robot" loading="lazy" width="800" height="600" />
+            <div style="padding:16px;">
+              <h3>Arduino Obstacle-Avoidance Robot</h3>
+              <p>Autonomous navigation via simple sensor algorithm on Arduino.</p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="pictures/faceshields.jpeg" alt="3D-printed face shields for hospitals" loading="lazy" width="800" height="600" />
+            <div style="padding:16px;">
+              <h3>Emergency COVID-19 Face Shields</h3>
+              <p>Organized and fabricated mass 3D-printed PPE for local hospitals in Vancouver.</p>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <!-- CONTACT -->
       <section id="contact" class="container" aria-labelledby="contact-heading">
@@ -153,6 +405,7 @@
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
           status.textContent = 'Sending…';
+          status.className = 'meta';
 
           try {
             const data = new FormData(form);
@@ -166,13 +419,14 @@
               form.reset();
               status.textContent = 'Thanks! I’ll get back to you soon.';
               status.className = 'success';
+              setTimeout(()=>{ status.textContent=''; status.className='meta'; }, 4500);
             } else {
               let msg = 'Hmm, there was a problem. Please email me instead.';
-              try { const j = await res.json(); if (j.errors && j.errors.length) msg = j.errors.map(e => e.message).join(', ');} catch {}
+              try { const j = await res.json(); if (j.errors?.length) msg = j.errors.map(e => e.message).join(', ');} catch {}
               status.textContent = msg;
               status.className = 'error';
             }
-          } catch (err) {
+          } catch {
             status.textContent = 'Network error. Please email me instead.';
             status.className = 'error';
           }
