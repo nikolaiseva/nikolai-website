@@ -1,0 +1,219 @@
+<!-- UPDATED PNG VERSION -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nikolai Seva · Hardware & Biomechanics</title>
+  <meta name="description" content="Portfolio of Nikolai A. Seva — mechanical/biomechanics engineer designing and validating human-centered hardware." />
+  <style>
+    :root{
+      --bg:#0b0d12;--bg-2:#0e1118;--card:#111420cc;--txt:#e8ecf2;--muted:#9aa4b2;--acc:#7cd4ff;--acc-2:#8cffc1;--shadow:0 8px 30px rgba(0,0,0,.45);
+      --radius:22px;--radius-sm:14px;--gap:18px;--max:1180px;--grid:minmax(250px, 1fr);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:radial-gradient(1200px 700px at 80% -10%, #142036 0%, transparent 60%),linear-gradient(180deg,var(--bg),var(--bg-2));color:var(--txt);font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif;letter-spacing:.2px}
+    a{color:var(--acc)}
+    .wrap{max-width:var(--max);margin:0 auto;padding:24px}
+    header.nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(11,13,18,.9), rgba(11,13,18,.6) 60%, transparent);backdrop-filter:blur(10px)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 24px}
+    .brand{font-weight:700;letter-spacing:.6px}
+    .brand small{color:var(--muted);font-weight:500}
+    .nav-links{display:flex;gap:16px;align-items:center}
+    .btn, button{appearance:none;border:0;background:linear-gradient(135deg,var(--acc),var(--acc-2));color:#081018;padding:10px 14px;border-radius:12px;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
+    .btn.ghost{background:#1a2130; color:var(--txt); box-shadow:none; border:1px solid #283248}
+
+    /* HERO */
+    .hero{position:relative; margin:32px auto 8px; display:grid; grid-template-columns: 1.2fr .8fr; gap:var(--gap); align-items:center}
+    @media (max-width: 900px){.hero{grid-template-columns:1fr;}}
+    .hero-card{background:linear-gradient(180deg,#131927cc,#0f1420cc); border:1px solid #253049; border-radius:var(--radius); padding:28px; box-shadow:var(--shadow)}
+    .hero h1{font-size:clamp(28px,4vw,44px); line-height:1.1; margin:0 0 10px}
+    .hero p.lead{color:var(--muted); font-size:clamp(16px,2.2vw,18px)}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .badge{border:1px solid #2b3550;color:#c7d0de;background:#151b27;border-radius:999px;padding:6px 10px;font-size:13px}
+
+    .hero-media{position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid #27314b; box-shadow:var(--shadow)}
+    .hero-media img{display:block;width:100%;height:auto}
+
+    /* SECTION */
+    section{margin:42px 0}
+    .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .section-head h2{margin:0;font-size:clamp(22px,3vw,30px)}
+    .muted{color:var(--muted)}
+
+    /* GALLERY */
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap)}
+    .card{grid-column: span 4; background: linear-gradient(180deg,#121826cc,#0e1420cc); border:1px solid #26324a; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)}
+    .card.wide{grid-column: span 8}
+    .card.tall{grid-row: span 2}
+    @media (max-width: 980px){.card, .card.wide{grid-column: span 6}}
+    @media (max-width: 720px){.card, .card.wide{grid-column: span 12}}
+    .card-img{position:relative; overflow:hidden}
+    .card-img img{width:100%;height:auto;display:block;transform:scale(1);transition:transform .4s ease}
+    .card:hover .card-img img{transform:scale(1.04)}
+    .cap{padding:16px}
+    .cap h3{margin:2px 0 6px;font-size:18px}
+    .cap p{margin:0;color:var(--muted)}
+
+    /* LIGHTBOX */
+    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(8,10,16,.86);backdrop-filter: blur(6px); z-index:100}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:92vw;max-height:82vh;border-radius:16px;border:1px solid #2a3552;box-shadow:var(--shadow)}
+    .lightbox .close{position:absolute;top:20px;right:26px;background:#151c2b;color:#fff;padding:8px 11px;border-radius:10px;border:1px solid #2a3552}
+
+    footer{margin:48px 0 24px; color:var(--muted); text-align:center}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner wrap">
+      <div class="brand">Nikolai A. Seva <small>· Hardware & Biomechanics</small></div>
+      <nav class="nav-links">
+        <a class="btn ghost" href="index.html">Home</a>
+        <a class="btn" href="#gallery">See Work</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-card">
+        <h1>Prosthetic Ski Leg — concept → CAD/FEA → prototype</h1>
+        <p class="lead">A high-performance ski prosthesis with progressive flex, torsional compliance, and DIN-compatible binding interface. Built for cold reliability and on-hill adjustability.</p>
+        <div class="badges">
+          <span class="badge">SolidWorks • ANSYS</span>
+          <span class="badge">7075-T6 • CF layups</span>
+          <span class="badge">Rapid prototyping</span>
+          <span class="badge">Bench validation</span>
+        </div>
+      </div>
+      <figure class="hero-media">
+        <img src="ski_photos/MEC210_Ski_Prosthetic_Complete%20v4.png" alt="Render: complete prosthetic ski assembly" loading="eager" />
+      </figure>
+    </section>
+
+    <!-- GALLERY / PROJECT CARDS -->
+    <section id="gallery">
+      <div class="section-head">
+        <h2>Selected visuals</h2>
+        <p class="muted">Click any image to view full-size</p>
+      </div>
+
+      <div class="grid">
+        <!-- Card 1 (wide) -->
+        <article class="card wide">
+          <a class="card-img lb" href="ski_photos/MEC210_Ski_Prosthetic_Complete%20v4.png" data-caption="Complete render">
+            <img src="ski_photos/MEC210_Ski_Prosthetic_Complete%20v4.png" alt="Full assembly render" loading="lazy" />
+          </a>
+          <div class="cap">
+            <h3>Assembly Render</h3>
+            <p>Progressive-flex hinge, torsion + vertical shock module, and binding interface plate.</p>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card">
+          <a class="card-img lb" href="ski_photos/IMG_0903.png" data-caption="Prototype — side view">
+            <img src="ski_photos/IMG_0903.png" alt="Prototype side" loading="lazy" />
+          </a>
+          <div class="cap">
+            <h3>Prototype — Side</h3>
+            <p>Lightweight frame with CF foot element for edge control.</p>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card">
+          <a class="card-img lb" href="ski_photos/IMG_0911.png" data-caption="Prototype — front view">
+            <img src="ski_photos/IMG_0911.png" alt="Prototype front" loading="lazy" />
+          </a>
+          <div class="cap">
+            <h3>Prototype — Front</h3>
+            <p>Clear load paths; guarded pinch points; cold-friendly fasteners.</p>
+          </div>
+        </article>
+
+        <!-- Card 4 (tall) -->
+        <article class="card tall">
+          <a class="card-img lb" href="ski_photos/IMG_0942.png" data-caption="Close-up — hinge & coupler">
+            <img src="ski_photos/IMG_0942.png" alt="Close-up assembly" loading="lazy" />
+          </a>
+          <div class="cap">
+            <h3>Close-up</h3>
+            <p>Progressive cam + dual-rate elastomers and torsion coupler stack.</p>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="card">
+          <a class="card-img lb" href="ski_photos/IMG_7972.png" data-caption="Bench setup & fixtures">
+            <img src="ski_photos/IMG_7972.png" alt="Bench setup" loading="lazy" />
+          </a>
+          <div class="cap">
+            <h3>Bench Setup</h3>
+            <p>Fixture for vertical shock and torsional compliance checks.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- DETAILS -->
+    <section>
+      <div class="section-head"><h2>Design details</h2></div>
+      <div class="grid">
+        <div class="card wide">
+          <div class="cap">
+            <h3>Architecture</h3>
+            <ul>
+              <li><strong>PFH:</strong> Progressive Flex Hinge with cam + dual-rate elastomers (boot-flex ~90→130).</li>
+              <li><strong>TVSM:</strong> Torsion + Vertical Shock Module (±25–30° elastic twist; 15–20 mm travel).</li>
+              <li><strong>BIP:</strong> DIN-compatible binding interface with optional fuse screws.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="cap">
+            <h3>Materials</h3>
+            <p>7075-T6/Ti-6Al-4V links, 17-4PH pins, PTFE-lined bearings, low-temp oil & seals, CF foot element.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="cap">
+            <h3>Validation</h3>
+            <p>FEA sizing to ~800 N·m bending; cold-soak; endurance cycles; on-hill adjustability with gloved controls.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="close" aria-label="Close">✕</button>
+    <img src="" alt="Preview" />
+  </div>
+
+  <footer class="wrap">
+    © <span id="y"></span> Nikolai A. Seva · <a href="index.html">Home</a>
+  </footer>
+
+  <script>
+    const lb = document.getElementById('lightbox');
+    const lbImg = lb.querySelector('img');
+    document.querySelectorAll('.lb').forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        lbImg.src = a.getAttribute('href');
+        lbImg.alt = a.dataset.caption || 'Preview';
+        lb.classList.add('open');
+      });
+    });
+    lb.addEventListener('click', (e)=>{
+      if(e.target===lb || e.target.classList.contains('close')) lb.classList.remove('open');
+    });
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
