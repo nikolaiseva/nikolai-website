@@ -8,31 +8,31 @@
   <style>
     :root{
       --bg:#0b0d12;--bg-2:#0e1118;--card:#111420cc;--txt:#e8ecf2;--muted:#9aa4b2;--acc:#7cd4ff;--acc-2:#8cffc1;--shadow:0 8px 30px rgba(0,0,0,.45);
-      --radius:22px;--radius-sm:14px;--gap:18px;--max:1180px;--grid:minmax(250px, 1fr);
+      --radius:22px;--gap:18px;--max:1180px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:radial-gradient(1200px 700px at 80% -10%, #142036 0%, transparent 60%),linear-gradient(180deg,var(--bg),var(--bg-2));color:var(--txt);font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif;letter-spacing:.2px}
+    body{margin:0;background:radial-gradient(1200px 700px at 80% -10%, #142036 0%, transparent 60%),linear-gradient(180deg,var(--bg),var(--bg-2));color:var(--txt);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;letter-spacing:.2px}
     a{color:var(--acc)}
     .wrap{max-width:var(--max);margin:0 auto;padding:24px}
-    header.nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(11,13,18,.9), rgba(11,13,18,.6) 60%, transparent);backdrop-filter:blur(10px)}
+    header.nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(11,13,18,.9),rgba(11,13,18,.6) 60%,transparent);backdrop-filter:blur(10px)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 24px}
     .brand{font-weight:700;letter-spacing:.6px}
     .brand small{color:var(--muted);font-weight:500}
     .nav-links{display:flex;gap:16px;align-items:center}
-    .btn, button{appearance:none;border:0;background:linear-gradient(135deg,var(--acc),var(--acc-2));color:#081018;padding:10px 14px;border-radius:12px;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
-    .btn.ghost{background:#1a2130; color:var(--txt); box-shadow:none; border:1px solid #283248}
+    .btn,button{appearance:none;border:0;background:linear-gradient(135deg,var(--acc),var(--acc-2));color:#081018;padding:10px 14px;border-radius:12px;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
+    .btn.ghost{background:#1a2130;color:var(--txt);box-shadow:none;border:1px solid #283248}
 
     /* HERO */
-    .hero{position:relative; margin:32px auto 8px; display:grid; grid-template-columns: 1.2fr .8fr; gap:var(--gap); align-items:center}
-    @media (max-width: 900px){.hero{grid-template-columns:1fr;}}
-    .hero-card{background:linear-gradient(180deg,#131927cc,#0f1420cc); border:1px solid #253049; border-radius:var(--radius); padding:28px; box-shadow:var(--shadow)}
-    .hero h1{font-size:clamp(28px,4vw,44px); line-height:1.1; margin:0 0 10px}
-    .hero p.lead{color:var(--muted); font-size:clamp(16px,2.2vw,18px)}
+    .hero{position:relative;margin:32px auto 8px;display:grid;grid-template-columns:1.2fr .8fr;gap:var(--gap);align-items:center}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}}
+    .hero-card{background:linear-gradient(180deg,#131927cc,#0f1420cc);border:1px solid #253049;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+    .hero h1{font-size:clamp(28px,4vw,44px);line-height:1.1;margin:0 0 10px}
+    .hero p.lead{color:var(--muted);font-size:clamp(16px,2.2vw,18px)}
     .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
     .badge{border:1px solid #2b3550;color:#c7d0de;background:#151b27;border-radius:999px;padding:6px 10px;font-size:13px}
 
-    .hero-media{position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid #27314b; box-shadow:var(--shadow)}
+    .hero-media{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid #27314b;box-shadow:var(--shadow)}
     .hero-media img{display:block;width:100%;height:auto}
 
     /* SECTION */
@@ -43,12 +43,12 @@
 
     /* GALLERY */
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap)}
-    .card{grid-column: span 4; background: linear-gradient(180deg,#121826cc,#0e1420cc); border:1px solid #26324a; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)}
-    .card.wide{grid-column: span 8}
-    .card.tall{grid-row: span 2}
-    @media (max-width: 980px){.card, .card.wide{grid-column: span 6}}
-    @media (max-width: 720px){.card, .card.wide{grid-column: span 12}}
-    .card-img{position:relative; overflow:hidden}
+    .card{grid-column:span 4;background:linear-gradient(180deg,#121826cc,#0e1420cc);border:1px solid #26324a;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .card.wide{grid-column:span 8}
+    .card.tall{grid-row:span 2}
+    @media(max-width:980px){.card,.card.wide{grid-column:span 6}}
+    @media(max-width:720px){.card,.card.wide{grid-column:span 12}}
+    .card-img{position:relative;overflow:hidden}
     .card-img img{width:100%;height:auto;display:block;transform:scale(1);transition:transform .4s ease}
     .card:hover .card-img img{transform:scale(1.04)}
     .cap{padding:16px}
@@ -56,12 +56,12 @@
     .cap p{margin:0;color:var(--muted)}
 
     /* LIGHTBOX */
-    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(8,10,16,.86);backdrop-filter: blur(6px); z-index:100}
+    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(8,10,16,.86);backdrop-filter:blur(6px);z-index:100}
     .lightbox.open{display:flex}
     .lightbox img{max-width:92vw;max-height:82vh;border-radius:16px;border:1px solid #2a3552;box-shadow:var(--shadow)}
     .lightbox .close{position:absolute;top:20px;right:26px;background:#151c2b;color:#fff;padding:8px 11px;border-radius:10px;border:1px solid #2a3552}
 
-    footer{margin:48px 0 24px; color:var(--muted); text-align:center}
+    footer{margin:48px 0 24px;color:var(--muted);text-align:center}
   </style>
 </head>
 <body>
@@ -81,8 +81,8 @@
       <div class="hero-card">
         <h1>Prosthetic Ski Leg — concept → CAD/FEA → prototype</h1>
         <p class="lead">
-          I design for <strong>anthropometric fit</strong>, ensure the prosthetic foot model <strong>interfaces correctly with alpine bindings</strong>,
-          and validate <strong>mechanical integrity</strong> so stress and strain stay within safe limits under rider weight.
+          I focused on achieving <strong>anthropometric fit</strong>, ensuring the prosthetic foot <strong>interfaces correctly with ski bindings</strong>,
+          and verifying <strong>mechanical integrity</strong> so stress and strain remain within safe limits under rider weight.
         </p>
         <div class="badges">
           <span class="badge">SolidWorks • ANSYS</span>
@@ -96,7 +96,7 @@
       </figure>
     </section>
 
-    <!-- GALLERY / PROJECT CARDS -->
+    <!-- GALLERY -->
     <section id="gallery">
       <div class="section-head">
         <h2>Selected visuals</h2>
@@ -104,72 +104,53 @@
       </div>
 
       <div class="grid">
-        <!-- Card 1 (wide) -->
         <article class="card wide">
-          <a class="card-img lb" href="ski_photos/MEC210_Ski_Prosthetic_Complete%20v4.png" data-caption="System overview render — scaled to rider anthropometrics, aligned to alpine binding geometry, and sized to meet stress/strain limits.">
+          <a class="card-img lb" href="ski_photos/MEC210_Ski_Prosthetic_Complete%20v4.png" data-caption="Full assembly render — scaled to rider anthropometrics and aligned to ski binding geometry.">
             <img src="ski_photos/MEC210_Ski_Prosthetic_Complete%20v4.png" alt="Full assembly render" loading="lazy" />
           </a>
           <div class="cap">
             <h3>Assembly Render</h3>
-            <p>
-              System overview: geometry scaled to rider anthropometrics, foot-to-binding interface aligned to alpine standards,
-              and primary members sized to meet stress/strain targets.
-            </p>
+            <p>Overall system scaled to rider anthropometrics and aligned to DIN binding geometry for safe release and consistent flex.</p>
           </div>
         </article>
 
-        <!-- Card 2 -->
         <article class="card">
-          <a class="card-img lb" href="ski_photos/IMG_0903.png" data-caption="Side view — verifying stack height, boot-center alignment, and clearance under flex for a proper anthropometric fit.">
+          <a class="card-img lb" href="ski_photos/IMG_0903.png" data-caption="Side view — validating stack height, boot alignment, and clearance during flex.">
             <img src="ski_photos/IMG_0903.png" alt="Prototype side" loading="lazy" />
           </a>
           <div class="cap">
             <h3>Prototype — Side</h3>
-            <p>
-              Side view: check stack height and boot-center alignment to ensure an anthropometric fit and binding compatibility,
-              with clearance maintained through flex.
-            </p>
+            <p>Verifies stack height, stance angle, and flex clearance for proper anthropometric alignment and binding fit.</p>
           </div>
         </article>
 
-        <!-- Card 3 -->
         <article class="card">
-          <a class="card-img lb" href="ski_photos/IMG_0911.png" data-caption="Front view — confirming stance, cant, and binding-jaw clearances while keeping hardware away from soft-tissue zones.">
+          <a class="card-img lb" href="ski_photos/IMG_0911.png" data-caption="Front view — confirming stance width and binding jaw clearances.">
             <img src="ski_photos/IMG_0911.png" alt="Prototype front" loading="lazy" />
           </a>
           <div class="cap">
             <h3>Prototype — Front</h3>
-            <p>
-              Front view: confirm stance and cant angles, verify binding-jaw clearances, and keep hardware away from soft-tissue contact areas.
-            </p>
+            <p>Front view shows stance geometry and binding clearances optimized for both comfort and mechanical balance.</p>
           </div>
         </article>
 
-        <!-- Card 4 (tall) -->
         <article class="card tall">
-          <a class="card-img lb" href="ski_photos/IMG_0942.png" data-caption="Hinge & coupler detail — progressive cam with dual-rate elastomers for controlled fore–aft flex; torsion coupler to manage twist and reduce peak loads.">
+          <a class="card-img lb" href="ski_photos/IMG_0942.png" data-caption="Hinge and coupler detail — progressive cam and dual-rate elastomers for controlled flex response.">
             <img src="ski_photos/IMG_0942.png" alt="Close-up assembly" loading="lazy" />
           </a>
           <div class="cap">
             <h3>Hinge & Coupler Detail</h3>
-            <p>
-              Progressive cam + dual-rate elastomers provide controlled fore–aft flex; a torsion coupler manages twist to
-              limit peak loads transmitted to the limb.
-            </p>
+            <p>Cam and dual-rate elastomer design provide predictable flex and torsional control while maintaining durability under load.</p>
           </div>
         </article>
 
-        <!-- Card 5 -->
         <article class="card">
-          <a class="card-img lb" href="ski_photos/IMG_7972.png" data-caption="Bench testing — applying vertical load and torsion to verify mechanical response matches model predictions and stays within safe stress/strain for rider weight.">
+          <a class="card-img lb" href="ski_photos/IMG_7972.png" data-caption="Bench testing — verifying load distribution and strain correlation to simulation.">
             <img src="ski_photos/IMG_7972.png" alt="Bench setup" loading="lazy" />
           </a>
           <div class="cap">
             <h3>Bench Testing</h3>
-            <p>
-              Fixture applies vertical load and torsion to validate that measured response matches the model and remains within
-              safe stress/strain limits for the rider’s weight.
-            </p>
+            <p>Bench tests applied vertical and torsional loads to confirm that stresses match FEA predictions within safe limits.</p>
           </div>
         </article>
       </div>
@@ -181,24 +162,45 @@
       <div class="grid">
         <div class="card wide">
           <div class="cap">
-            <h3>What I focus on</h3>
+            <h3>Focus Areas</h3>
             <ul>
-              <li><strong>Anthropometric fit:</strong> scale geometry, stance, and stack height to the rider’s dimensions.</li>
-              <li><strong>Binding compatibility:</strong> align the prosthetic foot model to alpine binding geometry for secure, predictable engagement and release.</li>
-              <li><strong>Mechanical integrity:</strong> size components so predicted stress/strain stays inside allowable limits under rider weight and dynamic skiing loads.</li>
+              <li><strong>Anthropometric Fit:</strong> Scaling geometry and stance height to human leg proportions.</li>
+              <li><strong>Binding Interface:</strong> Ensuring compatibility with standard ski bindings for safe release.</li>
+              <li><strong>Mechanical Validation:</strong> FEA verification and bench testing to confirm stress and strain tolerances.</li>
             </ul>
           </div>
         </div>
         <div class="card">
           <div class="cap">
             <h3>Methods</h3>
-            <p>CAD + FEA for initial sizing, clearance checks against binding hardware, and bench validation under vertical and torsional loads.</p>
+            <p>CAD modeling, structural FEA, and mechanical test correlation to validate design assumptions.</p>
           </div>
         </div>
         <div class="card">
           <div class="cap">
             <h3>Outcome</h3>
-            <p>A prosthetic ski setup that fits the person, mates cleanly with the binding, and rides within safe mechanical limits.</p>
+            <p>A human-centered prosthetic ski design that fits naturally, integrates seamlessly, and withstands real-world loads.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFERENCES -->
+    <section>
+      <div class="section-head"><h2>Reference & Acknowledgment</h2></div>
+      <div class="grid">
+        <div class="card wide">
+          <div class="cap">
+            <h3>Referenced Patent Inspiration</h3>
+            <p>
+              This concept was informed by prior art from U.S. Patent 
+              <a href="https://patents.google.com/patent/US7785373B2/en?oq=US+7%2c785%2c373" target="_blank">
+                US7785373B2
+              </a> — 
+              <em>“Prosthetic device having flexing ankle joint.”</em>
+              The design was adapted and improved for ski-specific dynamics, emphasizing anthropometric fit,
+              ski-binding integration, and mechanical integrity under load.
+            </p>
           </div>
         </div>
       </div>
@@ -212,24 +214,25 @@
   </div>
 
   <footer class="wrap">
-    © <span id="y"></span> Nikolai A. Seva · <a href="index.html">Home</a>
+    © <span id="y"></span> Nikolai A. Seva · <a href="index.html">Home</a><br>
+    <small><em>Prototype builds upon prior art referenced in US7785373B2.</em></small>
   </footer>
 
   <script>
-    const lb = document.getElementById('lightbox');
-    const lbImg = lb.querySelector('img');
+    const lb=document.getElementById('lightbox');
+    const lbImg=lb.querySelector('img');
     document.querySelectorAll('.lb').forEach(a=>{
-      a.addEventListener('click', e=>{
+      a.addEventListener('click',e=>{
         e.preventDefault();
-        lbImg.src = a.getAttribute('href');
-        lbImg.alt = a.dataset.caption || 'Preview';
+        lbImg.src=a.getAttribute('href');
+        lbImg.alt=a.dataset.caption||'Preview';
         lb.classList.add('open');
       });
     });
-    lb.addEventListener('click', (e)=>{
-      if(e.target===lb || e.target.classList.contains('close')) lb.classList.remove('open');
+    lb.addEventListener('click',e=>{
+      if(e.target===lb||e.target.classList.contains('close'))lb.classList.remove('open');
     });
-    document.getElementById('y').textContent = new Date().getFullYear();
+    document.getElementById('y').textContent=new Date().getFullYear();
   </script>
 </body>
 </html>
