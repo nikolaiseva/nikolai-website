@@ -95,11 +95,11 @@
         </div>
       </div>
       <figure class="hero-media">
-        <!-- Embedded video -->
+        <!-- Embedded video (from ski_photos folder) -->
         <video autoplay muted loop playsinline controls poster="ski_photos/MEC210_Ski_Prosthetic_Complete%20v4.png">
-          <source src="Prosthetic_V2_720.mov" type="video/quicktime">
-          <!-- Optional: add an MP4 for broader compatibility when available -->
-          <!-- <source src="Prosthetic_V2_720.mp4" type="video/mp4"> -->
+          <source src="ski_photos/Prosthetic_V2_720.mov" type="video/quicktime">
+          <!-- Optional MP4 fallback for broader compatibility:
+          <source src="ski_photos/Prosthetic_V2_720.mp4" type="video/mp4"> -->
           Your browser does not support the video tag.
         </video>
       </figure>
@@ -228,20 +228,20 @@
   </footer>
 
   <script>
-    const lb=document.getElementById('lightbox');
-    const lbImg=lb.querySelector('img');
+    const lb = document.getElementById('lightbox');
+    const lbImg = lb.querySelector('img');
     document.querySelectorAll('.lb').forEach(a=>{
       a.addEventListener('click',e=>{
         e.preventDefault();
-        lbImg.src=a.getAttribute('href');
-        lbImg.alt=a.dataset.caption||'Preview';
+        lbImg.src = a.getAttribute('href');
+        lbImg.alt = a.dataset.caption || 'Preview';
         lb.classList.add('open');
       });
     });
     lb.addEventListener('click',e=>{
-      if(e.target===lb||e.target.classList.contains('close'))lb.classList.remove('open');
+      if(e.target===lb || e.target.classList.contains('close')) lb.classList.remove('open');
     });
-    document.getElementById('y').textContent=new Date().getFullYear();
+    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
