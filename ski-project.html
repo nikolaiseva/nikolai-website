@@ -53,11 +53,10 @@
       display:grid;
       grid-template-columns:repeat(12,1fr);
       gap:var(--gap);
-      grid-auto-flow:dense; /* let later cards back-fill gaps */
+      grid-auto-flow:dense;
     }
     .card{grid-column:span 4;background:linear-gradient(180deg,#121826cc,#0e1420cc);border:1px solid #26324a;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
     .card.wide{grid-column:span 8}
-    /* Only make 'tall' on large screens so we don't create holes */
     .card.tall{grid-row:auto}
     @media (min-width:1100px){ .card.tall{grid-row:span 2} }
 
@@ -177,7 +176,6 @@
           </div>
         </article>
 
-        <!-- NEW: FEA image card -->
         <article class="card">
           <a class="card-img lb" href="ski_photos/prosthetic_skis_fea.png" data-caption="Finite Element Analysis — von Mises stress contours and displacement fields used to validate load paths and safety factors.">
             <img src="ski_photos/prosthetic_skis_fea.png" alt="FEA results for prosthetic ski foot" loading="lazy" />
@@ -188,7 +186,6 @@
           </div>
         </article>
 
-        <!-- NEW: 3D-printed prototype image card -->
         <article class="card">
           <a class="card-img lb" href="ski_photos/3D_printed_ski_foot.png" data-caption="3D-printed prototype — used to verify dimensional stack-up, binding engagement, and assembly tolerances before machining.">
             <img src="ski_photos/3D_printed_ski_foot.png" alt="3D-printed ski prosthetic foot prototype" loading="lazy" />
@@ -196,6 +193,17 @@
           <div class="cap">
             <h3>3D-Printed Prototype</h3>
             <p>Printed prototype validates fit, binding lock-in, and ergonomic interface; enables quick iteration on tolerances prior to metal fabrication.</p>
+          </div>
+        </article>
+
+        <!-- NEW: Assembly process image card -->
+        <article class="card">
+          <a class="card-img lb" href="ski_photos/Building_Ski_Prosthetic.jpeg" data-caption="Assembly process — after 3D printing and laser cutting the tibia frame, assembling the ski prosthetic with 5/16 bolts for secure ankle support.">
+            <img src="ski_photos/Building_Ski_Prosthetic.jpeg" alt="Assembling the ski prosthetic" loading="lazy" />
+          </a>
+          <div class="cap">
+            <h3>Assembly Process</h3>
+            <p>After 3D printing and laser cutting the tibia frame, I started assembling the prosthetic. I chose to use 5/16 bolts, with washers and nuts, to provide a strong clamping force—adding strength and security around the ankle region of the ski prosthetic.</p>
           </div>
         </article>
       </div>
@@ -212,6 +220,7 @@
               <li><strong>Anthropometric Fit:</strong> Scaling geometry and stance height to human leg proportions.</li>
               <li><strong>Binding Interface:</strong> Ensuring compatibility with standard ski bindings for safe release.</li>
               <li><strong>Mechanical Validation:</strong> FEA verification and bench testing to confirm stress and strain tolerances.</li>
+              <li><strong>Structural Assembly:</strong> 5/16 fasteners, washers, and nuts selected for reliable ankle-region clamping force.</li>
             </ul>
           </div>
         </div>
@@ -241,7 +250,7 @@
               This concept was informed by prior art from U.S. Patent 
               <a href="https://patents.google.com/patent/US7785373B2/en?oq=US+7%2c785%2c373" target="_blank" rel="noopener">
                 US7785373B2
-              </a> — 
+              </a> —
               <em>“Prosthetic device having flexing ankle joint.”</em>
               The design was adapted and improved for ski-specific dynamics, emphasizing anthropometric fit,
               ski-binding integration, and mechanical integrity under load.
