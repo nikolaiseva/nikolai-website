@@ -202,25 +202,31 @@
       .success{color:#16a34a}
 
       /* ---------- TYPEWRITER ---------- */
-      .typewriter{
-        position:relative;
-        white-space:nowrap;
-        color:var(--accent);
-      }
-      .type-line{ display:inline-block; min-width:1px }
-      .typewriter::after{
-        content:"";
+      .typewriter-name{
         display:inline-block;
-        width:1ch;
-        height:1em;
-        translate:0 .15em;
-        border-right:2px solid var(--accent);
-        animation:blink 1s steps(1,end) infinite;
+        overflow:hidden;
+        white-space:nowrap;
+        border-right:0.15em solid var(--accent);
+        color:var(--accent);
+        width:0;
+        animation:
+          typing 2s steps(15, end) 0.5s forwards,
+          blink-caret 0.75s step-end infinite;
       }
-      .name-break{ display:block; line-height:.45 }
-      @keyframes blink{ 50%{ border-right-color:transparent; } }
+      @keyframes typing{
+        from{ width:0 }
+        to{ width:100% }
+      }
+      @keyframes blink-caret{
+        from, to{ border-color:transparent }
+        50%{ border-color:var(--accent) }
+      }
       @media (prefers-reduced-motion: reduce){
-        .typewriter::after{ animation:none; border-right-color:transparent }
+        .typewriter-name{
+          width:100%;
+          animation:none;
+          border-right-color:transparent;
+        }
       }
     </style>
   </head>
@@ -252,13 +258,8 @@
       <section id="home" class="container hero" aria-label="Hero">
         <div>
           <h1>
-            Hi, I'm
-            <span style="color:var(--accent)"> </span>
-            <span id="typewrap" class="typewriter" aria-label="Nikolai A. Seva">
-              <span id="line1" class="type-line"></span>
-              <br class="name-break" />
-              <span id="line2" class="type-line"></span>
-            </span>
+            Hi, I'm<br>
+            <span class="typewriter-name">Nikolai A. Seva</span>
           </h1>
           <p><strong>Mechanical/Biomechanics Engineer</strong> with a product mindset — MEng Mechanical Engineering (UC Berkeley) & BASc Biomedical Engineering (UBC). I design, prototype, and validate hardware that's manufacturable, reliable, and delightful to use.</p>
           <p class="credit" aria-label="Site credit">Website coded by me using <strong>HTML</strong>.</p>
@@ -587,12 +588,12 @@
           <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a> ·
           <a href="https://www.instagram.com/nikolaiaseva/" target="_blank" rel="noopener">Instagram</a> ·
           <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a> ·
-          <a href="/cdn-cgi/l/email-protection#fb95929094979a92889e8d9ad59e959c92959e9e89bb9c969a9297d5989496">Email</a>
+          <a href="mailto:nikolaiseva.engineer@gmail.com">Email</a>
         </p>
       </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
       // Accessible nav toggle
       const toggle = document.getElementById('nav-toggle');
       const list = document.getElementById('nav-list');
@@ -643,47 +644,6 @@
         });
       }
 
-      // ---------- Typewriter (two lines) ----------
-      (function(){
-        const wrap = document.getElementById('typewrap');
-        const l1 = document.getElementById('line1');
-        const l2 = document.getElementById('line2');
-        if (!wrap || !l1 || !l2) return;
-
-        const text1 = 'Nikolai A.';
-        const text2 = 'Seva';
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        if (prefersReduced){
-          l1.textContent = text1;
-          l2.textContent = text2;
-          return;
-        }
-
-        const speed = 70;
-        let i = 0, j = 0;
-
-        function typeFirst(){
-          if (i <= text1.length){
-            l1.textContent = text1.slice(0, i++);
-            setTimeout(typeFirst, speed);
-          } else {
-            setTimeout(typeSecond, 250);
-          }
-        }
-        function typeSecond(){
-          if (j <= text2.length){
-            l2.textContent = text2.slice(0, j++);
-            setTimeout(typeSecond, speed);
-          }
-        }
-
-        if (document.readyState === 'complete' || document.readyState === 'interactive'){
-          setTimeout(typeFirst, 250);
-        } else {
-          document.addEventListener('DOMContentLoaded', () => setTimeout(typeFirst, 250));
-        }
-      })();
     </script>
 
     <!-- JSON-LD -->
