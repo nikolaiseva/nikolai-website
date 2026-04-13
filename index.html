@@ -55,9 +55,9 @@
         font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
         color:var(--text);
         background:var(--bg);
-        -webkit-text-size-adjust:100%; /* iOS font scaling sanity */
+        -webkit-text-size-adjust:100%;
       }
-      img, video{max-width:100%; height:auto} /* fluid media */
+      img, video{max-width:100%; height:auto}
 
       a{color:var(--accent); text-decoration:none}
       a:hover{text-decoration:underline}
@@ -77,8 +77,16 @@
         display:inline-block; padding:.85rem 1.1rem; border-radius:9999px;
         background:var(--accent); color:#fff; font-weight:700; border:0; cursor:pointer
       }
+      .button-novel{
+        display:inline-block; padding:.85rem 1.1rem; border-radius:9999px;
+        background:#1e293b; color:#fff; font-weight:700; border:2px solid var(--accent); cursor:pointer;
+        transition: background .2s ease, transform .15s ease;
+      }
+      .button-novel:hover{
+        background:var(--accent); color:#fff; text-decoration:none; transform:scale(1.03);
+      }
 
-      /* ---------- HERO (image slightly larger on desktop) ---------- */
+      /* ---------- HERO ---------- */
       .hero{
         display:grid; grid-template-columns:1fr 1.12fr; align-items:center;
         gap:clamp(16px,4vw,48px); padding-block:clamp(28px,7vw,96px)
@@ -98,13 +106,50 @@
       .meta{color:var(--mutedSoft); font-size:.95rem}
       .visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
 
-      /* ---------- MOBILE-FIRST TWEAKS ---------- */
+      /* ---------- NOVEL SECTION ---------- */
+      .novel-banner{
+        display:grid;
+        grid-template-columns:200px 1fr;
+        align-items:center;
+        gap:clamp(16px,4vw,32px);
+        padding:24px;
+        border:2px solid var(--accent);
+        border-radius:var(--radius);
+        background:var(--card);
+      }
+      .novel-banner img{
+        border-radius:12px;
+        width:100%;
+        height:auto;
+        box-shadow:0 4px 16px rgba(0,0,0,.15);
+      }
+      .novel-banner h3{
+        font-size:clamp(20px,3vw,28px);
+        margin:0 0 8px;
+      }
+      .novel-banner .genre-tag{
+        display:inline-block;
+        padding:4px 12px;
+        border-radius:9999px;
+        background:var(--accent);
+        color:#fff;
+        font-size:.8rem;
+        font-weight:700;
+        margin-right:6px;
+        margin-bottom:6px;
+      }
+      @media (max-width:640px){
+        .novel-banner{grid-template-columns:1fr; text-align:center;}
+        .novel-banner img{max-width:180px; margin-inline:auto;}
+      }
+
+      /* ---------- MOBILE TWEAKS ---------- */
       @media (max-width: 900px){ .hero{grid-template-columns:1fr}}
       @media (max-width: 720px){
         nav ul{flex-direction:column; align-items:flex-start; gap:12px; padding:12px 0}
         .hero{ text-align:center }
         .hero .meta{ justify-content:center }
-        .hero figure{ order:-1 } /* image first on narrow screens */
+        .hero figure{ order:-1 }
       }
       @media (max-width:640px){
         #contact .grid{ grid-template-columns:1fr !important; }
@@ -112,7 +157,6 @@
         .hero h1{ font-size:clamp(28px,9vw,44px) }
       }
 
-      /* Responsive embeds */
       .responsive-embed{position:relative; width:100%; aspect-ratio:16/9}
       .responsive-embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
 
@@ -123,8 +167,8 @@
         border-radius:12px;
         border:1px solid #cfcfcf;
         font:inherit;
-        background:#ffffff;        /* keep inputs light on both themes */
-        color:#111111;             /* dark text for contrast */
+        background:#ffffff;
+        color:#111111;
         transition:border-color .15s ease, box-shadow .15s ease;
       }
       .input:focus{outline:3px solid rgba(14,165,233,.25); border-color:#0ea5e9}
@@ -138,6 +182,13 @@
         }
         .input::placeholder{ color:#6b7280; }
         .card{ background:var(--card); border-color:var(--border); }
+        .button-novel{
+          background:#1e293b;
+          border-color:var(--accent);
+        }
+        .button-novel:hover{
+          background:var(--accent);
+        }
       }
       .input:-webkit-autofill,
       .input:-webkit-autofill:hover,
@@ -150,7 +201,7 @@
       .error{color:#b00020}
       .success{color:#16a34a}
 
-      /* ---------- TYPEWRITER (two-line) ---------- */
+      /* ---------- TYPEWRITER ---------- */
       .typewriter{
         position:relative;
         white-space:nowrap;
@@ -166,7 +217,7 @@
         border-right:2px solid var(--accent);
         animation:blink 1s steps(1,end) infinite;
       }
-      .name-break{ display:block; line-height:.45 } /* tight stack */
+      .name-break{ display:block; line-height:.45 }
       @keyframes blink{ 50%{ border-right-color:transparent; } }
       @media (prefers-reduced-motion: reduce){
         .typewriter::after{ animation:none; border-right-color:transparent }
@@ -185,6 +236,7 @@
           <ul id="nav-list" hidden>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#novel">Novel</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#experience">Experience</a></li>
@@ -200,16 +252,15 @@
       <section id="home" class="container hero" aria-label="Hero">
         <div>
           <h1>
-            Hi, I’m
+            Hi, I'm
             <span style="color:var(--accent)"> </span>
-            <!-- Two-line typewriter -->
             <span id="typewrap" class="typewriter" aria-label="Nikolai A. Seva">
               <span id="line1" class="type-line"></span>
               <br class="name-break" />
               <span id="line2" class="type-line"></span>
             </span>
           </h1>
-          <p><strong>Mechanical/Biomechanics Engineer</strong> with a product mindset — MEng Mechanical Engineering (UC Berkeley) & BASc Biomedical Engineering (UBC). I design, prototype, and validate hardware that’s manufacturable, reliable, and delightful to use.</p>
+          <p><strong>Mechanical/Biomechanics Engineer</strong> with a product mindset — MEng Mechanical Engineering (UC Berkeley) & BASc Biomedical Engineering (UBC). I design, prototype, and validate hardware that's manufacturable, reliable, and delightful to use.</p>
           <p class="credit" aria-label="Site credit">Website coded by me using <strong>HTML</strong>.</p>
           <p><a class="button" href="#contact">Get in touch</a></p>
           <p class="meta">
@@ -233,12 +284,32 @@
           <div>
             <h3>Hello!</h3>
             <p>I build hardware that ships. My sweet spot is where human factors, mechanical design, and fast iteration meet. I work end-to-end: concept → CAD/FEA → prototyping → validation → DFM/DFA handoff—partnering closely with EE/SW, reliability, and operations.</p>
-            <p>I’ve contributed to medical devices, automotive seating at Tesla, and wearables like a prosthetic pointe shoe. I care about clear problem framing, data-driven decisions, and simple mechanisms that perform reliably at scale. I thrive in product teams at Apple, Meta, Google, or Tesla—where craftsmanship, rigor, and user empathy matter.</p>
+            <p>I've contributed to medical devices, automotive seating at Tesla, and wearables like a prosthetic pointe shoe. I care about clear problem framing, data-driven decisions, and simple mechanisms that perform reliably at scale. I thrive in product teams at Apple, Meta, Google, or Tesla—where craftsmanship, rigor, and user empathy matter.</p>
             <ul>
               <li><strong>Strengths:</strong> CAD & FEA (3DX/CATIA, SolidWorks, Fusion 360, ANSYS), GD&T & tolerance stacks, design reviews, and test bring-up.</li>
               <li><strong>Build:</strong> Rapid prototyping (3D printing, CNC, laser cutting), acoustic fixture design, material characterization, lab instrumentation, EMG/IMU prototypes.</li>
               <li><strong>Software:</strong> MATLAB/Python for analysis (NumPy, Pandas), Monte Carlo simulations, signal processing (EMG), Arduino/C/C++, HTML/JS for tooling, <strong>Unity</strong>, <strong>Unreal Engine 5</strong> for XR/VR simulation and visualization.</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOVEL -->
+      <section id="novel" class="container" aria-labelledby="novel-heading">
+        <h2 id="novel-heading">My Novel</h2>
+        <div class="novel-banner">
+          <img src="pictures/the_sky_between_us_cover.png" alt="The Sky Between Us — book cover" loading="lazy" width="400" height="600" />
+          <div>
+            <h3><em>The Sky Between Us</em></h3>
+            <p>
+              <span class="genre-tag">Science Fiction</span>
+              <span class="genre-tag">Space Travel</span>
+              <span class="genre-tag">Hard Sci-Fi</span>
+            </p>
+            <p>A story about distance — and what survives it.</p>
+            <p style="margin-top:16px;">
+              <a class="button-novel" href="The_Sky_Between_Us_Preview_v2.html">Read Preview →</a>
+            </p>
           </div>
         </div>
       </section>
@@ -317,17 +388,15 @@
         <h2 id="exp-heading">Work Experience</h2>
         <div class="grid">
           
-          <!-- Incubadora Solutions · Lead Mechanical Engineer -->
           <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
-            <!-- Replace src with the actual logo filename you add to /pictures -->
             <img src="pictures/incubadora_logo.png" alt="Incubadora Solutions Inc." width="120" height="120" />
             <div>
               <h3>Lead Mechanical Engineer · Incubadora Solutions Inc.</h3>
               <p class="meta">Nov 2025 – Feb 2026 · Vancouver, British Columbia · Hybrid</p>
               <ul>
-                <li>Translate Sky Padel’s business goals (durability, installation speed, cost targets, and premium player experience) into clear mechanical design requirements that support revenue growth and brand differentiation.</li>
+                <li>Translate Sky Padel's business goals (durability, installation speed, cost targets, and premium player experience) into clear mechanical design requirements that support revenue growth and brand differentiation.</li>
                 <li>Lead end-to-end mechanical design, FEA/CFD analysis, prototyping, and testing of complex padel systems from concept to launch while meeting performance, cost, and manufacturability targets.</li>
-                <li>Own mechanical project plans—resources, milestones, and deliverables—to ensure on-time, on-budget product releases that keep Sky Padel’s roadmap on track.</li>
+                <li>Own mechanical project plans—resources, milestones, and deliverables—to ensure on-time, on-budget product releases that keep Sky Padel's roadmap on track.</li>
                 <li>Mentor junior and mid-level engineers, driving best practices and strong design reviews so the team can ship higher-quality designs faster and with fewer iterations.</li>
                 <li>Collaborate with Electrical, Software, Manufacturing, and key suppliers to de-risk integration, uphold ISO/ASME and safety standards, and secure reliable, cost-effective components for scalable production.</li>
               </ul>
@@ -402,7 +471,7 @@
               <p class="meta">Sept 2020 – Dec 2020</p>
               <ul>
                 <li>Drafted patent applications and proposed design improvements adopted into R&D.</li>
-                <li>Generated concepts that contributed to the company’s IP pipeline.</li>
+                <li>Generated concepts that contributed to the company's IP pipeline.</li>
               </ul>
             </div>
           </article>
@@ -558,7 +627,7 @@
 
             if (res.ok) {
               form.reset();
-              status.textContent = 'Thanks! I’ll get back to you soon.';
+              status.textContent = 'Thanks! I'll get back to you soon.';
               status.className = 'success';
               setTimeout(()=>{ status.textContent=''; status.className='meta'; }, 4500);
             } else {
@@ -591,7 +660,7 @@
           return;
         }
 
-        const speed = 70; // ms per char
+        const speed = 70;
         let i = 0, j = 0;
 
         function typeFirst(){
