@@ -150,8 +150,15 @@
         object-fit:cover;
         aspect-ratio:4/3;
       }
-      @media (max-width:500px){
+      .post-photos.three{
+        grid-template-columns:1fr 1fr 1fr;
+      }
+      @media (max-width:640px){
         .post-photos{grid-template-columns:1fr}
+        .post-photos.three{grid-template-columns:1fr}
+      }
+      @media (min-width:641px) and (max-width:800px){
+        .post-photos.three{grid-template-columns:1fr 1fr}
       }
 
       /* ---------- EMPTY STATE ---------- */
@@ -225,6 +232,33 @@
           </article>
 
           <!-- POST 2 -->
+          <article class="post-card">
+            <div class="post-card-body">
+              <h2>Vancouver Is Ready. And So Am I.</h2>
+              <p class="post-date">June 2026</p>
+
+              <p>The energy is real! The Canadian Pacific Northwest is the #1 ranked overall host city for the 2026 FIFA World Cup!</p>
+
+              <p>It's a blessing to attend my first ever World Cup in my home city — and to witness history in the making. Growing up playing soccer every summer in North Vancouver and attending one of Canada's top universities (Canadian Ivy League version) down the road, I never imagined the world's game would come to my backyard. But here we are.</p>
+
+              <p>People think the Pacific Northwest is Seattle or Portland, but Vancouver has a different energy. Us Vancouverites call it the Lower Mainland — and the Lower Mainland has the kindest, most energetic, most genuine people you'll ever meet. Strangers high-fiving in the streets. My neighbour, a teacher, invited me to guest speak at her elementary school last week — I brought my guitar, talked about how engineers help athletes, and her kids loved every minute. An entire city showed up before the first whistle even blew. The ranking speaks for itself.</p>
+
+              <p>I power hiked the Grouse Grind — 2,830 stairs, 2,624 feet of elevation to the summit at 3,576 feet — in 53 minutes. At the top, the Guinness World Record largest Canadian flag ever unfurled on a mountain was stretched across the ski run, visible from across the entire city. Standing at the summit, looking down at Vancouver with that flag beneath me, it reminded me of being 11 years old during the Vancouver 2010 Winter Olympics — that same electricity in the air, that same pride in the streets. Sixteen years later, the world came back to my city. And this time I'm not watching from the sidelines.</p>
+
+              <p>There's something about this corner of the world: the mountains, the city, the ocean, the diversity. The Lower Mainland raised me — and it gave me my heart. And now the world gets to see why.</p>
+
+              <p><strong>Vancouver is ready. And so am I.</strong></p>
+
+              <div class="post-photos">
+                <img src="post_photos/post_fifa_wc_1.jpg" alt="BC Place stadium during 2026 FIFA World Cup" loading="lazy" />
+                <img src="post_photos/post_fifa_wc_2.jpg" alt="Guinness World Record largest Canadian flag on Grouse Mountain" loading="lazy" />
+                <img src="post_photos/post_fifa_wc_3.jpg" alt="Nikolai at the 2026 FIFA World Cup in Vancouver" loading="lazy" />
+                <img src="post_photos/post_fifa_wc_4.jpg" alt="2026 FIFA World Cup Vancouver" loading="lazy" />
+              </div>
+            </div>
+          </article>
+
+          <!-- POST 3 -->
           <article class="post-card">
             <div class="post-card-body">
               <h2>Microsoft's Inclusive Tech Lab — Sharing the Prosthetic Ski Design</h2>
