@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Posts · Nikolai A. Seva</title>
+    <meta name="description" content="Posts and updates from Nikolai Seva." />
+
+    <!-- Favicons -->
+    <link rel="icon" href="pictures/hockey_about_me.jpeg" sizes="any" />
+
+    <!-- Icons -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0ea5e9" />
+
+    <style>
+      /* ---------- THEME TOKENS ---------- */
+      :root{
+        --accent:#0ea5e9;
+        --bg:#f7f7f8;
+        --text:#111111;
+        --muted:#374151;
+        --mutedSoft:#6b7280;
+        --card:#ffffffF2;
+        --border:#e5e7eb;
+        --radius:16px;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg:#0b0b0c;
+          --text:#e7e7e7;
+          --muted:#cfd3da;
+          --mutedSoft:#a1a1aa;
+          --card:#161618;
+          --border:#2a2a2a;
+        }
+      }
+
+      /* ---------- BASE ---------- */
+      *{box-sizing:border-box}
+      html,body{margin:0;padding:0}
+      body{
+        font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+        color:var(--text);
+        background:var(--bg);
+        -webkit-text-size-adjust:100%;
+      }
+      img, video{max-width:100%; height:auto}
+
+      a{color:var(--accent); text-decoration:none}
+      a:hover{text-decoration:underline}
+      .container{max-width:760px; margin-inline:auto; padding:clamp(16px,2vw,24px)}
+      header{
+        position:sticky; top:0;
+        background:color-mix(in oklab, var(--card), transparent 20%);
+        backdrop-filter:saturate(160%) blur(8px);
+        border-bottom:1px solid var(--border);
+        z-index:10
+      }
+      nav{display:flex; align-items:center; justify-content:space-between; gap:16px}
+      .brand{display:flex; align-items:center; gap:.5rem; font-weight:700; color:var(--text)}
+      .button{
+        display:inline-block; padding:.85rem 1.1rem; border-radius:9999px;
+        background:var(--accent); color:#fff; font-weight:700; border:0; cursor:pointer;
+        text-decoration:none;
+      }
+      .button:hover{text-decoration:none; opacity:.9}
+      .visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
+
+      footer{border-top:1px solid var(--border); padding-block:32px; text-align:center; opacity:.95}
+      .meta{color:var(--mutedSoft); font-size:.95rem}
+      p, li{color:var(--muted)}
+
+      @media (prefers-color-scheme: dark){
+        header{ background:rgba(20,20,22,.75) }
+      }
+
+      /* ---------- PAGE HEADER ---------- */
+      .page-header{
+        padding-block:clamp(32px,6vw,64px) clamp(16px,3vw,32px);
+      }
+      .page-header h1{
+        font-size:clamp(28px,5vw,44px);
+        margin:0 0 8px;
+        color:var(--text);
+      }
+      .page-header p{
+        font-size:clamp(15px,2vw,18px);
+        color:var(--mutedSoft);
+        margin:0;
+      }
+
+      /* ---------- FEED ---------- */
+      .feed{
+        display:flex;
+        flex-direction:column;
+        gap:32px;
+        padding-bottom:clamp(32px,6vw,72px);
+      }
+
+      /* ---------- POST CARD ---------- */
+      .post-card{
+        border:1px solid var(--border);
+        border-radius:var(--radius);
+        background:var(--card);
+        overflow:hidden;
+      }
+      .post-card-body{
+        padding:clamp(20px,3vw,32px);
+      }
+      .post-card-body h2{
+        font-size:clamp(20px,3vw,28px);
+        margin:0 0 4px;
+        color:var(--text);
+      }
+      .post-date{
+        color:var(--mutedSoft);
+        font-size:.9rem;
+        margin:0 0 20px;
+      }
+      .post-card-body p{
+        font-size:clamp(15px,2vw,17px);
+        line-height:1.7;
+        margin:0 0 16px;
+      }
+      .post-card-body p:last-of-type{
+        margin-bottom:0;
+      }
+      .post-card-body .post-separator{
+        border:none;
+        border-top:1px solid var(--border);
+        margin:24px 0;
+      }
+
+      /* ---------- POST PHOTOS ---------- */
+      .post-photos{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:16px;
+        margin-top:24px;
+      }
+      .post-photos img{
+        width:100%;
+        height:auto;
+        border-radius:12px;
+        border:1px solid var(--border);
+        object-fit:cover;
+        aspect-ratio:4/3;
+      }
+      @media (max-width:500px){
+        .post-photos{grid-template-columns:1fr}
+      }
+
+      /* ---------- EMPTY STATE ---------- */
+      .post-card--empty{
+        border-style:dashed;
+        text-align:center;
+        padding:48px 24px;
+      }
+      .post-card--empty p{
+        color:var(--mutedSoft);
+        font-size:1rem;
+        margin:0;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="visually-hidden" href="#main">Skip to content</a>
+    <header>
+      <div class="container" style="max-width:1000px;">
+        <nav aria-label="Primary">
+          <a class="brand" href="index.html" aria-label="Home"><span aria-hidden="true">🧊</span> <span>Nikolai A. Seva</span></a>
+          <a class="button" href="index.html" style="padding:.6rem 1.1rem; font-size:.9rem;">← Back to Home</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="container">
+        <div class="page-header">
+          <h1>Posts</h1>
+          <p>Thoughts, updates, and stories from the road.</p>
+        </div>
+
+        <div class="feed">
+
+          <!-- POST 1 -->
+          <article class="post-card">
+            <div class="post-card-body">
+              <h2>Vancouver to San Francisco — On Two Wheels, For One Cause</h2>
+              <p class="post-date">July 2026</p>
+
+              <p>My American host family misses me. They keep asking when I'll visit the Bay Area. Once I land my first full-time role, I'll have my answer. I'm biking all the way down, partnering with the <strong>Canadian Cancer Society</strong> and the <strong>American Cancer Society</strong> to raise funds along the way.</p>
+
+              <p>A few days ago, I biked approximately 150 km (93.2 miles) past Clark Kent's house — the real filming location of Smallville, right here in the Lower Mainland. I grew up watching that show with my dad. My neighbour's husband worked on it for three years. And somehow I never realized Superman's hometown was in my backyard this whole time.</p>
+
+              <p>The ride I'm planning goes a little further.</p>
+
+              <p>Vancouver to San Francisco. The Lower Mainland to the Bay Area. Home to University of California, Berkeley. Through Seattle, through Portland, down the Pacific Coast — ocean cliffs, redwood forests, mountain passes. Over a week in the saddle. No flights. No shortcuts. Just two wheels and the same Pacific air I've been breathing my whole life.</p>
+
+              <p>And at the end of it: my host family's front door.</p>
+
+              <p><strong>One ride. One cause. Both sides of the border.</strong></p>
+
+              <hr class="post-separator">
+
+              <p>I've been training for this longer than I knew. Back in my undergrad at The University of British Columbia, I took 7 courses a semester — back-to-back classes in different buildings, with only a bike to get me between them. Heart pounding, lecture to lecture. Biking made me stronger. It still does. That's the rigour of a Canadian engineering education — it's why we earn our Engineer-in-Training designation straight out of school.</p>
+
+              <p>The job search has been its own kind of endurance ride. Six interview processes with <strong>Apple</strong>, across six different positions. Now my first with <strong>Google</strong>, and referrals coming in at <strong>Rivian</strong>. In between, I've been studying, reviewing my undergrad fundamentals, staying healthy, and keeping my mind sharp the way I always have — on trails, on the bike, and with the people who matter.</p>
+
+              <p>The process taught me patience. Patience taught me a lot about myself.</p>
+
+              <p>I've driven every mile of this coast before. This time, I want to feel every one. On my own terms. The hard way. For something bigger than myself.</p>
+
+              <p><strong>Some roads you drive. Some you have to earn.</strong></p>
+
+              <div class="post-photos">
+                <img src="pictures/post_coast_ride_1.jpg" alt="Pacific Coast cycling route map — Vancouver to San Francisco" loading="lazy" />
+                <img src="pictures/post_coast_ride_2.jpg" alt="Training ride on the Pacific Coast" loading="lazy" />
+              </div>
+            </div>
+          </article>
+
+          <!-- FUTURE POSTS PLACEHOLDER -->
+          <div class="post-card post-card--empty">
+            <p>More posts coming soon.</p>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container" style="max-width:1000px;">
+        <p><strong>Nikolai A. Seva</strong> · &copy; <span id="year"></span></p>
+        <p>
+          <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a> ·
+          <a href="https://www.instagram.com/nikolaiaseva/" target="_blank" rel="noopener">Instagram</a> ·
+          <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a> ·
+          <a href="mailto:nikolaiseva.engineer@gmail.com">Email</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
