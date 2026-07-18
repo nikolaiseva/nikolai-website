@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prosthetic Pointe Shoe · Nikolai A. Seva</title>
+    <meta name="description" content="Prosthetic pointe shoe fixture design, hydraulic press testing at ~2300 lbs, and stress-strain validation by Nikolai Seva." />
+
+    <!-- Favicons -->
+    <link rel="icon" href="pictures/hockey_about_me.jpeg" sizes="any" />
+
+    <!-- Icons -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0ea5e9" />
+
+    <style>
+      /* ---------- THEME TOKENS ---------- */
+      :root{
+        --accent:#0ea5e9;
+        --bg:#f7f7f8;
+        --text:#111111;
+        --muted:#374151;
+        --mutedSoft:#6b7280;
+        --card:#ffffffF2;
+        --border:#e5e7eb;
+        --radius:16px;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg:#0b0b0c;
+          --text:#e7e7e7;
+          --muted:#cfd3da;
+          --mutedSoft:#a1a1aa;
+          --card:#161618;
+          --border:#2a2a2a;
+        }
+      }
+
+      /* ---------- BASE ---------- */
+      *{box-sizing:border-box}
+      html,body{margin:0;padding:0}
+      body{
+        font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+        color:var(--text);
+        background:var(--bg);
+        -webkit-text-size-adjust:100%;
+      }
+      img, video{max-width:100%; height:auto}
+
+      a{color:var(--accent); text-decoration:none}
+      a:hover{text-decoration:underline}
+      .container{max-width:860px; margin-inline:auto; padding:clamp(16px,2vw,24px)}
+      header{
+        position:sticky; top:0;
+        background:color-mix(in oklab, var(--card), transparent 20%);
+        backdrop-filter:saturate(160%) blur(8px);
+        border-bottom:1px solid var(--border);
+        z-index:10
+      }
+      nav{display:flex; align-items:center; justify-content:space-between; gap:16px}
+      .brand{display:flex; align-items:center; gap:.5rem; font-weight:700; color:var(--text)}
+      .button{
+        display:inline-block; padding:.85rem 1.1rem; border-radius:9999px;
+        background:var(--accent); color:#fff; font-weight:700; border:0; cursor:pointer;
+        text-decoration:none;
+      }
+      .button:hover{text-decoration:none; opacity:.9}
+      .visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
+
+      footer{border-top:1px solid var(--border); padding-block:32px; text-align:center; opacity:.95}
+      .meta{color:var(--mutedSoft); font-size:.95rem}
+      p, li{color:var(--muted)}
+      h1,h2,h3,h4{color:var(--text); margin:0 0 16px}
+
+      .card{
+        border:1px solid var(--border);
+        border-radius:var(--radius);
+        overflow:hidden;
+        background:var(--card);
+      }
+
+      /* ---------- HERO BANNER ---------- */
+      .project-hero{
+        text-align:center;
+        padding-block:clamp(32px,6vw,72px);
+      }
+      .project-hero h1{
+        font-size:clamp(28px,5vw,48px);
+        margin:0 0 12px;
+        line-height:1.15;
+      }
+      .project-hero .subtitle{
+        font-size:clamp(16px,2.4vw,20px);
+        color:var(--muted);
+        max-width:640px;
+        margin-inline:auto;
+      }
+
+      /* ---------- PHOTO GRID ---------- */
+      .photo-grid{
+        display:grid;
+        grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+        gap:20px;
+        margin-bottom:40px;
+      }
+      .photo-grid figure{
+        margin:0;
+      }
+      .photo-grid img{
+        width:100%;
+        height:auto;
+        border-radius:var(--radius);
+        border:1px solid var(--border);
+        display:block;
+      }
+      .photo-grid figcaption{
+        font-size:.9rem;
+        color:var(--mutedSoft);
+        margin-top:8px;
+        text-align:center;
+      }
+
+      /* ---------- VIDEO ---------- */
+      .video-section{
+        margin-bottom:40px;
+      }
+      .video-section video{
+        width:100%;
+        border-radius:var(--radius);
+        border:1px solid var(--border);
+        display:block;
+      }
+
+      /* ---------- CONTENT SECTIONS ---------- */
+      .content-section{
+        margin-bottom:clamp(32px,5vw,56px);
+      }
+      .content-section h2{
+        font-size:clamp(22px,3.5vw,32px);
+        margin-bottom:16px;
+        border-bottom:2px solid var(--accent);
+        padding-bottom:8px;
+        display:inline-block;
+      }
+
+      /* ---------- CALLOUT ---------- */
+      .callout{
+        border-left:4px solid var(--accent);
+        background:var(--card);
+        border-radius:0 var(--radius) var(--radius) 0;
+        padding:20px 24px;
+        margin:24px 0;
+      }
+      .callout strong{
+        color:var(--text);
+      }
+
+      /* ---------- SPECS TABLE ---------- */
+      .specs-table{
+        width:100%;
+        border-collapse:collapse;
+        margin:16px 0;
+        overflow-x:auto;
+        display:block;
+      }
+      .specs-table th,
+      .specs-table td{
+        text-align:left;
+        padding:12px 16px;
+        border-bottom:1px solid var(--border);
+        color:var(--muted);
+      }
+      .specs-table th{
+        color:var(--text);
+        font-weight:700;
+        white-space:nowrap;
+      }
+
+      /* ---------- TAG ---------- */
+      .tag{
+        display:inline-block;
+        padding:4px 12px;
+        border-radius:9999px;
+        background:var(--accent);
+        color:#fff;
+        font-size:.8rem;
+        font-weight:700;
+        margin-right:6px;
+        margin-bottom:6px;
+      }
+
+      @media (prefers-color-scheme: dark){
+        header{ background:rgba(20,20,22,.75) }
+        .card{ background:var(--card); border-color:var(--border); }
+      }
+
+      @media (max-width:640px){
+        .photo-grid{ grid-template-columns:1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="visually-hidden" href="#main">Skip to content</a>
+    <header>
+      <div class="container">
+        <nav aria-label="Primary">
+          <a class="brand" href="index.html" aria-label="Home"><span aria-hidden="true">🧊</span> <span>Nikolai A. Seva</span></a>
+          <a class="button" href="index.html#work">← Back to Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="container project-hero">
+        <h1>Prosthetic Pointe Shoe</h1>
+        <p class="subtitle">Custom fixture design, SolidWorks CAD, FEA validation, and hydraulic press testing at ~2,300 lbs to enable safe en pointe standing for a below-knee amputee.</p>
+        <p style="margin-top:12px;">
+          <span class="tag">Fixture Design</span>
+          <span class="tag">SolidWorks</span>
+          <span class="tag">FEA</span>
+          <span class="tag">Hydraulic Press Testing</span>
+          <span class="tag">Prosthetics</span>
+          <span class="tag">DFM</span>
+        </p>
+      </section>
+
+      <!-- PHOTO GALLERY -->
+      <section class="container content-section">
+        <h2>Project Gallery</h2>
+        <div class="photo-grid">
+          <figure>
+            <img src="prosthetic_pointe_shoe_photos/prosthetic_pointe_shoe.jpeg" alt="Prosthetic pointe shoe CAD prototype" loading="lazy" width="800" height="600" />
+            <figcaption>Prosthetic pointe shoe prototype — designed in SolidWorks for structural integrity under extreme loading.</figcaption>
+          </figure>
+          <figure>
+            <img src="prosthetic_pointe_shoe_photos/prosthetic_pointe_shoe_fit.jpg" alt="Prosthetic pointe shoe fitting on prosthetic limb" loading="lazy" width="800" height="600" />
+            <figcaption>Fit validation — verifying alignment and interface with the prosthetic limb.</figcaption>
+          </figure>
+          <figure>
+            <img src="prosthetic_pointe_shoe_photos/prosthetic_pointe_shoe_patient.jpg" alt="Patient fitting session with prosthetic pointe shoe" loading="lazy" width="800" height="600" />
+            <figcaption>Patient fitting — confirming comfort, range of motion, and functional pointe stance.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- FIXTURE DESIGN VIDEO -->
+      <section class="container content-section">
+        <h2>Fixture Design & Hydraulic Press Testing</h2>
+
+        <div class="video-section">
+          <video controls preload="metadata" poster="prosthetic_pointe_shoe_photos/prosthetic_pointe_shoe.jpeg">
+            <source src="pointe_shoe_fixture.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="meta" style="margin-top:8px; text-align:center;">Hydraulic press compression test — fixture design for stress-strain characterization at ~2,300 lbs.</p>
+        </div>
+
+        <div class="callout">
+          <strong>Key Design Decision:</strong> The tibia portion of the fixture was intentionally designed to lay flat on the acrylic platform. Under ~2,300 lbs of hydraulic press compression, there is a real risk of the prosthetic launching laterally like a projectile — a serious safety hazard and a waste of the test specimen. The flat-seated tibia geometry constrains lateral displacement, keeping the load path axial and the test safe and repeatable.
+        </div>
+
+        <h3>Why This Fixture Matters</h3>
+        <p>Determining the stress-strain curve of the prosthetic pointe shoe required compressing the assembly under loads that far exceed normal body weight. Without a purpose-built fixture, the test is dangerous and unreliable:</p>
+        <ul>
+          <li><strong>Safety:</strong> At ~2,300 lbs, an unsecured prosthetic can eject sideways with enough energy to cause serious injury. The fixture eliminates this by capturing the tibia section flush against the platform, preventing any lateral kick-out.</li>
+          <li><strong>Repeatability:</strong> A stable, self-locating fixture ensures the load is applied consistently through the same axis every test cycle, producing clean stress-strain data rather than scatter from misalignment.</li>
+          <li><strong>Data Integrity:</strong> By constraining unwanted degrees of freedom, the fixture isolates the material response of the prosthetic under pure compression — exactly the loading condition that matters for en pointe standing.</li>
+        </ul>
+
+        <h3>Fixture Design Details</h3>
+        <p>The fixture was designed around the specific geometry of the prosthetic tibia and the constraints of the hydraulic press:</p>
+        <ul>
+          <li><strong>Flat tibia seat:</strong> The tibia profile was designed to interface flush with the acrylic platform, maximizing the contact area and distributing reaction forces to prevent localized stress concentrations on the platform.</li>
+          <li><strong>Axial load alignment:</strong> The fixture geometry ensures the hydraulic ram's force vector passes through the centroid of the prosthetic, minimizing bending moments that would corrupt the stress-strain measurement.</li>
+          <li><strong>Material consideration:</strong> The acrylic platform was evaluated for its own compressive strength to confirm it would not fail or deform significantly before the prosthetic reached its target load.</li>
+        </ul>
+
+        <table class="specs-table">
+          <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>Max compression load</td>
+            <td>~2,300 lbs</td>
+          </tr>
+          <tr>
+            <td>Test objective</td>
+            <td>Stress-strain curve characterization</td>
+          </tr>
+          <tr>
+            <td>Fixture constraint</td>
+            <td>Flat tibia seat — lateral ejection prevention</td>
+          </tr>
+          <tr>
+            <td>CAD software</td>
+            <td>SolidWorks</td>
+          </tr>
+          <tr>
+            <td>Validation method</td>
+            <td>Hydraulic press compression testing</td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- ENGINEERING APPROACH -->
+      <section class="container content-section">
+        <h2>Engineering Approach</h2>
+        <p>This project followed a rigorous concept-to-validation workflow:</p>
+        <ol>
+          <li><strong>Requirements definition:</strong> Established the load case (~2,300 lbs axial compression) based on worst-case en pointe forces scaled with a safety factor, and identified lateral ejection as the primary failure mode to design against.</li>
+          <li><strong>CAD & FEA:</strong> Modeled the prosthetic and fixture in SolidWorks. Ran FEA to verify stress distribution under max load and confirm the fixture would constrain the assembly without platform failure.</li>
+          <li><strong>Prototyping:</strong> Fabricated the fixture and prosthetic for physical testing, iterating on fit and alignment before committing to the hydraulic press.</li>
+          <li><strong>Testing & data collection:</strong> Performed hydraulic press compression to generate the stress-strain curve, validating that the prosthetic can safely support en pointe loading without catastrophic failure.</li>
+          <li><strong>Fit & patient validation:</strong> Confirmed the prosthetic interfaces correctly with the residual limb and achieves the target range of motion for ballet performance.</li>
+        </ol>
+      </section>
+
+      <!-- YOUTUBE -->
+      <section class="container content-section">
+        <h2>Project Video</h2>
+        <p>Watch the full prosthetic pointe shoe project overview:</p>
+        <p><a class="button" href="https://www.youtube.com/watch?v=IQiN9kiXcWA" target="_blank" rel="noopener"><i class='bx bxl-youtube'></i> Watch on YouTube →</a></p>
+      </section>
+
+      <!-- BACK LINK -->
+      <section class="container" style="text-align:center; padding-bottom:clamp(32px,6vw,72px);">
+        <a class="button" href="index.html#work">← Back to All Projects</a>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p><strong>Nikolai A. Seva</strong> · &copy; <span id="year"></span></p>
+        <p>
+          <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a> ·
+          <a href="https://www.instagram.com/nikolaiaseva/" target="_blank" rel="noopener">Instagram</a> ·
+          <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a> ·
+          <a href="mailto:nikolaiseva.engineer@gmail.com">Email</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
