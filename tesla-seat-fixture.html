@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tesla Seat Fixture Design · Nikolai A. Seva</title>
+    <meta name="description" content="Fixture design for Tesla seat component testing — robotic durability validation using a FANUC R-2000iC, by Nikolai Seva." />
+
+    <!-- Favicons -->
+    <link rel="icon" href="pictures/hockey_about_me.jpeg" sizes="any" />
+
+    <!-- Icons -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0ea5e9" />
+
+    <style>
+      /* ---------- THEME TOKENS ---------- */
+      :root{
+        --accent:#0ea5e9;
+        --bg:#f7f7f8;
+        --text:#111111;
+        --muted:#374151;
+        --mutedSoft:#6b7280;
+        --card:#ffffffF2;
+        --border:#e5e7eb;
+        --radius:16px;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg:#0b0b0c;
+          --text:#e7e7e7;
+          --muted:#cfd3da;
+          --mutedSoft:#a1a1aa;
+          --card:#161618;
+          --border:#2a2a2a;
+        }
+      }
+
+      /* ---------- BASE ---------- */
+      *{box-sizing:border-box}
+      html,body{margin:0;padding:0}
+      body{
+        font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+        color:var(--text);
+        background:var(--bg);
+        -webkit-text-size-adjust:100%;
+      }
+      img, video{max-width:100%; height:auto}
+
+      a{color:var(--accent); text-decoration:none}
+      a:hover{text-decoration:underline}
+      .container{max-width:860px; margin-inline:auto; padding:clamp(16px,2vw,24px)}
+      header{
+        position:sticky; top:0;
+        background:color-mix(in oklab, var(--card), transparent 20%);
+        backdrop-filter:saturate(160%) blur(8px);
+        border-bottom:1px solid var(--border);
+        z-index:10
+      }
+      nav{display:flex; align-items:center; justify-content:space-between; gap:16px}
+      .brand{display:flex; align-items:center; gap:.5rem; font-weight:700; color:var(--text)}
+      .button{
+        display:inline-block; padding:.85rem 1.1rem; border-radius:9999px;
+        background:var(--accent); color:#fff; font-weight:700; border:0; cursor:pointer;
+        text-decoration:none;
+      }
+      .button:hover{text-decoration:none; opacity:.9}
+      .visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
+
+      footer{border-top:1px solid var(--border); padding-block:32px; text-align:center; opacity:.95}
+      .meta{color:var(--mutedSoft); font-size:.95rem}
+      p, li{color:var(--muted)}
+      h1,h2,h3,h4{color:var(--text); margin:0 0 16px}
+
+      .card{
+        border:1px solid var(--border);
+        border-radius:var(--radius);
+        overflow:hidden;
+        background:var(--card);
+      }
+
+      /* ---------- HERO BANNER ---------- */
+      .project-hero{
+        text-align:center;
+        padding-block:clamp(32px,6vw,72px);
+      }
+      .project-hero h1{
+        font-size:clamp(28px,5vw,48px);
+        margin:0 0 12px;
+        line-height:1.15;
+      }
+      .project-hero .subtitle{
+        font-size:clamp(16px,2.4vw,20px);
+        color:var(--muted);
+        max-width:640px;
+        margin-inline:auto;
+      }
+
+      /* ---------- PHOTO GRID ---------- */
+      .photo-grid{
+        display:grid;
+        grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+        gap:20px;
+        margin-bottom:40px;
+      }
+      .photo-grid figure{
+        margin:0;
+      }
+      .photo-grid img{
+        width:100%;
+        height:auto;
+        border-radius:var(--radius);
+        border:1px solid var(--border);
+        display:block;
+      }
+      .photo-grid figcaption{
+        font-size:.9rem;
+        color:var(--mutedSoft);
+        margin-top:8px;
+        text-align:center;
+      }
+
+      /* ---------- CONTENT SECTIONS ---------- */
+      .content-section{
+        margin-bottom:clamp(32px,5vw,56px);
+      }
+      .content-section h2{
+        font-size:clamp(22px,3.5vw,32px);
+        margin-bottom:16px;
+        border-bottom:2px solid var(--accent);
+        padding-bottom:8px;
+        display:inline-block;
+      }
+
+      /* ---------- CALLOUT ---------- */
+      .callout{
+        border-left:4px solid var(--accent);
+        background:var(--card);
+        border-radius:0 var(--radius) var(--radius) 0;
+        padding:20px 24px;
+        margin:24px 0;
+      }
+      .callout strong{
+        color:var(--text);
+      }
+
+      /* ---------- SPECS TABLE ---------- */
+      .specs-table{
+        width:100%;
+        border-collapse:collapse;
+        margin:16px 0;
+        overflow-x:auto;
+        display:block;
+      }
+      .specs-table th,
+      .specs-table td{
+        text-align:left;
+        padding:12px 16px;
+        border-bottom:1px solid var(--border);
+        color:var(--muted);
+      }
+      .specs-table th{
+        color:var(--text);
+        font-weight:700;
+        white-space:nowrap;
+      }
+
+      /* ---------- TAG ---------- */
+      .tag{
+        display:inline-block;
+        padding:4px 12px;
+        border-radius:9999px;
+        background:var(--accent);
+        color:#fff;
+        font-size:.8rem;
+        font-weight:700;
+        margin-right:6px;
+        margin-bottom:6px;
+      }
+
+      @media (prefers-color-scheme: dark){
+        header{ background:rgba(20,20,22,.75) }
+        .card{ background:var(--card); border-color:var(--border); }
+      }
+
+      @media (max-width:640px){
+        .photo-grid{ grid-template-columns:1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="visually-hidden" href="#main">Skip to content</a>
+    <header>
+      <div class="container">
+        <nav aria-label="Primary">
+          <a class="brand" href="index.html" aria-label="Home"><span aria-hidden="true">🧊</span> <span>Nikolai A. Seva</span></a>
+          <a class="button" href="index.html#experience">&larr; Back to Experience</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="container project-hero">
+        <h1>Tesla Seat Ingress/Egress Fixture Design</h1>
+        <p class="subtitle">Designed the fixture orientation and mounting layout for a FANUC R-2000iC robotic ingress/egress durability test — determining seat position, incline angle, and clamp locations on a T-slot table so the robot's torso-shaped end effector accurately simulated a real occupant sitting down and getting out.</p>
+        <p style="margin-top:12px;">
+          <span class="tag">Fixture Design</span>
+          <span class="tag">Ingress/Egress Testing</span>
+          <span class="tag">FANUC R-2000iC</span>
+          <span class="tag">CATIA V5</span>
+          <span class="tag">Ergonomic Simulation</span>
+          <span class="tag">Seating Durability</span>
+        </p>
+      </section>
+
+      <!-- PHOTO -->
+      <section class="container content-section">
+        <h2>Test Setup</h2>
+        <div class="photo-grid">
+          <figure>
+            <img src="pictures/Tesla_Fixture_Design_Seat.png" alt="FANUC R-2000iC robot arm with aluminum extrusion torso-shaped end effector performing ingress/egress durability testing on a Tesla seat clamped to a T-slot fixture table" loading="lazy" width="800" height="1000" />
+            <figcaption>FANUC R-2000iC with an aluminum extrusion end effector shaped like a human torso, performing automated ingress/egress cycles on a Tesla seat clamped to a T-slot fixture table with toggle clamps.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- FIXTURE DESIGN DETAILS -->
+      <section class="container content-section">
+        <h2>Fixture Design & Testing</h2>
+
+        <div class="callout">
+          <strong>Key Design Decision:</strong> The seat had to be mounted on the T-slot fixture table at the exact position and incline angle so the FANUC R-2000iC's torso-shaped end effector would follow a trajectory that accurately replicated a real person sitting down and standing up. Shifting the seat even a few degrees or centimeters on the table would cause the robot's "body" to contact the seat at the wrong angle, producing test data that doesn't represent real-world use.
+        </div>
+
+        <h3>The Problem</h3>
+        <p>Tesla's seating components must survive thousands of ingress/egress cycles over the vehicle's lifetime. To validate durability at scale, the team used a FANUC R-2000iC industrial robot arm fitted with an aluminum extrusion end effector shaped like a human torso. The robot performs automated sit-down and stand-up motions into the seat, simulating real occupant behavior at high cycle counts.</p>
+        <p>My job was to determine how to orient and fixture the seat on the T-slot table so the robot's pre-programmed path accurately simulated a real person's ingress and egress. This meant getting three things right simultaneously:</p>
+        <ul>
+          <li><strong>Seat incline angle:</strong> The seat had to be tilted to its as-installed angle on the table so the robot's torso end effector would make contact with the bolster, cushion, and backrest in the same sequence and at the same angles a real occupant would.</li>
+          <li><strong>Mounting position on the table:</strong> The seat's fore/aft and lateral position on the T-slot table had to place it within the robot's workspace envelope while maintaining the correct spatial relationship between the seat H-point and the robot's end effector trajectory.</li>
+          <li><strong>Toggle clamp locations:</strong> The seat was secured to the T-slot table with toggle clamps. Clamp placement had to provide rigid fixturing without interfering with the robot's motion path or introducing artificial constraints that would alter how the seat structure responded to loading.</li>
+        </ul>
+
+        <h3>Why Orientation Matters</h3>
+        <p>If the seat is mounted a few degrees off or shifted forward on the table, the robot's torso hits the seat bolster at the wrong angle and the contact forces don't match real-world ingress. The test data would show wear patterns and failure modes that don't occur in actual vehicles — invalidating the entire test campaign and potentially letting a real durability issue ship undetected.</p>
+
+        <h3>Fixture Setup Details</h3>
+        <ul>
+          <li><strong>T-slot fixture table:</strong> The seat mounts directly to the table surface using toggle clamps threaded into the T-slot channels, providing a rigid base that can be reconfigured for different seat variants.</li>
+          <li><strong>Torso end effector:</strong> The FANUC R-2000iC carries an aluminum extrusion frame shaped to approximate a human torso. This end effector performs the ingress (sitting down) and egress (standing up) motion profiles into the fixtured seat.</li>
+          <li><strong>Ergonomic alignment:</strong> Seat position and angle were set to replicate the as-installed geometry in the vehicle, ensuring the robot's contact trajectory matches the biomechanics of a real occupant entering and exiting.</li>
+        </ul>
+
+        <table class="specs-table">
+          <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>Robot platform</td>
+            <td>FANUC R-2000iC</td>
+          </tr>
+          <tr>
+            <td>Test objective</td>
+            <td>Ingress/egress durability & cycle-life validation</td>
+          </tr>
+          <tr>
+            <td>End effector</td>
+            <td>Aluminum extrusion torso surrogate</td>
+          </tr>
+          <tr>
+            <td>Fixture table</td>
+            <td>T-slot table with toggle clamps</td>
+          </tr>
+          <tr>
+            <td>CAD software</td>
+            <td>CATIA V5 / 3DEXPERIENCE</td>
+          </tr>
+          <tr>
+            <td>Validation method</td>
+            <td>Automated robotic ingress/egress cycling</td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- ENGINEERING APPROACH -->
+      <section class="container content-section">
+        <h2>Engineering Approach</h2>
+        <p>The fixture orientation followed a structured workflow within Tesla's seating engineering team:</p>
+        <ol>
+          <li><strong>Vehicle reference geometry:</strong> Started from the seat's as-installed position in the vehicle — incline angle, H-point location, and surrounding trim clearances — to establish the target orientation on the fixture table.</li>
+          <li><strong>Robot workspace mapping:</strong> Verified the seat position placed the ingress/egress contact zone within the FANUC R-2000iC's reachable workspace, accounting for the torso end effector's swept volume through the full motion profile.</li>
+          <li><strong>CAD layout in CATIA V5:</strong> Modeled the seat, T-slot table, toggle clamp positions, and robot reach envelope together to confirm clearances and alignment before fabrication.</li>
+          <li><strong>Toggle clamp placement:</strong> Located clamps to provide rigid fixturing without interfering with the robot's motion path or altering the seat structure's natural response to loading.</li>
+          <li><strong>Validation & iteration:</strong> Ran automated ingress/egress durability cycles, compared wear patterns to field data, and iterated on seat design. Design tweaks improved cycle life by ~10%.</li>
+        </ol>
+      </section>
+
+      <!-- BACK LINK -->
+      <section class="container" style="text-align:center; padding-bottom:clamp(32px,6vw,72px);">
+        <a class="button" href="index.html#experience">&larr; Back to Experience</a>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p><strong>Nikolai A. Seva</strong> · &copy; <span id="year"></span></p>
+        <p>
+          <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a> ·
+          <a href="https://www.instagram.com/nikolaiaseva/" target="_blank" rel="noopener">Instagram</a> ·
+          <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a> ·
+          <a href="mailto:nikolaiseva.engineer@gmail.com">Email</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
