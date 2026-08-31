@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HuddleWrist — Support</title>
+    <meta name="description" content="Support page for HuddleWrist, a watchOS playbook app for Apple Watch." />
+    <link rel="canonical" href="https://nikolaiseva.github.io/nikolai-website/huddlewrist-support.html" />
+    <link rel="icon" href="pictures/hockey_about_me.jpeg" sizes="any" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0ea5e9" />
+    <style>
+      :root{
+        --accent:#0ea5e9;
+        --bg:#f7f7f8;
+        --text:#111111;
+        --muted:#374151;
+        --mutedSoft:#6b7280;
+        --card:#ffffffF2;
+        --border:#e5e7eb;
+        --radius:16px;
+      }
+      @media(prefers-color-scheme:dark){
+        :root{
+          --bg:#0b0b0c;
+          --text:#e7e7e7;
+          --muted:#cfd3da;
+          --mutedSoft:#a1a1aa;
+          --card:#161618;
+          --border:#2a2a2a;
+        }
+      }
+      *{box-sizing:border-box}
+      html,body{margin:0;padding:0}
+      body{
+        font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+        color:var(--text);background:var(--bg);-webkit-text-size-adjust:100%;
+      }
+      img{max-width:100%;height:auto}
+      a{color:var(--accent);text-decoration:none}
+      a:hover{text-decoration:underline}
+      .container{max-width:720px;margin-inline:auto;padding:clamp(16px,2vw,24px)}
+      header{
+        position:sticky;top:0;
+        background:color-mix(in oklab,var(--card),transparent 20%);
+        backdrop-filter:saturate(160%) blur(8px);
+        border-bottom:1px solid var(--border);z-index:10;
+      }
+      nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+      .brand{display:flex;align-items:center;gap:.5rem;font-weight:700;color:var(--text)}
+      h1,h2,h3{color:var(--text);margin:0 0 16px}
+      p,li{color:var(--muted);line-height:1.6}
+      .card{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--card);padding:24px}
+      footer{border-top:1px solid var(--border);padding-block:32px;text-align:center;opacity:.95}
+      .meta{color:var(--mutedSoft);font-size:.95rem}
+      .hero{text-align:center;padding-block:clamp(40px,8vw,80px)}
+      .hero h1{font-size:clamp(28px,5vw,48px);margin-bottom:8px}
+      .hero p{font-size:clamp(16px,2.4vw,20px)}
+      .app-icon{width:120px;height:120px;border-radius:26px;margin-bottom:20px;border:1px solid var(--border)}
+      .button{
+        display:inline-block;padding:.85rem 1.5rem;border-radius:9999px;
+        background:var(--accent);color:#fff;font-weight:700;border:0;cursor:pointer;
+        margin-top:12px;
+      }
+      section{padding-block:clamp(24px,4vw,48px)}
+      @media(prefers-color-scheme:dark){
+        header{background:rgba(20,20,22,.75)}
+        .card{background:var(--card);border-color:var(--border)}
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <a class="brand" href="index.html"><span aria-hidden="true">🧊</span> Nikolai A. Seva</a>
+          <a href="index.html" class="meta">Back to Portfolio</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="container hero">
+        <img src="pictures/huddle_wrist.jpg" alt="HuddleWrist app icon" class="app-icon" />
+        <h1>HuddleWrist</h1>
+        <p>A quarterback's play sheet on the wrist — a digital upgrade to the traditional paper wristband.</p>
+        <p class="meta">Available for Apple Watch (watchOS) &middot; Android version coming soon</p>
+      </section>
+
+      <section class="container">
+        <div class="card">
+          <h2>About the App</h2>
+          <p>HuddleWrist is a standalone smartwatch app that displays your football playbook as clear, color-coded diagrams directly on your wrist. Designed for flag and touch football, it features 24 plays with labeled player positions, route lines, and blocking assignments — all viewable with a tap and a swipe.</p>
+          <ul>
+            <li>24 pre-loaded plays covering run, pass, option, and trick concepts</li>
+            <li>Color-coded routes: cyan (primary), white (secondary), red (blocking), dashed (motion)</li>
+            <li>Scrollable play list with Digital Crown support</li>
+            <li>Swipe through plays on the detail screen</li>
+            <li>Fully offline — no internet required</li>
+            <li>No account, no sign-up, no data collection</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="card">
+          <h2>Support</h2>
+          <p>Having an issue or want to suggest a feature? Reach out and I'll get back to you as soon as I can.</p>
+          <p><strong>Email:</strong> <a href="mailto:nikolaiseva.engineer@gmail.com">nikolaiseva.engineer@gmail.com</a></p>
+          <p>Please include your watch model and a brief description of the issue.</p>
+          <a class="button" href="mailto:nikolaiseva.engineer@gmail.com?subject=HuddleWrist%20Support">Contact Support</a>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="card">
+          <h2>FAQ</h2>
+          <h3>Do I need my phone nearby?</h3>
+          <p>No. HuddleWrist is a standalone watch app — it works without a phone connection.</p>
+          <h3>Does the app use the internet?</h3>
+          <p>No. All 24 plays are built into the app. It works completely offline with no network requests.</p>
+          <h3>Can I add my own plays?</h3>
+          <p>Not yet — custom play support is on the roadmap for a future update.</p>
+          <h3>Which devices are supported?</h3>
+          <p>Apple Watch Series 3 and later running watchOS 8.0+. An Android Wear OS version is in development.</p>
+        </div>
+      </section>
+
+      <section class="container" style="text-align:center;">
+        <p class="meta">
+          <a href="huddlewrist-privacy.html">Privacy Policy</a> &middot;
+          <a href="index.html">Portfolio</a> &middot;
+          <a href="mailto:nikolaiseva.engineer@gmail.com">Email</a>
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p><strong>Nikolai A. Seva</strong> &middot; &copy; <script>document.write(new Date().getFullYear())</script></p>
+        <p class="meta">
+          <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a> &middot;
+          <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a> &middot;
+          <a href="mailto:nikolaiseva.engineer@gmail.com">Email</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
