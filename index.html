@@ -35,7 +35,7 @@
         --mutedSoft:#6b7280;
         --card:#ffffffF2;
         --border:#e5e7eb;
-        --radius:16px;
+        --radius:12px;
       }
       @media (prefers-color-scheme: dark){
         :root{
@@ -50,165 +50,277 @@
 
       /* ---------- BASE ---------- */
       *{box-sizing:border-box}
+      html{scroll-behavior:smooth}
       html,body{margin:0;padding:0}
       body{
         font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
         color:var(--text);
         background:var(--bg);
         -webkit-text-size-adjust:100%;
+        line-height:1.6;
       }
       img, video{max-width:100%; height:auto}
-
       a{color:var(--accent); text-decoration:none}
       a:hover{text-decoration:underline}
-      .container{max-width:1000px; margin-inline:auto; padding:clamp(16px,2vw,24px)}
-      header{
-        position:sticky; top:0;
-        background:color-mix(in oklab, var(--card), transparent 20%);
-        backdrop-filter:saturate(160%) blur(8px);
-        border-bottom:1px solid var(--border);
-        z-index:10
-      }
-      nav{display:flex; align-items:center; justify-content:space-between; gap:16px}
-      nav ul{display:flex; gap:16px; list-style:none; margin:0; padding:0}
-      nav #nav-list[hidden]{display:none}
-      .brand{display:flex; align-items:center; gap:.5rem; font-weight:700; color:var(--text)}
-      .button{
-        display:inline-block; padding:.85rem 1.1rem; border-radius:9999px;
-        background:var(--accent); color:#fff; font-weight:700; border:0; cursor:pointer
-      }
-      .hero-buttons{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center }
-      .button-novel{
-        display:inline-block; padding:.85rem 1.1rem; border-radius:9999px;
-        background:#1e293b; color:#fff; font-weight:700; border:2px solid var(--accent); cursor:pointer;
-        transition: background .2s ease, transform .15s ease;
-      }
-      .button-novel:hover{
-        background:var(--accent); color:#fff; text-decoration:none; transform:scale(1.03);
-      }
-
-      /* ---------- HERO ---------- */
-      .hero{
-        display:grid; grid-template-columns:1fr 1.12fr; align-items:center;
-        gap:clamp(16px,4vw,48px); padding-block:clamp(28px,7vw,96px)
-      }
-      .hero h1{font-size:clamp(28px,6vw,56px); margin:0 0 12px; color:var(--text); line-height:1.1}
-      .hero p{font-size:clamp(16px,2.4vw,20px); color:var(--muted)}
-
-      section{scroll-margin-top:88px; padding-block:clamp(32px,6vw,72px)}
-      h2,h3,h4{color:var(--text); margin:0 0 16px}
-      p, li, label, small{color:var(--muted)}
-      .grid{display:grid; gap:24px}
-      .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-      .card{border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--card)}
-      .card > img{display:block; width:100%; height:auto}
-      figure.card{margin:0}
-      footer{border-top:1px solid var(--border); padding-block:32px; text-align:center; opacity:.95}
-      .meta{color:var(--mutedSoft); font-size:.95rem}
       .visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
 
-      /* ---------- NOVEL SECTION ---------- */
-      .novel-banner{
-        display:grid;
-        grid-template-columns:200px 1fr;
-        align-items:center;
-        gap:clamp(16px,4vw,32px);
-        padding:24px;
-        border:2px solid var(--accent);
-        border-radius:var(--radius);
-        background:var(--card);
+      /* ---------- LAYOUT ---------- */
+      .wide{max-width:1200px; margin-inline:auto; padding-inline:clamp(20px,3vw,48px)}
+      .narrow{max-width:800px; margin-inline:auto; padding-inline:clamp(20px,3vw,48px)}
+      section{scroll-margin-top:72px; padding-block:clamp(48px,8vw,88px)}
+
+      h2{
+        font-size:clamp(13px,1.4vw,15px);
+        text-transform:uppercase;
+        letter-spacing:.15em;
+        color:var(--accent);
+        margin:0 0 32px;
+        font-weight:600;
       }
-      .novel-banner img{
-        border-radius:12px;
-        width:100%;
-        height:auto;
-        box-shadow:0 4px 16px rgba(0,0,0,.15);
+      h3{color:var(--text); margin:0 0 8px; font-size:1.05rem}
+      h4{color:var(--text); margin:0 0 8px}
+      p, li, label, small{color:var(--muted)}
+      .meta{color:var(--mutedSoft); font-size:.9rem}
+      .divider{border:0; border-top:1px solid var(--border); margin:0}
+
+      /* ---------- HEADER ---------- */
+      header{
+        padding:clamp(32px,5vw,56px) clamp(20px,3vw,48px) 0;
+        max-width:1200px;
+        margin-inline:auto;
       }
-      .novel-banner h3{
-        font-size:clamp(20px,3vw,28px);
-        margin:0 0 8px;
+      .header-inner{
+        display:flex;
+        flex-direction:column;
+        gap:16px;
       }
-      .novel-banner .genre-tag{
+      .site-name{
+        font-size:clamp(28px,5vw,48px);
+        font-weight:300;
+        letter-spacing:.2em;
+        text-transform:uppercase;
+        color:var(--accent);
+        margin:0;
+        line-height:1.1;
         display:inline-block;
-        padding:4px 12px;
-        border-radius:9999px;
-        background:var(--accent);
+        opacity:0;
+        transform:translateX(-60px);
+        filter:blur(6px);
+        animation:skate-in 1.8s cubic-bezier(.25,.1,.25,1) 0.3s forwards;
+        background:linear-gradient(90deg, var(--accent) 0%, #7dd3fc 40%, #fff 50%, #7dd3fc 60%, var(--accent) 100%);
+        background-size:200% 100%;
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+        background-clip:text;
+        animation:
+          skate-in 1.8s cubic-bezier(.25,.1,.25,1) 0.3s forwards,
+          ice-shimmer 3s ease-in-out 2s forwards;
+      }
+      nav ul{
+        display:flex;
+        gap:clamp(16px,2.5vw,32px);
+        list-style:none;
+        margin:0;
+        padding:0 0 4px;
+      }
+      nav a{
+        font-size:clamp(11px,1.2vw,13px);
+        text-transform:uppercase;
+        letter-spacing:.12em;
+        color:var(--mutedSoft);
+        font-weight:500;
+        transition:color .2s;
+      }
+      nav a:hover{color:var(--accent); text-decoration:none}
+
+      /* ---------- HERO SHOWCASE ---------- */
+      .showcase{
+        padding:clamp(32px,5vw,56px) clamp(20px,3vw,48px);
+        max-width:1200px;
+        margin-inline:auto;
+      }
+      .showcase-hint{
+        font-size:.85rem;
+        color:var(--accent);
+        margin:0 0 20px;
+        font-style:italic;
+      }
+      .showcase-grid{
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+        gap:16px;
+      }
+      .showcase-grid a{
+        display:block;
+        overflow:hidden;
+        border-radius:var(--radius);
+        position:relative;
+      }
+      .showcase-grid img{
+        width:100%;
+        height:280px;
+        object-fit:cover;
+        display:block;
+        transition:transform .4s ease, filter .4s ease;
+      }
+      .showcase-grid a:hover img{
+        transform:scale(1.04);
+        filter:brightness(1.05);
+      }
+      .showcase-grid .showcase-label{
+        position:absolute;
+        bottom:0; left:0; right:0;
+        padding:12px 14px;
+        background:linear-gradient(transparent, rgba(0,0,0,.7));
         color:#fff;
         font-size:.8rem;
-        font-weight:700;
-        margin-right:6px;
-        margin-bottom:6px;
+        font-weight:600;
+        letter-spacing:.03em;
+        opacity:0;
+        transition:opacity .3s ease;
       }
-      @media (max-width:640px){
-        .novel-banner{grid-template-columns:1fr; text-align:center;}
-        .novel-banner img{max-width:180px; margin-inline:auto;}
+      .showcase-grid a:hover .showcase-label{opacity:1}
+
+      /* ---------- TAGLINE ---------- */
+      .tagline{
+        text-align:center;
+        padding-block:clamp(40px,6vw,72px);
+      }
+      .tagline p{
+        font-size:clamp(16px,2.2vw,20px);
+        color:var(--muted);
+        max-width:640px;
+        margin-inline:auto;
+        line-height:1.7;
+      }
+      .tagline .hero-buttons{
+        display:flex;
+        gap:12px;
+        justify-content:center;
+        flex-wrap:wrap;
+        margin-top:24px;
       }
 
-      .hero-photos{
+      /* ---------- BUTTONS ---------- */
+      .button{
+        display:inline-block; padding:.7rem 1.3rem; border-radius:9999px;
+        background:var(--accent); color:#fff; font-weight:600; font-size:.85rem; border:0; cursor:pointer;
+        transition: transform .15s ease;
+      }
+      .button:hover{text-decoration:none; transform:scale(1.03)}
+      .button-outline{
+        display:inline-block; padding:.7rem 1.3rem; border-radius:9999px;
+        background:transparent; color:var(--accent); font-weight:600; font-size:.85rem;
+        border:2px solid var(--accent); cursor:pointer;
+        transition: background .2s ease, color .2s ease, transform .15s ease;
+      }
+      .button-outline:hover{background:var(--accent); color:#fff; text-decoration:none; transform:scale(1.03)}
+      .button-novel{
+        display:inline-block; padding:.7rem 1.2rem; border-radius:9999px;
+        background:#1e293b; color:#fff; font-weight:600; font-size:.85rem; border:2px solid var(--accent); cursor:pointer;
+        transition: background .2s ease, transform .15s ease;
+      }
+      .button-novel:hover{background:var(--accent); color:#fff; text-decoration:none; transform:scale(1.03)}
+
+      /* ---------- ABOUT ---------- */
+      .about-grid{
         display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:12px;
-        margin:0;
+        grid-template-columns:220px 1fr;
+        gap:40px;
         align-items:start;
       }
-      .hero-photos img{
+      .about-grid figure{margin:0}
+      .about-grid img{
         width:100%;
-        height:auto;
-        object-fit:contain;
-        display:block;
         border-radius:var(--radius);
         border:1px solid var(--border);
       }
 
-      /* ---------- MOBILE TWEAKS ---------- */
-      @media (max-width: 900px){ .hero{grid-template-columns:1fr}}
-      @media (max-width: 720px){
-        nav ul{flex-direction:column; align-items:flex-start; gap:12px; padding:12px 0}
-        .hero{ text-align:center }
-        .hero .meta{ justify-content:center }
-        .hero figure{ order:-1 }
+      /* ---------- NOVEL ---------- */
+      .novel-banner{
+        display:grid;
+        grid-template-columns:160px 1fr;
+        align-items:center;
+        gap:32px;
       }
-      @media (max-width:640px){
-        #contact .grid{ grid-template-columns:1fr !important; }
-        .button{ width:100%; max-width:420px }
-        .hero-buttons{ flex-direction:column; align-items:center; gap:12px }
-        .hero h1{ font-size:clamp(28px,9vw,44px) }
-        .hero-photos{ grid-template-columns:1fr }
+      .novel-banner img{
+        border-radius:10px;
+        width:100%;
+        height:auto;
+        box-shadow:0 4px 20px rgba(0,0,0,.12);
+      }
+      .novel-banner h3{font-size:clamp(18px,2.5vw,24px); margin:0 0 8px}
+      .novel-banner .genre-tag{
+        display:inline-block; padding:3px 10px; border-radius:9999px;
+        background:var(--accent); color:#fff; font-size:.75rem; font-weight:700;
+        margin-right:4px; margin-bottom:4px;
       }
 
-      .responsive-embed{position:relative; width:100%; aspect-ratio:16/9}
-      .responsive-embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+      /* ---------- SKILLS ---------- */
+      .skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+      .skill-card{
+        padding:0;
+      }
+      .skill-card h3{font-size:.95rem; margin-bottom:12px}
+      .skill-card ul{margin:0; padding-left:18px; font-size:.9rem}
+      .skill-card li{margin-bottom:4px}
+
+      /* ---------- TIMELINE ---------- */
+      .timeline{position:relative; padding-left:28px}
+      .timeline::before{
+        content:''; position:absolute;
+        left:4px; top:6px; bottom:6px;
+        width:2px; background:var(--border);
+      }
+      .timeline-item{position:relative; padding-bottom:36px}
+      .timeline-item:last-child{padding-bottom:0}
+      .timeline-item::before{
+        content:''; position:absolute;
+        left:-28px; top:6px;
+        width:10px; height:10px;
+        border-radius:50%;
+        background:var(--accent);
+        border:2px solid var(--bg);
+      }
+      .timeline-item h3{font-size:1rem; margin-bottom:2px}
+      .timeline-item .meta{margin-bottom:8px}
+      .timeline-item ul{margin:8px 0 0; padding-left:18px; font-size:.9rem}
+      .timeline-item li{margin-bottom:4px}
+      .timeline-item p{font-size:.9rem; margin:4px 0}
+      .timeline-logo{
+        width:48px; height:48px;
+        object-fit:contain;
+        border-radius:8px;
+        border:1px solid var(--border);
+        float:right;
+        margin-left:12px;
+      }
+
+      /* ---------- PROJECTS ---------- */
+      .projects-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+      .project-card{
+        overflow:hidden;
+      }
+      .project-card > img{display:block; width:100%; height:200px; object-fit:cover; border-radius:var(--radius); transition:transform .4s ease}
+      .project-card:hover > img{transform:scale(1.03)}
+      .project-card .project-body{padding:8px 0}
+      .project-card h3{font-size:.9rem}
+      .project-card p{font-size:.85rem; margin:6px 0}
 
       /* ---------- FORM ---------- */
+      .contact-form{
+        padding:0;
+        max-width:600px;
+      }
+      .form-row{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px}
       .input{
-        width:100%;
-        padding:.9rem;
-        border-radius:12px;
-        border:1px solid #cfcfcf;
-        font:inherit;
-        background:#ffffff;
-        color:#111111;
+        width:100%; padding:.8rem; border-radius:8px;
+        border:1px solid var(--border); font:inherit;
+        background:#ffffff; color:#111111;
         transition:border-color .15s ease, box-shadow .15s ease;
       }
       .input:focus{outline:3px solid rgba(14,165,233,.25); border-color:#0ea5e9}
       .input::placeholder{color:var(--mutedSoft)}
-      @media (prefers-color-scheme: dark){
-        header{ background:rgba(20,20,22,.75) }
-        .input{
-          background:#ffffff;
-          color:#111111;
-          border-color:#d1d5db;
-        }
-        .input::placeholder{ color:#6b7280; }
-        .card{ background:var(--card); border-color:var(--border); }
-        .button-novel{
-          background:#1e293b;
-          border-color:var(--accent);
-        }
-        .button-novel:hover{
-          background:var(--accent);
-        }
-      }
       .input:-webkit-autofill,
       .input:-webkit-autofill:hover,
       .input:-webkit-autofill:focus{
@@ -216,56 +328,86 @@
         -webkit-box-shadow:0 0 0px 1000px #ffffff inset;
         box-shadow:0 0 0px 1000px #ffffff inset;
       }
-
       .error{color:#b00020}
       .success{color:#16a34a}
 
-      /* ---------- TYPEWRITER ---------- */
-      .typewriter-name{
-        display:inline-block;
-        overflow:hidden;
-        white-space:nowrap;
-        border-right:0.15em solid var(--accent);
-        color:var(--accent);
-        width:0;
-        animation:
-          typing 2s steps(15, end) 0.5s forwards,
-          blink-caret 0.75s step-end infinite;
+      /* ---------- FOOTER ---------- */
+      footer{padding-block:40px; text-align:center}
+      footer p{font-size:.85rem}
+      footer .social-links{margin-top:8px}
+      footer .social-links a{
+        color:var(--mutedSoft);
+        margin:0 8px;
+        font-size:.85rem;
+        transition:color .2s;
       }
-      @keyframes typing{
-        from{ width:0 }
-        to{ width:100% }
+      footer .social-links a:hover{color:var(--accent)}
+
+      .responsive-embed{position:relative; width:100%; aspect-ratio:16/9}
+      .responsive-embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+
+      /* ---------- ICE SKATE ANIMATION ---------- */
+      @keyframes skate-in{
+        0%{opacity:0; transform:translateX(-60px) rotate(-2deg); filter:blur(6px)}
+        40%{opacity:1; filter:blur(2px)}
+        70%{transform:translateX(8px) rotate(0.5deg); filter:blur(0)}
+        85%{transform:translateX(-3px) rotate(0deg)}
+        100%{opacity:1; transform:translateX(0) rotate(0deg); filter:blur(0)}
       }
-      @keyframes blink-caret{
-        from, to{ border-color:transparent }
-        50%{ border-color:var(--accent) }
+      @keyframes ice-shimmer{
+        0%{background-position:200% center}
+        100%{background-position:-200% center}
       }
       @media (prefers-reduced-motion: reduce){
-        .typewriter-name{
-          width:100%;
-          animation:none;
-          border-right-color:transparent;
-        }
+        .site-name{opacity:1; transform:none; filter:none; animation:none; -webkit-text-fill-color:var(--accent)}
+      }
+
+      /* ---------- DARK MODE ---------- */
+      @media (prefers-color-scheme: dark){
+        .input{background:#ffffff; color:#111111; border-color:#d1d5db}
+        .input::placeholder{color:#6b7280}
+        .button-novel{background:#1e293b; border-color:var(--accent)}
+        .button-novel:hover{background:var(--accent)}
+        .showcase-grid img{filter:brightness(.92)}
+        .showcase-grid a:hover img{filter:brightness(1)}
+      }
+
+      /* ---------- MOBILE ---------- */
+      @media (max-width:900px){
+        .showcase-grid{grid-template-columns:1fr 1fr}
+        .showcase-grid img{height:220px}
+        .projects-grid{grid-template-columns:1fr 1fr}
+      }
+      @media (max-width:640px){
+        .header-inner{flex-direction:column; align-items:flex-start; gap:16px}
+        nav ul{gap:16px; flex-wrap:wrap}
+        .showcase-grid{grid-template-columns:1fr}
+        .showcase-grid img{height:240px}
+        .about-grid{grid-template-columns:1fr; text-align:center}
+        .about-grid img{max-width:200px; margin-inline:auto}
+        .skills-grid{grid-template-columns:1fr}
+        .projects-grid{grid-template-columns:1fr}
+        .form-row{grid-template-columns:1fr}
+        .novel-banner{grid-template-columns:1fr; text-align:center}
+        .novel-banner img{max-width:140px; margin-inline:auto}
+        .tagline .hero-buttons{flex-direction:column; align-items:center}
+        .timeline-logo{width:40px; height:40px}
       }
     </style>
   </head>
   <body>
     <a class="visually-hidden" href="#main">Skip to content</a>
+
+    <!-- HEADER -->
     <header>
-      <div class="container">
+      <div class="header-inner">
+        <h1 class="site-name">Nikolai A. Seva</h1>
         <nav aria-label="Primary">
-          <a class="brand" href="#home" aria-label="Home"><span aria-hidden="true">🧊</span> <span>Nikolai A. Seva</span></a>
-          <button id="nav-toggle" class="button" style="padding:.6rem .9rem;" aria-expanded="false" aria-controls="nav-list">
-            <i class='bx bx-menu' aria-hidden="true"></i><span class="visually-hidden">Menu</span>
-          </button>
-          <ul id="nav-list" hidden>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#novel">Novel</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#experience">Experience</a></li>
+          <ul>
             <li><a href="#work">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="posts.html">Posts</a></li>
           </ul>
@@ -274,55 +416,78 @@
     </header>
 
     <main id="main">
-      <!-- HOME / HERO -->
-      <section id="home" class="container hero" aria-label="Hero">
-        <div>
-          <h1>
-            Hi, I'm<br>
-            <span class="typewriter-name">Nikolai A. Seva</span>
-          </h1>
-          <p><strong>Mechanical & Biomechanics Engineer</strong> | MEng Mechanical Engineering, UC Berkeley · BASc Biomedical Engineering, UBC. I bring a product mindset to hardware — designing, prototyping, and validating systems that are manufacturable, reliable, and genuinely satisfying to use.</p>
-          <p class="credit" aria-label="Site credit">Website coded by me using <strong>HTML</strong>.</p>
-          <p class="hero-buttons">
-            <a class="button" href="#contact">Get in touch</a>
-            <a class="button" href="posts.html">Check Out My Posts</a>
-          </p>
-          <p class="meta">
-            <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a> ·
-            <a href="https://www.instagram.com/nikolaiaseva/" target="_blank" rel="noopener">Instagram</a> ·
-            <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a>
-          </p>
+      <!-- SHOWCASE -->
+      <div class="showcase">
+        <p class="showcase-hint">Click a photo to see more.</p>
+        <div class="showcase-grid">
+          <a href="#work">
+            <img src="pictures/prosthetic_pointe_shoe.jpeg" alt="Prosthetic Pointe Shoe" />
+            <span class="showcase-label">Prosthetic Pointe Shoe</span>
+          </a>
+          <a href="#work">
+            <img src="pictures/meta_quest_ski.gif" alt="Meta Quest VR Prosthetic Ski" />
+            <span class="showcase-label">VR Prosthetic Ski Fit</span>
+          </a>
+          <a href="#work">
+            <img src="pictures/huddle_wrist.jpg" alt="HuddleWrist Apple Watch App" />
+            <span class="showcase-label">HuddleWrist</span>
+          </a>
+          <a href="#work">
+            <img src="pictures/bionic_pointe_shoe.gif" alt="Bionic Pointe Shoe" />
+            <span class="showcase-label">Bionic Pointe Shoe</span>
+          </a>
         </div>
-        <figure class="hero-photos">
-          <img src="pictures/nikolai_casual_profile.jpg" alt="Nikolai casual profile photo" width="1000" height="700" />
-          <img src="pictures/Hockey_Cover_Photo_Portfolio.jpg" alt="Nikolai on the ice—portfolio cover" width="1000" height="700" />
-          <img src="pictures/Nikolai_Running.jpg" alt="Nikolai at the beach in a Berkeley shirt" width="800" height="1000" />
-          <img src="pictures/Nikolai_Football.jpeg" alt="Nikolai playing football" width="1000" height="700" />
-        </figure>
+      </div>
+
+      <!-- TAGLINE -->
+      <section class="wide tagline">
+        <p><strong>Mechanical & Biomechanics Engineer</strong> · MEng UC Berkeley · BASc UBC<br>
+        I bring a product mindset to hardware — designing, prototyping, and validating systems that are manufacturable, reliable, and genuinely satisfying to use.</p>
+        <p style="font-size:.85rem; color:var(--mutedSoft);">Website coded by me using <strong>HTML</strong>.</p>
+        <div class="hero-buttons">
+          <a class="button" href="#contact">Get in touch</a>
+          <a class="button-outline" href="posts.html">Check Out My Posts</a>
+        </div>
       </section>
 
+      <hr class="divider">
+
       <!-- ABOUT -->
-      <section id="about" class="container" aria-labelledby="about-heading">
+      <section id="about" class="narrow" aria-labelledby="about-heading">
         <h2 id="about-heading">About</h2>
-        <div class="grid" style="grid-template-columns:1fr 1.2fr; align-items:start;">
-          <figure class="card">
+        <div class="about-grid">
+          <figure>
             <img src="pictures/UC_Berkeley_Grad_Photo.jpg" alt="Nikolai Seva at UC Berkeley graduation" loading="lazy" width="800" height="1000">
           </figure>
           <div>
             <h3>Hello!</h3>
-            <p>I turn ambitious ideas into hardware people can actually hold. From a prosthetic pointe shoe that withstands ~2,300 lbs of force to seating prototypes at Tesla that cut measurable pressure points and added ~10% cycle life, I own the full arc — concept, CAD/FEA, prototyping, validation, and DFM/DFA handoff — and I refine the small details that make a product feel inevitable.</p>
-            <p>What sets me apart is range: deep mechanical rigor paired with a biomechanics background and the software fluency to prototype, simulate, and instrument my own ideas. I move fast, ground every decision in data, and care deeply about the simple, reliable mechanisms that scale. I want to do the best work of my life on a team that holds the same bar — Apple, Meta, Google, Tesla — where craftsmanship, rigor, and genuine user empathy are the standard, not the exception.</p>
-            <ul>
-              <li><strong>Strengths:</strong> CAD & FEA (3DX/CATIA, SolidWorks, Fusion 360, ANSYS), GD&T & tolerance stacks, design reviews, and test bring-up.</li>
-              <li><strong>Build:</strong> Rapid prototyping (3D printing, CNC, laser cutting), acoustic fixture design, material characterization, lab instrumentation, and EMG/IMU prototypes.</li>
-              <li><strong>Software:</strong> MATLAB/Python for analysis (NumPy, Pandas), Monte Carlo simulations, signal processing (EMG), Arduino/C/C++, and HTML/JS for tooling, plus <strong>Unity</strong> and <strong>Unreal Engine 5</strong> for XR/VR simulation and visualization.</li>
-            </ul>
+            <p>I bring ideas from concept to final product. I designed and published an Apple Watch app for football plays, helping quarterbacks replace traditional paper wristbands with digital diagrams. At Tesla, I led seating comfort designs that improved the experience for drivers and passengers on the road. Through root cause analysis and cross-functional collaboration with software and electrical teams, we made the impossible possible.</p>
+            <p>What makes me unique? To be honest, I don't need to stand out. I love being myself, and I love building and prototyping prosthetics for individuals with disabilities. My interests are biomechanical engineering and product design, and those are my strengths to help drive a team forward. A company like Apple is where my fit would be. Tesla gave me the foundation to be a good engineer.</p>
+            <p class="meta" style="margin-top:16px;">
+              <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a> ·
+              <a href="https://www.instagram.com/nikolaiaseva/" target="_blank" rel="noopener">Instagram</a> ·
+              <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a>
+            </p>
           </div>
         </div>
       </section>
 
+      <hr class="divider">
+
+      <!-- PHOTOS -->
+      <section id="photos" class="wide" style="padding-bottom:0;">
+        <div style="display:flex; gap:16px; justify-content:center;">
+          <img src="pictures/nikolai_casual_profile.jpg" alt="Nikolai casual profile photo" style="width:0; flex:1; max-width:260px; height:240px; object-fit:cover; border-radius:var(--radius); border:1px solid var(--border);" />
+          <img src="pictures/Hockey_Cover_Photo_Portfolio.jpg" alt="Nikolai on the ice" style="width:0; flex:1; max-width:260px; height:240px; object-fit:cover; border-radius:var(--radius); border:1px solid var(--border);" />
+          <img src="pictures/Nikolai_Running.jpg" alt="Nikolai at the beach" style="width:0; flex:1; max-width:260px; height:240px; object-fit:cover; border-radius:var(--radius); border:1px solid var(--border);" />
+          <img src="Nikolai_Football.jpeg" alt="Nikolai playing football" style="width:0; flex:1; max-width:260px; height:240px; object-fit:cover; border-radius:var(--radius); border:1px solid var(--border);" />
+        </div>
+      </section>
+
+      <hr class="divider" style="margin-top:clamp(48px,8vw,88px);">
+
       <!-- NOVEL -->
-      <section id="novel" class="container" aria-labelledby="novel-heading">
+      <section id="novel" class="narrow" aria-labelledby="novel-heading">
         <h2 id="novel-heading">My Novel</h2>
         <div class="novel-banner">
           <img src="pictures/the_sky_between_us_cover.png" alt="The Sky Between Us — book cover" loading="lazy" width="400" height="600" />
@@ -334,212 +499,190 @@
               <span class="genre-tag">Hard Sci-Fi</span>
             </p>
             <p>A story about distance — and what survives it.</p>
-            <p style="margin-top:16px;">
-              <a class="button-novel" href="The_Sky_Between_Us_Preview_v2.html">Read Preview →</a>
-            </p>
           </div>
         </div>
       </section>
 
+      <hr class="divider">
+
       <!-- SKILLS -->
-      <section id="skills" class="container" aria-labelledby="skills-heading">
+      <section id="skills" class="wide" aria-labelledby="skills-heading">
         <h2 id="skills-heading">Skills</h2>
-        <div class="grid cols-3">
-          <article class="card" aria-label="Technical Skills">
-            <div style="padding:16px;">
-              <h3><i class='bx bxs-cog'></i> Technical Skills</h3>
-              <ul>
-                <li>3D CAD (CATIA v5, SolidWorks, Fusion 360)</li>
-                <li>GD&T, Tolerance Stack-Up Analysis</li>
-                <li>FEA (ANSYS, COMSOL)</li>
-                <li>Rapid Prototyping (3D Printing, CNC, Laser Cutting)</li>
-                <li>DFM/DFA, Sensor Integration, Mechanical Testing</li>
-                <li>Acoustic Fixture Design, Material Characterization</li>
-                <li>Lab Instrumentation (force gauges, micrometers, calipers)</li>
-                <li>Wearables Engineering</li>
-              </ul>
-            </div>
-          </article>
-          <article class="card" aria-label="Data Analysis Skills">
-            <div style="padding:16px;">
-              <h3><i class='bx bxs-bar-chart-alt-2'></i> Data Analysis Skills</h3>
-              <ul>
-                <li>MATLAB, Python (NumPy, Pandas)</li>
-                <li>Excel (Pivot Tables, Solver, Graphing)</li>
-                <li>Monte Carlo Simulations, Statistical Analysis</li>
-                <li>Signal Processing (EMG), Experimental Design</li>
-                <li>FMEA, 5 Whys</li>
-              </ul>
-            </div>
-          </article>
-          <article class="card" aria-label="Software & Programming">
-            <div style="padding:16px;">
-              <h3><i class='bx bxl-javascript'></i> Software & Programming</h3>
-              <ul>
-                <li>Arduino IDE, C/C++, MATLAB, Python, R</li>
-                <li>Unity, Unreal Engine 5 (XR/VR prototyping, animation)</li>
-                <li>HTML, Java, JavaScript</li>
-              </ul>
-            </div>
-          </article>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3><i class='bx bxs-cog'></i> Technical</h3>
+            <ul>
+              <li>3D CAD (CATIA v5, SolidWorks, Fusion 360)</li>
+              <li>GD&T, Tolerance Stack-Up Analysis</li>
+              <li>FEA (ANSYS, COMSOL)</li>
+              <li>Rapid Prototyping (3D Printing, CNC, Laser Cutting)</li>
+              <li>DFM/DFA, Sensor Integration, Mechanical Testing</li>
+              <li>Acoustic Fixture Design, Material Characterization</li>
+              <li>Lab Instrumentation (force gauges, micrometers, calipers)</li>
+              <li>Wearables Engineering</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3><i class='bx bxs-bar-chart-alt-2'></i> Data Analysis</h3>
+            <ul>
+              <li>MATLAB, Python (NumPy, Pandas)</li>
+              <li>Excel (Pivot Tables, Solver, Graphing)</li>
+              <li>Monte Carlo Simulations, Statistical Analysis</li>
+              <li>Signal Processing (EMG), Experimental Design</li>
+              <li>FMEA, 5 Whys</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3><i class='bx bxl-javascript'></i> Software</h3>
+            <ul>
+              <li>Arduino IDE, C/C++, Swift, MATLAB, Python, R</li>
+              <li>Unity, Unreal Engine 5 (XR/VR prototyping, animation)</li>
+              <li>HTML, Java, JavaScript</li>
+            </ul>
+          </div>
         </div>
       </section>
+
+      <hr class="divider">
 
       <!-- EDUCATION -->
-      <section id="education" class="container" aria-labelledby="edu-heading">
+      <section id="education" class="narrow" aria-labelledby="edu-heading">
         <h2 id="edu-heading">Education</h2>
-        <div class="grid">
-          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:center; padding:16px;">
-            <img src="pictures/berkeley-logo.png" alt="UC Berkeley" width="120" height="120" />
-            <div>
-              <h3>MEng Mechanical Engineering · UC Berkeley</h3>
-              <p class="meta">Aug 2024 – May 2025 · GPA 3.94/4.0</p>
-              <p><strong>Capstone:</strong> Revolutionizing Footwear: Blending Biomechanics with Fashion Design</p>
-              <p><strong>Coursework:</strong> Orthopaedic Biomechanics (A-), Design for the Human Body (A)</p>
-              <p><strong>Awards:</strong> Opportunity Grant $15,000 USD</p>
-            </div>
-          </article>
-          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:center; padding:16px;">
-            <img src="pictures/ubc_logo.jpg" alt="UBC" width="120" height="120" />
-            <div>
-              <h3>BASc Biomedical Engineering · UBC</h3>
-              <p class="meta">2018 – 2022 · GPA 3.6/4.0 · Biomechanics & Biomaterials stream</p>
-              <p>Irving K. Barber Transfer Scholarship (2018)</p>
-            </div>
-          </article>
+        <div class="timeline">
+          <div class="timeline-item">
+            <img src="pictures/berkeley-logo.png" alt="UC Berkeley" class="timeline-logo" />
+            <h3>MEng Mechanical Engineering · UC Berkeley</h3>
+            <p class="meta">Aug 2024 – May 2025 · GPA 3.94/4.0</p>
+            <p><strong>Capstone:</strong> Revolutionizing Footwear: Blending Biomechanics with Fashion Design</p>
+            <p><strong>Coursework:</strong> Orthopaedic Biomechanics (A-), Design for the Human Body (A)</p>
+            <p><strong>Awards:</strong> Opportunity Grant $15,000 USD</p>
+          </div>
+          <div class="timeline-item">
+            <img src="pictures/ubc_logo.jpg" alt="UBC" class="timeline-logo" />
+            <h3>BASc Biomedical Engineering · UBC</h3>
+            <p class="meta">2018 – 2022 · GPA 3.6/4.0 · Biomechanics & Biomaterials stream</p>
+            <p>Irving K. Barber Transfer Scholarship (2018)</p>
+          </div>
         </div>
       </section>
+
+      <hr class="divider">
 
       <!-- EXPERIENCE -->
-      <section id="experience" class="container" aria-labelledby="exp-heading">
-        <h2 id="exp-heading">Work Experience</h2>
-        <div class="grid">
-          
-          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
-            <img src="pictures/Microsoft_Prosthetic_Ski_Presentation.jpg" alt="Nikolai presenting prosthetic ski leg to the Microsoft Inclusive Tech Lab team" width="120" height="120" style="object-fit:cover; border-radius:8px;" />
-            <div>
-              <h3>Invited Presenter · Microsoft Inclusive Tech Lab</h3>
-              <p class="meta">May 2026 · Redmond, Washington</p>
-              <ul>
-                <li>Selected as an invited presenter to showcase a custom prosthetic ski leg to the Microsoft Inclusive Tech Lab team, demonstrating real-world applications of assistive and adaptive technology.</li>
-                <li>Shared insights on the design, engineering, and biomechanics behind the prosthetic ski system, sparking conversations around inclusive hardware innovation and accessibility engineering.</li>
-              </ul>
-            </div>
-          </article>
+      <section id="experience" class="narrow" aria-labelledby="exp-heading">
+        <h2 id="exp-heading">Experience</h2>
+        <div class="timeline">
 
-          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
-            <img src="pictures/incubadora_logo.png" alt="Incubadora Solutions Inc." width="120" height="120" />
-            <div>
-              <h3>Lead Mechanical Engineer · Incubadora Solutions Inc.</h3>
-              <p class="meta">Nov 2025 – Apr 2026 · Vancouver, British Columbia · Hybrid</p>
-              <ul>
-                <li>Translate Sky Padel's business goals (durability, installation speed, cost targets, and premium player experience) into clear mechanical design requirements that support revenue growth and brand differentiation.</li>
-                <li>Lead end-to-end mechanical design, FEA/CFD analysis, prototyping, and testing of complex padel systems from concept to launch while meeting performance, cost, and manufacturability targets.</li>
-                <li>Own mechanical project plans—resources, milestones, and deliverables—to ensure on-time, on-budget product releases that keep Sky Padel's roadmap on track.</li>
-                <li>Mentor junior and mid-level engineers, driving best practices and strong design reviews so the team can ship higher-quality designs faster and with fewer iterations.</li>
-                <li>Collaborate with Electrical, Software, Manufacturing, and key suppliers to de-risk integration, uphold ISO/ASME and safety standards, and secure reliable, cost-effective components for scalable production.</li>
-              </ul>
-            </div>
-          </article>
-          
-          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
-            <img src="pictures/zen_maker_lab.jpeg" alt="Zen Maker Lab" width="120" height="120" />
-            <div>
-              <h3>Engineering Instructor & R&D Engineer · Zen Maker Lab</h3>
-              <p class="meta">May 2018 – Dec 2025</p>
-              <ul>
-                <li>Created hands-on STEM workshops (CAD, 3D printing, Arduino) that reached 300+ students and boosted enrollments.</li>
-                <li>Built robotics and VR demos used in classrooms; helped the lab win additional school contracts.</li>
-                <li>Mentored junior instructors to standardize labs and improve student outcomes.</li>
-              </ul>
-            </div>
-          </article>
+          <div class="timeline-item">
+            <img src="pictures/Microsoft_Prosthetic_Ski_Presentation.jpg" alt="Microsoft Inclusive Tech Lab" class="timeline-logo" style="object-fit:cover;" />
+            <h3>Invited Presenter · Microsoft Inclusive Tech Lab</h3>
+            <p class="meta">May 2026 · Redmond, Washington</p>
+            <ul>
+              <li>Selected as an invited presenter to showcase a custom prosthetic ski leg to the Microsoft Inclusive Tech Lab team, demonstrating real-world applications of assistive and adaptive technology.</li>
+              <li>Shared insights on the design, engineering, and biomechanics behind the prosthetic ski system, sparking conversations around inclusive hardware innovation and accessibility engineering.</li>
+            </ul>
+          </div>
 
-          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
-            <img src="pictures/salyx_medical.jpeg" alt="Salyx Medical" width="120" height="120" />
-            <div>
-              <h3>Mechanical Engineer · Salyx Medical</h3>
-              <p class="meta">Feb 2023 – Apr 2024</p>
-              <ul>
-                <li>Designed patient-monitoring enclosures in Fusion 360; manufacturing feedback loop reduced assembly time by ~15%.</li>
-                <li>Partnered with EE/SW to integrate electronics and accelerate prototype validation.</li>
-              </ul>
-            </div>
-          </article>
+          <div class="timeline-item">
+            <img src="pictures/incubadora_logo.png" alt="Incubadora Solutions Inc." class="timeline-logo" />
+            <h3>Lead Mechanical Engineer · Incubadora Solutions Inc.</h3>
+            <p class="meta">Nov 2025 – Apr 2026 · Vancouver, British Columbia · Hybrid</p>
+            <ul>
+              <li>Translate Sky Padel's business goals (durability, installation speed, cost targets, and premium player experience) into clear mechanical design requirements that support revenue growth and brand differentiation.</li>
+              <li>Lead end-to-end mechanical design, FEA/CFD analysis, prototyping, and testing of complex padel systems from concept to launch while meeting performance, cost, and manufacturability targets.</li>
+              <li>Own mechanical project plans—resources, milestones, and deliverables—to ensure on-time, on-budget product releases that keep Sky Padel's roadmap on track.</li>
+              <li>Mentor junior and mid-level engineers, driving best practices and strong design reviews so the team can ship higher-quality designs faster and with fewer iterations.</li>
+              <li>Collaborate with Electrical, Software, Manufacturing, and key suppliers to de-risk integration, uphold ISO/ASME and safety standards, and secure reliable, cost-effective components for scalable production.</li>
+            </ul>
+          </div>
 
-          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
-            <img src="pictures/LINKEDIN_Tesla_Animation_Offer.gif" alt="Tesla" width="120" height="120" />
-            <div>
-              <h3>Mechanical Design Engineering Intern - Endorsed for a Return Offer · Tesla (Seating)</h3>
-              <p class="meta">Sept 2023 – Jan 2024</p>
-              <ul>
-                <li>Prototyped comfort/ergonomics improvements; tests showed reduced pressure points and higher comfort scores.</li>
-                <li>Addressed durability concerns; design tweaks improved cycle life by ~10%.</li>
-              </ul>
-              <p><a class="button" href="tesla-seat-fixture.html">See fixture design from Tesla's social media →</a></p>
-            </div>
-          </article>
+          <div class="timeline-item">
+            <img src="pictures/zen_maker_lab.jpeg" alt="Zen Maker Lab" class="timeline-logo" />
+            <h3>Engineering Instructor & R&D Engineer · Zen Maker Lab</h3>
+            <p class="meta">May 2018 – Dec 2025</p>
+            <ul>
+              <li>Created hands-on STEM workshops (CAD, 3D printing, Arduino) that reached 300+ students and boosted enrollments.</li>
+              <li>Built robotics and VR demos used in classrooms; helped the lab win additional school contracts.</li>
+              <li>Mentored junior instructors to standardize labs and improve student outcomes.</li>
+            </ul>
+          </div>
 
-          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
-            <img src="pictures/Texavie.png" alt="Texavie" width="120" height="120" />
-            <div>
-              <h3>Biomedical Engineering Co-op · UBC / Texavie</h3>
-              <p class="meta">Sept 2021 – Dec 2021</p>
-              <ul>
-                <li>Integrated IMUs into wearables; produced motion datasets that informed design iterations.</li>
-                <li>Improved harness ergonomics, reducing user discomfort during trials.</li>
-              </ul>
-            </div>
-          </article>
+          <div class="timeline-item">
+            <img src="pictures/salyx_medical.jpeg" alt="Salyx Medical" class="timeline-logo" />
+            <h3>Mechanical Engineer · Salyx Medical</h3>
+            <p class="meta">Feb 2023 – Apr 2024</p>
+            <ul>
+              <li>Designed patient-monitoring enclosures in Fusion 360; manufacturing feedback loop reduced assembly time by ~15%.</li>
+              <li>Partnered with EE/SW to integrate electronics and accelerate prototype validation.</li>
+            </ul>
+          </div>
 
-          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
-            <img src="pictures/SailbotLogo.png" alt="UBC Sailbot" width="120" height="120" style="object-fit:contain; border-radius:8px;" />
-            <div>
-              <h3>Mechanical Design Team Member · UBC Sailbot</h3>
-              <p class="meta">May 2019 – Dec 2021 · 2 yrs 8 mos · Vancouver, Canada Area · <em>Concurrent with co-op placements</em></p>
-              <ul>
-                <li>Designed and manufactured a carbon fibre hull engineered to voyage autonomously across the Pacific Ocean from BC to Maui.</li>
-                <li>Contributed to an autonomous sailing system that adjusts sails dynamically to maintain heading and speed without human input.</li>
-                <li>Designed the gasket and conducted IP68 waterproofing validation for the battery box enclosures, verifying the seal by submerging the assembly to 1 m depth for 24 hours.</li>
-                <li>Waterjet-cut the aluminium battery box lid with precision-located fastener holes to create a uniform compression seal against the gasket and enclosure mating surface.</li>
-                <li>Applied two-part epoxy marine paint (the same family of coatings used on sail battens and hull topsides to repel water ingress) to the outermost battery box lid, preventing fiberglass weave absorption and surface leakage.</li>
-              </ul>
-            </div>
-          </article>
+          <div class="timeline-item">
+            <img src="pictures/LINKEDIN_Tesla_Animation_Offer.gif" alt="Tesla" class="timeline-logo" />
+            <h3>Mechanical Design Engineering Intern - Endorsed for a Return Offer · Tesla (Seating)</h3>
+            <p class="meta">Sept 2023 – Jan 2024</p>
+            <ul>
+              <li>Prototyped comfort/ergonomics improvements; tests showed reduced pressure points and higher comfort scores.</li>
+              <li>Addressed durability concerns; design tweaks improved cycle life by ~10%.</li>
+            </ul>
+            <p><a class="button" href="tesla-seat-fixture.html" style="font-size:.8rem; padding:.55rem 1rem; margin-top:8px;">See fixture design from Tesla's social media →</a></p>
+          </div>
 
-          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
-            <img src="pictures/hexis.jpeg" alt="Hexis Robotics" width="120" height="120" />
-            <div>
-              <h3>Robotics Engineering Co-op · Hexis Robotics</h3>
-              <p class="meta">Jan 2021 – Apr 2021</p>
-              <ul>
-                <li>Programmed and tested UV-disinfection robots; refined paths to cut cycle times.</li>
-                <li>Built simulations and reports that guided the next-gen platform.</li>
-              </ul>
-            </div>
-          </article>
+          <div class="timeline-item">
+            <img src="pictures/Texavie.png" alt="Texavie" class="timeline-logo" />
+            <h3>Biomedical Engineering Co-op · UBC / Texavie</h3>
+            <p class="meta">Sept 2021 – Dec 2021</p>
+            <ul>
+              <li>Integrated IMUs into wearables; produced motion datasets that informed design iterations.</li>
+              <li>Improved harness ergonomics, reducing user discomfort during trials.</li>
+            </ul>
+          </div>
 
-          <article class="card" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; padding:16px;">
-            <img src="pictures/solaires.jpeg" alt="Solaires Enterprises" width="120" height="120" />
-            <div>
-              <h3>Product Innovation Engineering Co-op · Solaires Enterprises</h3>
-              <p class="meta">Sept 2020 – Dec 2020</p>
-              <ul>
-                <li>Drafted patent applications and proposed design improvements adopted into R&D.</li>
-                <li>Generated concepts that contributed to the company's IP pipeline.</li>
-              </ul>
-            </div>
-          </article>
+          <div class="timeline-item">
+            <img src="pictures/SailbotLogo.png" alt="UBC Sailbot" class="timeline-logo" style="object-fit:contain;" />
+            <h3>Mechanical Design Team Member · UBC Sailbot</h3>
+            <p class="meta">May 2019 – Dec 2021 · 2 yrs 8 mos · Vancouver, Canada Area · <em>Concurrent with co-op placements</em></p>
+            <ul>
+              <li>Designed and manufactured a carbon fibre hull engineered to voyage autonomously across the Pacific Ocean from BC to Maui.</li>
+              <li>Contributed to an autonomous sailing system that adjusts sails dynamically to maintain heading and speed without human input.</li>
+              <li>Designed the gasket and conducted IP68 waterproofing validation for the battery box enclosures, verifying the seal by submerging the assembly to 1 m depth for 24 hours.</li>
+              <li>Waterjet-cut the aluminium battery box lid with precision-located fastener holes to create a uniform compression seal against the gasket and enclosure mating surface.</li>
+              <li>Applied two-part epoxy marine paint (the same family of coatings used on sail battens and hull topsides to repel water ingress) to the outermost battery box lid, preventing fiberglass weave absorption and surface leakage.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <img src="pictures/hexis.jpeg" alt="Hexis Robotics" class="timeline-logo" />
+            <h3>Robotics Engineering Co-op · Hexis Robotics</h3>
+            <p class="meta">Jan 2021 – Apr 2021</p>
+            <ul>
+              <li>Programmed and tested UV-disinfection robots; refined paths to cut cycle times.</li>
+              <li>Built simulations and reports that guided the next-gen platform.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <img src="pictures/solaires.jpeg" alt="Solaires Enterprises" class="timeline-logo" />
+            <h3>Product Innovation Engineering Co-op · Solaires Enterprises</h3>
+            <p class="meta">Sept 2020 – Dec 2020</p>
+            <ul>
+              <li>Drafted patent applications and proposed design improvements adopted into R&D.</li>
+              <li>Generated concepts that contributed to the company's IP pipeline.</li>
+            </ul>
+          </div>
+
         </div>
       </section>
 
+      <hr class="divider">
+
       <!-- PROJECTS -->
-      <section id="work" class="container" aria-labelledby="work-heading">
+      <section id="work" class="wide" aria-labelledby="work-heading">
         <h2 id="work-heading">Projects</h2>
-        <div class="grid cols-3">
-          <article class="card">
-            <img src="pictures/huddle_wrist.jpg" alt="HuddleWrist — Apple Watch displaying a football play diagram next to a gloved hand holding a football" loading="lazy" width="800" height="600" />
-            <div style="padding:16px;">
+        <div class="projects-grid">
+          <article class="project-card">
+            <img src="pictures/huddle_wrist.jpg" alt="HuddleWrist — Apple Watch displaying a football play diagram" loading="lazy" width="800" height="600" />
+            <div class="project-body">
               <h3>HuddleWrist</h3>
               <p>watchOS app for the Apple Watch that puts a quarterback's play sheet on the wrist — a digital upgrade to the traditional paper wristband. Available on the Apple Watch App Store! (Android version coming soon)</p>
               <p>
@@ -548,83 +691,83 @@
               </p>
             </div>
           </article>
-          <article class="card">
+          <article class="project-card">
             <img src="pictures/meta_quest_ski.gif" alt="Meta Quest 3S Prosthetic Ski demo" loading="lazy" width="800" height="600" />
-            <div style="padding:16px;">
+            <div class="project-body">
               <h3>Meta Quest 3S Prosthetic Ski Fit</h3>
-              <p>Using VR anthropometric analysis to validate prosthetic ski fit for amputees. More visuals and results coming soon!</p>
-              <p><a class="button" href="ski-project.html">See More →</a></p>
+              <p>Using VR anthropometric analysis to validate prosthetic ski fit for amputees.</p>
+              <p><a class="button" href="ski-project.html" style="font-size:.8rem; padding:.5rem .9rem;">See More →</a></p>
             </div>
           </article>
-          <article class="card">
+          <article class="project-card">
             <img src="pictures/bionic_pointe_shoe.gif" alt="Bionic Pointe Shoe prototype" loading="lazy" width="800" height="600" />
-            <div style="padding:16px;">
+            <div class="project-body">
               <h3>Bionic Pointe Shoe (Jun 2025 – Present)</h3>
               <p>Upgrading prosthetic pointe shoe with dual MyoWare EMG control; 3D-printed mechanism enables rapid iteration.</p>
             </div>
           </article>
-          <article class="card">
+          <article class="project-card">
             <img src="pictures/prosthetic_pointe_shoe.jpeg" alt="Prosthetic Pointe Shoe prototype" loading="lazy" width="800" height="600" />
-            <div style="padding:16px;">
+            <div class="project-body">
               <h3>Prosthetic Pointe Shoe</h3>
               <p>SolidWorks design + FEA; prototype withstood ~2300 lbs compression for safe pointe standing.</p>
-              <p><a class="button" href="prosthetic-pointe-shoe.html">See More →</a></p>
+              <p><a class="button" href="prosthetic-pointe-shoe.html" style="font-size:.8rem; padding:.5rem .9rem;">See More →</a></p>
               <p><a href="https://www.youtube.com/watch?v=IQiN9kiXcWA" target="_blank" rel="noopener">Watch video →</a></p>
             </div>
           </article>
-          <article class="card">
+          <article class="project-card">
             <img src="pictures/prosthetic_pointe_shoe_fit.jpg" alt="Prosthetic pointe shoe fit" loading="lazy" width="800" height="600" />
-            <div style="padding:16px;">
+            <div class="project-body">
               <h3>Prosthetic Pointe Shoe — Fit</h3>
               <p>Fitting the prosthetic pointe shoe prototype to validate fit and alignment.</p>
             </div>
           </article>
-          <article class="card">
+          <article class="project-card">
             <img src="pictures/prosthetic_pointe_shoe_patient.jpg" alt="Prosthetic pointe shoe patient" loading="lazy" width="800" height="600" />
-            <div style="padding:16px;">
+            <div class="project-body">
               <h3>Prosthetic Pointe Shoe — Patient</h3>
               <p>Patient fitting session for the prosthetic pointe shoe.</p>
             </div>
           </article>
-          <article class="card">
+          <article class="project-card">
             <img src="pictures/dress_shoe.png" alt="3D printed dress shoe prototype" loading="lazy" width="800" height="600" />
-            <div style="padding:16px;">
+            <div class="project-body">
               <h3>Capstone: Biomechanics × Fashion</h3>
               <p>Rhino modeling and rapid prototyping to evaluate comfort and fit for dress shoes.</p>
             </div>
           </article>
-          <article class="card">
+          <article class="project-card">
             <img src="pictures/media_pipe_AI.png" alt="AI motion capture demo" loading="lazy" width="800" height="600" />
-            <div style="padding:16px;">
+            <div class="project-body">
               <h3>AI Motion Capture</h3>
               <p>MediaPipe-based mocap driving a 3D character.</p>
               <p><a href="https://www.youtube.com/watch?v=kVLjrgHGUG0" target="_blank" rel="noopener">Watch video →</a></p>
             </div>
           </article>
-          <article class="card">
+          <article class="project-card">
             <img src="pictures/Fortnite_Whiteout.png" alt="Unreal Engine Fortnite animation" loading="lazy" width="800" height="600" />
-            <div style="padding:16px;">
+            <div class="project-body">
               <h3>Unreal Engine 5 – Fortnite</h3>
               <p><a href="https://www.youtube.com/watch?v=90GnBBd50P4" target="_blank" rel="noopener">Watch video →</a></p>
             </div>
           </article>
-          <article class="card">
+          <article class="project-card">
             <img src="pictures/fifa_unreal_engine_5.png" alt="Unreal Engine FIFA animation" loading="lazy" width="800" height="600" />
-            <div style="padding:16px;">
+            <div class="project-body">
               <h3>Unreal Engine 5 – FIFA</h3>
               <p><a href="https://www.youtube.com/watch?v=RPeLFil1UhY" target="_blank" rel="noopener">Watch video →</a></p>
             </div>
           </article>
-          <article class="card">
+          <article class="project-card">
             <img src="pictures/arduino_obstacle_avoidance_robot.jpeg" alt="Arduino obstacle avoidance robot" loading="lazy" width="800" height="600" />
-            <div style="padding:16px;">
+            <div class="project-body">
               <h3>Arduino Obstacle-Avoidance Robot</h3>
               <p>Autonomous navigation via simple sensor algorithm on Arduino.</p>
             </div>
           </article>
-          <article class="card">
+          <article class="project-card">
             <img src="pictures/faceshields.jpeg" alt="3D-printed face shields for hospitals" loading="lazy" width="800" height="600" />
-            <div style="padding:16px;">
+            <div class="project-body">
               <h3>Emergency COVID-19 Face Shields</h3>
               <p>Organized and fabricated mass 3D-printed PPE for local hospitals in Vancouver.</p>
             </div>
@@ -632,45 +775,45 @@
         </div>
       </section>
 
-      <!-- CONTACT -->
-      <section id="contact" class="container" aria-labelledby="contact-heading">
-        <h2 id="contact-heading">Contact</h2>
+      <hr class="divider">
 
-        <form class="card" action="https://formspree.io/f/xldpgabg" method="POST" style="padding:16px;" novalidate>
-          <div class="grid" style="grid-template-columns:1fr 1fr;">
-            <p>
+      <!-- CONTACT -->
+      <section id="contact" class="narrow" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Contact</h2>
+        <form class="contact-form" action="https://formspree.io/f/xldpgabg" method="POST" novalidate>
+          <div class="form-row">
+            <div>
               <label for="name">Name</label><br>
               <input id="name" name="name" type="text" autocomplete="name" required placeholder="Jane Doe" class="input">
-            </p>
-            <p>
+            </div>
+            <div>
               <label for="email">Email</label><br>
               <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" class="input">
-            </p>
+            </div>
           </div>
-          <p>
+          <div style="margin-bottom:16px;">
             <label for="message">Message</label><br>
-            <textarea id="message" name="message" rows="6" required placeholder="How can I help?" class="input"></textarea>
-          </p>
-
+            <textarea id="message" name="message" rows="5" required placeholder="How can I help?" class="input"></textarea>
+          </div>
           <input type="hidden" name="_subject" value="Portfolio contact from website">
           <input type="text" name="_gotcha" style="display:none">
-
-          <p><button type="submit" class="button">Send</button></p>
-          <p aria-live="polite" id="form-status" class="meta" style="margin:0"></p>
+          <button type="submit" class="button">Send</button>
+          <p aria-live="polite" id="form-status" class="meta" style="margin:8px 0 0"></p>
         </form>
       </section>
     </main>
 
     <footer>
-      <div class="container">
-        <p><strong>Nikolai A. Seva</strong> · © <span id="year"></span></p>
-        <p>
-          <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a> ·
-          <a href="https://www.instagram.com/nikolaiaseva/" target="_blank" rel="noopener">Instagram</a> ·
-          <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a> ·
+      <hr class="divider">
+      <div class="narrow">
+        <p><strong>Nikolai A. Seva</strong> · &copy; <span id="year"></span></p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.instagram.com/nikolaiaseva/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a>
           <a href="mailto:nikolaiseva.engineer@gmail.com">Email</a>
-        </p>
-        <p class="meta">
+        </div>
+        <p class="meta" style="margin-top:8px;">
           <a href="huddlewrist-support.html">HuddleWrist Support</a> &middot;
           <a href="huddlewrist-privacy.html">HuddleWrist Privacy Policy</a>
         </p>
@@ -678,30 +821,15 @@
     </footer>
 
     <script>
-      // Accessible nav toggle
-      const toggle = document.getElementById('nav-toggle');
-      const list = document.getElementById('nav-list');
-      if (toggle && list){
-        toggle.addEventListener('click', () => {
-          const open = toggle.getAttribute('aria-expanded') === 'true';
-          toggle.setAttribute('aria-expanded', String(!open));
-          if (open) list.setAttribute('hidden',''); else list.removeAttribute('hidden');
-        });
-      }
-
-      // Footer year
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // Contact form (Formspree)
       const form = document.querySelector('#contact form');
       const status = document.getElementById('form-status');
-
       if (form && status){
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
           status.textContent = 'Sending…';
           status.className = 'meta';
-
           try {
             const data = new FormData(form);
             const res = await fetch(form.action, {
@@ -709,7 +837,6 @@
               body: data,
               headers: { 'Accept': 'application/json' }
             });
-
             if (res.ok) {
               form.reset();
               status.textContent = "Thanks! I'll get back to you soon.";
@@ -727,7 +854,6 @@
           }
         });
       }
-
     </script>
 
     <!-- JSON-LD -->
