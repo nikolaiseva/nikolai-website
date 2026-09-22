@@ -6,10 +6,7 @@
     <title>Posts · Nikolai A. Seva</title>
     <meta name="description" content="Posts and updates from Nikolai Seva." />
 
-    <!-- Favicons -->
     <link rel="icon" href="pictures/hockey_about_me.jpeg" sizes="any" />
-
-    <!-- Icons -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
 
@@ -17,7 +14,6 @@
     <meta name="theme-color" content="#0ea5e9" />
 
     <style>
-      /* ---------- THEME TOKENS ---------- */
       :root{
         --accent:#0ea5e9;
         --bg:#f7f7f8;
@@ -26,7 +22,7 @@
         --mutedSoft:#6b7280;
         --card:#ffffffF2;
         --border:#e5e7eb;
-        --radius:16px;
+        --radius:12px;
       }
       @media (prefers-color-scheme: dark){
         :root{
@@ -39,53 +35,77 @@
         }
       }
 
-      /* ---------- BASE ---------- */
       *{box-sizing:border-box}
+      html{scroll-behavior:smooth}
       html,body{margin:0;padding:0}
       body{
         font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
         color:var(--text);
         background:var(--bg);
         -webkit-text-size-adjust:100%;
+        line-height:1.6;
       }
       img, video{max-width:100%; height:auto}
-
       a{color:var(--accent); text-decoration:none}
       a:hover{text-decoration:underline}
-      .container{max-width:760px; margin-inline:auto; padding:clamp(16px,2vw,24px)}
-      header{
-        position:sticky; top:0;
-        background:color-mix(in oklab, var(--card), transparent 20%);
-        backdrop-filter:saturate(160%) blur(8px);
-        border-bottom:1px solid var(--border);
-        z-index:10
-      }
-      nav{display:flex; align-items:center; justify-content:space-between; gap:16px}
-      .brand{display:flex; align-items:center; gap:.5rem; font-weight:700; color:var(--text)}
-      .button{
-        display:inline-block; padding:.85rem 1.1rem; border-radius:9999px;
-        background:var(--accent); color:#fff; font-weight:700; border:0; cursor:pointer;
-        text-decoration:none;
-      }
-      .button:hover{text-decoration:none; opacity:.9}
       .visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
 
-      footer{border-top:1px solid var(--border); padding-block:32px; text-align:center; opacity:.95}
-      .meta{color:var(--mutedSoft); font-size:.95rem}
+      .wide{max-width:1200px; margin-inline:auto; padding-inline:clamp(20px,3vw,48px)}
+      .narrow{max-width:760px; margin-inline:auto; padding-inline:clamp(20px,3vw,48px)}
+      .meta{color:var(--mutedSoft); font-size:.9rem}
       p, li{color:var(--muted)}
+      .divider{border:0; border-top:1px solid var(--border); margin:0}
 
-      @media (prefers-color-scheme: dark){
-        header{ background:rgba(20,20,22,.75) }
+      /* HEADER */
+      header{
+        padding:clamp(24px,4vw,40px) clamp(20px,3vw,48px) 0;
+        max-width:1200px;
+        margin-inline:auto;
       }
+      .header-inner{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+        flex-wrap:wrap;
+      }
+      .site-name{
+        font-size:clamp(18px,3vw,28px);
+        font-weight:300;
+        letter-spacing:.2em;
+        text-transform:uppercase;
+        color:var(--accent);
+        margin:0;
+      }
+      .site-name a{color:var(--accent)}
+      .site-name a:hover{text-decoration:none}
+      nav ul{
+        display:flex;
+        gap:clamp(12px,2vw,24px);
+        list-style:none;
+        margin:0; padding:0;
+      }
+      nav a{
+        font-size:clamp(11px,1.2vw,13px);
+        text-transform:uppercase;
+        letter-spacing:.12em;
+        color:var(--mutedSoft);
+        font-weight:500;
+        transition:color .2s;
+      }
+      nav a:hover{color:var(--accent); text-decoration:none}
 
-      /* ---------- PAGE HEADER ---------- */
+      /* PAGE HEADER */
       .page-header{
-        padding-block:clamp(32px,6vw,64px) clamp(16px,3vw,32px);
+        padding-block:clamp(40px,7vw,72px) clamp(16px,3vw,32px);
       }
       .page-header h1{
-        font-size:clamp(28px,5vw,44px);
+        font-size:clamp(22px,4vw,28px);
+        text-transform:uppercase;
+        letter-spacing:.15em;
+        color:var(--accent);
         margin:0 0 8px;
-        color:var(--text);
+        font-weight:600;
       }
       .page-header p{
         font-size:clamp(15px,2vw,18px);
@@ -93,49 +113,43 @@
         margin:0;
       }
 
-      /* ---------- FEED ---------- */
+      /* FEED */
       .feed{
         display:flex;
         flex-direction:column;
-        gap:32px;
+        gap:0;
         padding-bottom:clamp(32px,6vw,72px);
       }
 
-      /* ---------- POST CARD ---------- */
+      /* POST */
       .post-card{
-        border:1px solid var(--border);
-        border-radius:var(--radius);
-        background:var(--card);
-        overflow:hidden;
+        padding-block:clamp(28px,4vw,40px);
+        border-bottom:1px solid var(--border);
       }
-      .post-card-body{
-        padding:clamp(20px,3vw,32px);
-      }
-      .post-card-body h2{
-        font-size:clamp(20px,3vw,28px);
+      .post-card:first-child{border-top:1px solid var(--border)}
+      .post-card h2{
+        font-size:clamp(18px,3vw,24px);
         margin:0 0 4px;
         color:var(--text);
       }
       .post-date{
         color:var(--mutedSoft);
-        font-size:.9rem;
+        font-size:.85rem;
         margin:0 0 20px;
       }
-      .post-card-body p{
+      .post-card p{
         font-size:clamp(15px,2vw,17px);
         line-height:1.7;
         margin:0 0 16px;
       }
-      .post-card-body p:last-of-type{
-        margin-bottom:0;
-      }
-      .post-card-body .post-separator{
+      .post-card p:last-of-type{margin-bottom:0}
+      .post-separator{
         border:none;
         border-top:1px solid var(--border);
         margin:24px 0;
       }
 
-      /* ---------- POST PHOTOS ---------- */
+      /* POST PHOTOS */
       .post-photos{
         display:grid;
         grid-template-columns:1fr 1fr;
@@ -145,46 +159,56 @@
       .post-photos img{
         width:100%;
         height:auto;
-        border-radius:12px;
+        border-radius:var(--radius);
         border:1px solid var(--border);
       }
-      .post-photos.three{
-        grid-template-columns:1fr 1fr 1fr;
-      }
+      .post-photos.three{grid-template-columns:1fr 1fr 1fr}
       @media (max-width:640px){
         .post-photos{grid-template-columns:1fr}
         .post-photos.three{grid-template-columns:1fr}
       }
-      @media (min-width:641px) and (max-width:800px){
-        .post-photos.three{grid-template-columns:1fr 1fr}
-      }
 
-      /* ---------- EMPTY STATE ---------- */
+      /* EMPTY STATE */
       .post-card--empty{
-        border-style:dashed;
         text-align:center;
-        padding:48px 24px;
+        padding:48px 0;
+        border-bottom:none;
       }
-      .post-card--empty p{
-        color:var(--mutedSoft);
-        font-size:1rem;
-        margin:0;
+      .post-card--empty p{color:var(--mutedSoft); font-size:1rem; margin:0}
+
+      /* FOOTER */
+      footer{padding-block:40px; text-align:center}
+      footer p{font-size:.85rem}
+      footer .social-links a{
+        color:var(--mutedSoft); margin:0 8px;
+        font-size:.85rem; transition:color .2s;
+      }
+      footer .social-links a:hover{color:var(--accent)}
+
+      @media (max-width:640px){
+        .header-inner{flex-direction:column; align-items:flex-start; gap:12px}
       }
     </style>
   </head>
   <body>
     <a class="visually-hidden" href="#main">Skip to content</a>
+
     <header>
-      <div class="container" style="max-width:1000px;">
+      <div class="header-inner">
+        <h1 class="site-name"><a href="index.html">Nikolai A. Seva</a></h1>
         <nav aria-label="Primary">
-          <a class="brand" href="index.html" aria-label="Home"><span aria-hidden="true">🧊</span> <span>Nikolai A. Seva</span></a>
-          <a class="button" href="index.html" style="padding:.6rem 1.1rem; font-size:.9rem;">← Back to Home</a>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#work">Projects</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
         </nav>
       </div>
     </header>
 
     <main id="main">
-      <div class="container">
+      <div class="narrow">
         <div class="page-header">
           <h1>Posts</h1>
           <p>Thoughts, updates, and stories from the road.</p>
@@ -192,192 +216,116 @@
 
         <div class="feed">
 
-          <!-- POST 1 -->
           <article class="post-card">
-            <div class="post-card-body">
-              <h2>Vancouver to San Francisco — On Two Wheels, For One Cause</h2>
-              <p class="post-date">July 2026</p>
-
-              <p>My American host family misses me. They keep asking when I'll visit the Bay Area. Once I land my first full-time role, I'll have my answer. I'm biking all the way down, partnering with the <strong>Canadian Cancer Society</strong> and the <strong>American Cancer Society</strong> to raise funds along the way.</p>
-
-              <p>A few days ago, I biked approximately 150 km (93.2 miles) past Clark Kent's house — the real filming location of Smallville, right here in the Lower Mainland. I grew up watching that show with my dad. My neighbour's husband worked on it for three years. And somehow I never realized Superman's hometown was in my backyard this whole time.</p>
-
-              <p>The ride I'm planning goes a little further.</p>
-
-              <p>Vancouver to San Francisco. The Lower Mainland to the Bay Area. Home to University of California, Berkeley. Through Seattle, through Portland, down the Pacific Coast — ocean cliffs, redwood forests, mountain passes. Over a week in the saddle. No flights. No shortcuts. Just two wheels and the same Pacific air I've been breathing my whole life.</p>
-
-              <p>And at the end of it: my host family's front door.</p>
-
-              <p><strong>One ride. One cause. Both sides of the border.</strong></p>
-
-              <hr class="post-separator">
-
-              <p>I've been training for this longer than I knew. Back in my undergrad at The University of British Columbia, I took 7 courses a semester — back-to-back classes in different buildings, with only a bike to get me between them. Heart pounding, lecture to lecture. Biking made me stronger. It still does. That's the rigour of a Canadian engineering education — it's why we earn our Engineer-in-Training designation straight out of school.</p>
-
-              <p>The job search has been its own kind of endurance ride. Six interview processes with <strong>Apple</strong>, across six different positions. Now my first with <strong>Google</strong>, and referrals coming in at <strong>Rivian</strong>. In between, I've been studying, reviewing my undergrad fundamentals, staying healthy, and keeping my mind sharp the way I always have — on trails, on the bike, and with the people who matter.</p>
-
-              <p>The process taught me patience. Patience taught me a lot about myself.</p>
-
-              <p>I've driven every mile of this coast before. This time, I want to feel every one. On my own terms. The hard way. For something bigger than myself.</p>
-
-              <p><strong>Some roads you drive. Some you have to earn.</strong></p>
-
-              <div class="post-photos">
-                <img src="post_photos/post_coast_ride_1.png" alt="Pacific Coast cycling route map — Vancouver to San Francisco" loading="lazy" />
-                <img src="post_photos/post_coast_ride_2.png" alt="Training ride on the Pacific Coast" loading="lazy" />
-              </div>
+            <h2>Vancouver to San Francisco — On Two Wheels, For One Cause</h2>
+            <p class="post-date">July 2026</p>
+            <p>My American host family misses me. They keep asking when I'll visit the Bay Area. Once I land my first full-time role, I'll have my answer. I'm biking all the way down, partnering with the <strong>Canadian Cancer Society</strong> and the <strong>American Cancer Society</strong> to raise funds along the way.</p>
+            <p>A few days ago, I biked approximately 150 km (93.2 miles) past Clark Kent's house — the real filming location of Smallville, right here in the Lower Mainland. I grew up watching that show with my dad. My neighbour's husband worked on it for three years. And somehow I never realized Superman's hometown was in my backyard this whole time.</p>
+            <p>The ride I'm planning goes a little further.</p>
+            <p>Vancouver to San Francisco. The Lower Mainland to the Bay Area. Home to University of California, Berkeley. Through Seattle, through Portland, down the Pacific Coast — ocean cliffs, redwood forests, mountain passes. Over a week in the saddle. No flights. No shortcuts. Just two wheels and the same Pacific air I've been breathing my whole life.</p>
+            <p>And at the end of it: my host family's front door.</p>
+            <p><strong>One ride. One cause. Both sides of the border.</strong></p>
+            <hr class="post-separator">
+            <p>I've been training for this longer than I knew. Back in my undergrad at The University of British Columbia, I took 7 courses a semester — back-to-back classes in different buildings, with only a bike to get me between them. Heart pounding, lecture to lecture. Biking made me stronger. It still does. That's the rigour of a Canadian engineering education — it's why we earn our Engineer-in-Training designation straight out of school.</p>
+            <p>The job search has been its own kind of endurance ride. Six interview processes with <strong>Apple</strong>, across six different positions. Now my first with <strong>Google</strong>, and referrals coming in at <strong>Rivian</strong>. In between, I've been studying, reviewing my undergrad fundamentals, staying healthy, and keeping my mind sharp the way I always have — on trails, on the bike, and with the people who matter.</p>
+            <p>The process taught me patience. Patience taught me a lot about myself.</p>
+            <p>I've driven every mile of this coast before. This time, I want to feel every one. On my own terms. The hard way. For something bigger than myself.</p>
+            <p><strong>Some roads you drive. Some you have to earn.</strong></p>
+            <div class="post-photos">
+              <img src="post_photos/post_coast_ride_1.png" alt="Pacific Coast cycling route map — Vancouver to San Francisco" loading="lazy" />
+              <img src="post_photos/post_coast_ride_2.png" alt="Training ride on the Pacific Coast" loading="lazy" />
             </div>
           </article>
 
-          <!-- POST 2 -->
           <article class="post-card">
-            <div class="post-card-body">
-              <h2>I Would Have Been a Bruin. But I'm a Golden Bear.</h2>
-              <p class="post-date">June 2026</p>
-
-              <p>Team Canada is in Los Angeles this weekend, warming up for the Round of 32 at SoFi Stadium. It reminded me of a decision I made not too long ago — one that almost took me to Los Angeles for a very different reason.</p>
-
-              <p>In 2024, I got accepted to both <strong>University of California, Berkeley</strong> and <strong>UCLA</strong> for their Master of Engineering programs — same degree, different specialties. It was one of the most difficult decisions I've ever had to make — and it took me a while.</p>
-
-              <p>I was leaning towards UCLA. Their Translational Medicine track put engineering and medicine under one roof — with direct connections to the David Geffen School of Medicine. It was the clearest path I could see from engineering into medicine. And UCLA was even harder to get into.</p>
-
-              <p>And that window was closing. UCLA's medical school changed their requirements to U.S. citizens and California residents only. If I didn't plant myself there right then, I would never be able to build those connections the same way again.</p>
-
-              <p>My cousins were already planning everything — Santa Monica, Long Beach, Hollywood. It made sense. The medical connections. The family nearby. The sun. The common path. The one everyone would have chosen.</p>
-
-              <p>But I'm not a person who chooses the common path. I never have been. I wanted to combine engineering and medicine my own way — not the way someone else designed. The Nikolai path.</p>
-
-              <p>So I let that door close. And I chose Berkeley.</p>
-
-              <p>And because I chose Berkeley, none of this would exist. The prosthetic ski leg I presented at <strong>Microsoft's Inclusive Tech Lab</strong>. The science fiction novel I wrote and published. The Data Science program I started at UW. The rooms full of engineers where I shared work that genuinely moved people. We wouldn't even be connected on LinkedIn right now. This post wouldn't read the same. None of it.</p>
-
-              <p>But the degrees and the projects aren't why Berkeley was the right choice.</p>
-
-              <p>It's the people. The ones who showed me parts of myself I didn't know I had — like Clark Kent growing up in Smallville, not yet knowing what he was capable of. Berkeley showed me.</p>
-
-              <p>Medical school will always be there. That dream didn't close — just the shortcut to it. I'll get there my own way.</p>
-
-              <p>And I would choose Berkeley again. Every single time. Without hesitating.</p>
-
-              <p>Because choosing Berkeley is the best decision I have ever made.</p>
-
-              <p><strong>I would have been a Bruin. But I'm a Golden Bear. Go Bears.</strong></p>
-
-              <div class="post-photos">
-                <img src="post_photos/post_berkeley_ucla_1.jpg" alt="UC Berkeley acceptance letter for Master of Engineering program" loading="lazy" />
-                <img src="post_photos/post_berkeley_ucla_2.jpg" alt="UCLA acceptance letter for Master of Engineering program" loading="lazy" />
-              </div>
+            <h2>I Would Have Been a Bruin. But I'm a Golden Bear.</h2>
+            <p class="post-date">June 2026</p>
+            <p>Team Canada is in Los Angeles this weekend, warming up for the Round of 32 at SoFi Stadium. It reminded me of a decision I made not too long ago — one that almost took me to Los Angeles for a very different reason.</p>
+            <p>In 2024, I got accepted to both <strong>University of California, Berkeley</strong> and <strong>UCLA</strong> for their Master of Engineering programs — same degree, different specialties. It was one of the most difficult decisions I've ever had to make — and it took me a while.</p>
+            <p>I was leaning towards UCLA. Their Translational Medicine track put engineering and medicine under one roof — with direct connections to the David Geffen School of Medicine. It was the clearest path I could see from engineering into medicine. And UCLA was even harder to get into.</p>
+            <p>And that window was closing. UCLA's medical school changed their requirements to U.S. citizens and California residents only. If I didn't plant myself there right then, I would never be able to build those connections the same way again.</p>
+            <p>My cousins were already planning everything — Santa Monica, Long Beach, Hollywood. It made sense. The medical connections. The family nearby. The sun. The common path. The one everyone would have chosen.</p>
+            <p>But I'm not a person who chooses the common path. I never have been. I wanted to combine engineering and medicine my own way — not the way someone else designed. The Nikolai path.</p>
+            <p>So I let that door close. And I chose Berkeley.</p>
+            <p>And because I chose Berkeley, none of this would exist. The prosthetic ski leg I presented at <strong>Microsoft's Inclusive Tech Lab</strong>. The science fiction novel I wrote and published. The Data Science program I started at UW. The rooms full of engineers where I shared work that genuinely moved people. We wouldn't even be connected on LinkedIn right now. This post wouldn't read the same. None of it.</p>
+            <p>But the degrees and the projects aren't why Berkeley was the right choice.</p>
+            <p>It's the people. The ones who showed me parts of myself I didn't know I had — like Clark Kent growing up in Smallville, not yet knowing what he was capable of. Berkeley showed me.</p>
+            <p>Medical school will always be there. That dream didn't close — just the shortcut to it. I'll get there my own way.</p>
+            <p>And I would choose Berkeley again. Every single time. Without hesitating.</p>
+            <p>Because choosing Berkeley is the best decision I have ever made.</p>
+            <p><strong>I would have been a Bruin. But I'm a Golden Bear. Go Bears.</strong></p>
+            <div class="post-photos">
+              <img src="post_photos/post_berkeley_ucla_1.jpg" alt="UC Berkeley acceptance letter for Master of Engineering program" loading="lazy" />
+              <img src="post_photos/post_berkeley_ucla_2.jpg" alt="UCLA acceptance letter for Master of Engineering program" loading="lazy" />
             </div>
           </article>
 
-          <!-- POST 3 -->
           <article class="post-card">
-            <div class="post-card-body">
-              <h2>Ability Summit 2026 — Life Has a Way of Coming Full Circle</h2>
-              <p class="post-date">June 2026</p>
-
-              <p>Thank you to <strong>Microsoft's Inclusive Tech Lab</strong> for inviting me to the Ability Summit 2026.</p>
-
-              <p>Growing up in North Vancouver, my favourite NFL team was the Seattle Seahawks. I always dreamed of seeing a game in person at the stadium. Some of my friends' families would drive them down to Seattle for gameday, but between ice hockey, soccer, and track and field, that chance never came for me. So close, yet just out of reach.</p>
-
-              <p>What I never considered back then was this: there's an entire community of fans who can't experience the game the way most of us do. Fans who are blind. Fans who are deaf. People who love football just as much as anyone else but need accessibility to be part of the moment — whether it's a regular season game or the Super Bowl. The Ability Summit opened my eyes to how AI is transforming that reality, giving people tools to experience what so many of us take for granted.</p>
-
-              <p>Last year, I chose to cancel my trip to the Milano Cortina Winter Olympics — where I planned to watch ice hockey — to stay home and take care of my mom. I thought I'd missed my moment.</p>
-
-              <p>Then at the Summit, I met a Paralympian who won Gold at Milano Cortina — the very Games I was supposed to attend. They placed that medal in my hands. It was heavier than you'd think. Standing there holding it, in a building dedicated to making technology work for everyone, something clicked. The trip I gave up led me somewhere I was meant to be.</p>
-
-              <p>Thank you to everyone who made this conference possible and for welcoming me in. You've opened my heart to what's ahead.</p>
-
-              <p><strong>Life has a way of coming full circle.</strong></p>
-
-              <div class="post-photos">
-                <img src="post_photos/post_ability_summit_1.jpg" alt="Ability Summit 2026 sign at Microsoft" loading="lazy" />
-                <img src="post_photos/post_ability_summit_2.jpg" alt="Nikolai at the Ability Summit 2026" loading="lazy" />
-              </div>
+            <h2>Ability Summit 2026 — Life Has a Way of Coming Full Circle</h2>
+            <p class="post-date">June 2026</p>
+            <p>Thank you to <strong>Microsoft's Inclusive Tech Lab</strong> for inviting me to the Ability Summit 2026.</p>
+            <p>Growing up in North Vancouver, my favourite NFL team was the Seattle Seahawks. I always dreamed of seeing a game in person at the stadium. Some of my friends' families would drive them down to Seattle for gameday, but between ice hockey, soccer, and track and field, that chance never came for me. So close, yet just out of reach.</p>
+            <p>What I never considered back then was this: there's an entire community of fans who can't experience the game the way most of us do. Fans who are blind. Fans who are deaf. People who love football just as much as anyone else but need accessibility to be part of the moment — whether it's a regular season game or the Super Bowl. The Ability Summit opened my eyes to how AI is transforming that reality, giving people tools to experience what so many of us take for granted.</p>
+            <p>Last year, I chose to cancel my trip to the Milano Cortina Winter Olympics — where I planned to watch ice hockey — to stay home and take care of my mom. I thought I'd missed my moment.</p>
+            <p>Then at the Summit, I met a Paralympian who won Gold at Milano Cortina — the very Games I was supposed to attend. They placed that medal in my hands. It was heavier than you'd think. Standing there holding it, in a building dedicated to making technology work for everyone, something clicked. The trip I gave up led me somewhere I was meant to be.</p>
+            <p>Thank you to everyone who made this conference possible and for welcoming me in. You've opened my heart to what's ahead.</p>
+            <p><strong>Life has a way of coming full circle.</strong></p>
+            <div class="post-photos">
+              <img src="post_photos/post_ability_summit_1.jpg" alt="Ability Summit 2026 sign at Microsoft" loading="lazy" />
+              <img src="post_photos/post_ability_summit_2.jpg" alt="Nikolai at the Ability Summit 2026" loading="lazy" />
             </div>
           </article>
 
-          <!-- POST 4 -->
           <article class="post-card">
-            <div class="post-card-body">
-              <h2>Vancouver Is Ready. And So Am I.</h2>
-              <p class="post-date">June 2026</p>
-
-              <p>The energy is real! The Canadian Pacific Northwest is the #1 ranked overall host city for the 2026 FIFA World Cup!</p>
-
-              <p>It's a blessing to attend my first ever World Cup in my home city — and to witness history in the making. Growing up playing soccer every summer in North Vancouver and attending one of Canada's top universities (Canadian Ivy League version) down the road, I never imagined the world's game would come to my backyard. But here we are.</p>
-
-              <p>People think the Pacific Northwest is Seattle or Portland, but Vancouver has a different energy. Us Vancouverites call it the Lower Mainland — and the Lower Mainland has the kindest, most energetic, most genuine people you'll ever meet. Strangers high-fiving in the streets. My neighbour, a teacher, invited me to guest speak at her elementary school last week — I brought my guitar, talked about how engineers help athletes, and her kids loved every minute. An entire city showed up before the first whistle even blew. The ranking speaks for itself.</p>
-
-              <p>I power hiked the Grouse Grind — 2,830 stairs, 2,624 feet of elevation to the summit at 3,576 feet — in 53 minutes. At the top, the Guinness World Record largest Canadian flag ever unfurled on a mountain was stretched across the ski run, visible from across the entire city. Standing at the summit, looking down at Vancouver with that flag beneath me, it reminded me of being 11 years old during the Vancouver 2010 Winter Olympics — that same electricity in the air, that same pride in the streets. Sixteen years later, the world came back to my city. And this time I'm not watching from the sidelines.</p>
-
-              <p>There's something about this corner of the world: the mountains, the city, the ocean, the diversity. The Lower Mainland raised me — and it gave me my heart. And now the world gets to see why.</p>
-
-              <p><strong>Vancouver is ready. And so am I.</strong></p>
-
-              <div class="post-photos">
-                <img src="post_photos/post_fifa_wc_1.jpeg" alt="BC Place stadium during 2026 FIFA World Cup" loading="lazy" />
-                <img src="post_photos/post_fifa_wc_2.jpeg" alt="Guinness World Record largest Canadian flag on Grouse Mountain" loading="lazy" />
-                <img src="post_photos/post_fifa_wc_3.png" alt="Nikolai at the 2026 FIFA World Cup in Vancouver" loading="lazy" />
-                <img src="post_photos/post_fifa_wc_4.jpeg" alt="2026 FIFA World Cup Vancouver" loading="lazy" />
-              </div>
+            <h2>Vancouver Is Ready. And So Am I.</h2>
+            <p class="post-date">June 2026</p>
+            <p>The energy is real! The Canadian Pacific Northwest is the #1 ranked overall host city for the 2026 FIFA World Cup!</p>
+            <p>It's a blessing to attend my first ever World Cup in my home city — and to witness history in the making. Growing up playing soccer every summer in North Vancouver and attending one of Canada's top universities (Canadian Ivy League version) down the road, I never imagined the world's game would come to my backyard. But here we are.</p>
+            <p>People think the Pacific Northwest is Seattle or Portland, but Vancouver has a different energy. Us Vancouverites call it the Lower Mainland — and the Lower Mainland has the kindest, most energetic, most genuine people you'll ever meet. Strangers high-fiving in the streets. My neighbour, a teacher, invited me to guest speak at her elementary school last week — I brought my guitar, talked about how engineers help athletes, and her kids loved every minute. An entire city showed up before the first whistle even blew. The ranking speaks for itself.</p>
+            <p>I power hiked the Grouse Grind — 2,830 stairs, 2,624 feet of elevation to the summit at 3,576 feet — in 53 minutes. At the top, the Guinness World Record largest Canadian flag ever unfurled on a mountain was stretched across the ski run, visible from across the entire city. Standing at the summit, looking down at Vancouver with that flag beneath me, it reminded me of being 11 years old during the Vancouver 2010 Winter Olympics — that same electricity in the air, that same pride in the streets. Sixteen years later, the world came back to my city. And this time I'm not watching from the sidelines.</p>
+            <p>There's something about this corner of the world: the mountains, the city, the ocean, the diversity. The Lower Mainland raised me — and it gave me my heart. And now the world gets to see why.</p>
+            <p><strong>Vancouver is ready. And so am I.</strong></p>
+            <div class="post-photos">
+              <img src="post_photos/post_fifa_wc_1.jpeg" alt="BC Place stadium during 2026 FIFA World Cup" loading="lazy" />
+              <img src="post_photos/post_fifa_wc_2.jpeg" alt="Guinness World Record largest Canadian flag on Grouse Mountain" loading="lazy" />
+              <img src="post_photos/post_fifa_wc_3.png" alt="Nikolai at the 2026 FIFA World Cup in Vancouver" loading="lazy" />
+              <img src="post_photos/post_fifa_wc_4.jpeg" alt="2026 FIFA World Cup Vancouver" loading="lazy" />
             </div>
           </article>
 
-          <!-- POST 5 -->
           <article class="post-card">
-            <div class="post-card-body">
-              <h2>Microsoft's Inclusive Tech Lab — Sharing the Prosthetic Ski Design</h2>
-              <p class="post-date">May 2026</p>
-
-              <p>This week, I had the opportunity to tour <strong>Microsoft's Inclusive Tech Lab</strong> in Redmond — right in Seattle's backyard — and share my prosthetic ski design with the team.</p>
-
-              <p>A room full of engineers and Seattleites were genuinely impressed, but my purpose in sharing wasn't recognition or getting hired. It's to help make engineering design accessible for those with physical disabilities — so that one day, the mountain is for everyone.</p>
-
-              <p>Thank you to Delaney Locher and Bourilack Phommasenh for the tour and for showing me the incredible work happening inside those walls, and to Stephanie Orellana for recommending the visit.</p>
-
-              <hr class="post-separator">
-
-              <p>Mother's Day was a bit different this year without my dad — and it also marked my parents' anniversary. But moments like this remind me why I keep building. All I can do for my mom is continue making her proud — by being present for her, not to fix her broken heart, but to care for it the way it is. I think that's what love really looks like: not fixing someone, but simply being there.</p>
-
-              <p>And who knows — I might be making Seattle home. That would be the best gift I could give a community: showing up as myself, caring for others, and maybe one day becoming a Canadian doctor helping Americans when they need it most.</p>
-
-              <p><strong>That's something I truly love about getting older — realizing the goal was never just mine. It belongs to everyone I'm building it for.</strong></p>
-
-              <div class="post-photos">
-                <img src="post_photos/post_microsoft_lab_1.jpg" alt="Nikolai presenting prosthetic ski design at Microsoft Inclusive Tech Lab" loading="lazy" />
-                <img src="post_photos/post_microsoft_lab_2.jpg" alt="Prosthetic ski leg equipment on display" loading="lazy" style="grid-column:1/-1" />
-              </div>
+            <h2>Microsoft's Inclusive Tech Lab — Sharing the Prosthetic Ski Design</h2>
+            <p class="post-date">May 2026</p>
+            <p>This week, I had the opportunity to tour <strong>Microsoft's Inclusive Tech Lab</strong> in Redmond — right in Seattle's backyard — and share my prosthetic ski design with the team.</p>
+            <p>A room full of engineers and Seattleites were genuinely impressed, but my purpose in sharing wasn't recognition or getting hired. It's to help make engineering design accessible for those with physical disabilities — so that one day, the mountain is for everyone.</p>
+            <p>Thank you to Delaney Locher and Bourilack Phommasenh for the tour and for showing me the incredible work happening inside those walls, and to Stephanie Orellana for recommending the visit.</p>
+            <hr class="post-separator">
+            <p>Mother's Day was a bit different this year without my dad — and it also marked my parents' anniversary. But moments like this remind me why I keep building. All I can do for my mom is continue making her proud — by being present for her, not to fix her broken heart, but to care for it the way it is. I think that's what love really looks like: not fixing someone, but simply being there.</p>
+            <p>And who knows — I might be making Seattle home. That would be the best gift I could give a community: showing up as myself, caring for others, and maybe one day becoming a Canadian doctor helping Americans when they need it most.</p>
+            <p><strong>That's something I truly love about getting older — realizing the goal was never just mine. It belongs to everyone I'm building it for.</strong></p>
+            <div class="post-photos">
+              <img src="post_photos/post_microsoft_lab_1.jpg" alt="Nikolai presenting prosthetic ski design at Microsoft Inclusive Tech Lab" loading="lazy" />
+              <img src="post_photos/post_microsoft_lab_2.jpg" alt="Prosthetic ski leg equipment on display" loading="lazy" style="grid-column:1/-1" />
             </div>
           </article>
 
-          <!-- POST 6 -->
           <article class="post-card">
-            <div class="post-card-body">
-              <h2>Voices of Berkeley Engineering</h2>
-              <p class="post-date">November 2025</p>
-
-              <p>Honoured to be featured by <strong>UC Berkeley College of Engineering</strong> in their <em>Voices of Berkeley Engineering</em> series.</p>
-
-              <p>"I'm Nikolai Seva, a recent UC Berkeley MEng graduate in mechanical engineering with a focus on biomechanics, and I've been using my spare time to build something close to my heart.</p>
-
-              <p>Growing up playing ice hockey, I saw how much smart equipment design can protect athletes and keep them in the game. That experience is what led me to biomechanical engineering and, eventually, to designing better prosthetics for adaptive sports.</p>
-
-              <p>I developed a mixed-reality app that lets me upload and interact with 3D prosthetic models at full scale, helping improve human factors in adaptive ski prosthetic design so users can move more freely, safely and with confidence."</p>
-
-              <p>
-                <a href="https://engineering.berkeley.edu/about/voices-of-berkeley-engineering/#crt:post:380832961" target="_blank" rel="noopener">Read on Berkeley Engineering →</a> &nbsp;·&nbsp;
-                <a href="https://www.instagram.com/p/DRaYOWcEU2B/" target="_blank" rel="noopener">View on Instagram →</a>
-              </p>
-
-              <div class="post-photos" style="grid-template-columns:1fr">
-                <img src="post_photos/post_voices_berkeley_1.jpeg" alt="Nikolai featured in Voices of Berkeley Engineering" loading="lazy" />
-              </div>
+            <h2>Voices of Berkeley Engineering</h2>
+            <p class="post-date">November 2025</p>
+            <p>Honoured to be featured by <strong>UC Berkeley College of Engineering</strong> in their <em>Voices of Berkeley Engineering</em> series.</p>
+            <p>"I'm Nikolai Seva, a recent UC Berkeley MEng graduate in mechanical engineering with a focus on biomechanics, and I've been using my spare time to build something close to my heart.</p>
+            <p>Growing up playing ice hockey, I saw how much smart equipment design can protect athletes and keep them in the game. That experience is what led me to biomechanical engineering and, eventually, to designing better prosthetics for adaptive sports.</p>
+            <p>I developed a mixed-reality app that lets me upload and interact with 3D prosthetic models at full scale, helping improve human factors in adaptive ski prosthetic design so users can move more freely, safely and with confidence."</p>
+            <p>
+              <a href="https://engineering.berkeley.edu/about/voices-of-berkeley-engineering/#crt:post:380832961" target="_blank" rel="noopener">Read on Berkeley Engineering →</a> &nbsp;·&nbsp;
+              <a href="https://www.instagram.com/p/DRaYOWcEU2B/" target="_blank" rel="noopener">View on Instagram →</a>
+            </p>
+            <div class="post-photos" style="grid-template-columns:1fr">
+              <img src="post_photos/post_voices_berkeley_1.jpeg" alt="Nikolai featured in Voices of Berkeley Engineering" loading="lazy" />
             </div>
           </article>
 
-          <!-- FUTURE POSTS PLACEHOLDER -->
-          <div class="post-card post-card--empty">
+          <div class="post-card--empty">
             <p>More posts coming soon.</p>
           </div>
 
@@ -386,14 +334,15 @@
     </main>
 
     <footer>
-      <div class="container" style="max-width:1000px;">
+      <hr class="divider">
+      <div class="narrow" style="padding-top:32px;">
         <p><strong>Nikolai A. Seva</strong> · &copy; <span id="year"></span></p>
-        <p>
-          <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a> ·
-          <a href="https://www.instagram.com/nikolaiaseva/" target="_blank" rel="noopener">Instagram</a> ·
-          <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a> ·
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.instagram.com/nikolaiaseva/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a>
           <a href="mailto:nikolaiseva.engineer@gmail.com">Email</a>
-        </p>
+        </div>
       </div>
     </footer>
 

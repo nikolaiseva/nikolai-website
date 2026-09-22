@@ -1,256 +1,391 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nikolai Seva · Hardware & Biomechanics</title>
-  <meta name="description" content="Portfolio of Nikolai A. Seva — mechanical/biomechanics engineer designing and validating human-centered hardware." />
-  <style>
-    :root{
-      --bg:#0b0d12;--bg-2:#0e1118;--card:#111420cc;--txt:#e8ecf2;--muted:#9aa4b2;--acc:#7cd4ff;--acc-2:#8cffc1;--shadow:0 8px 30px rgba(0,0,0,.45);
-      --radius:22px;--gap:18px;--max:1180px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:radial-gradient(1200px 700px at 80% -10%, #142036 0%, transparent 60%),
-                 linear-gradient(180deg,var(--bg),var(--bg-2));
-      color:var(--txt);
-      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
-      letter-spacing:.2px;
-    }
-    a{color:var(--acc);text-decoration:none}
-    .wrap{max-width:var(--max);margin:0 auto;padding:24px}
-    header.nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(11,13,18,.9),rgba(11,13,18,.6) 60%,transparent);backdrop-filter:blur(10px)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 24px}
-    .brand{font-weight:700;letter-spacing:.6px}
-    .brand small{color:var(--muted);font-weight:500}
-    .nav-links{display:flex;gap:16px;align-items:center}
-    .btn,button{appearance:none;border:0;background:linear-gradient(135deg,var(--acc),var(--acc-2));color:#081018;padding:10px 14px;border-radius:12px;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
-    .btn.ghost{background:#1a2130;color:var(--txt);box-shadow:none;border:1px solid #283248}
-    /* HERO */
-    .hero{position:relative;margin:32px auto 8px;display:grid;grid-template-columns:1.2fr .8fr;gap:var(--gap);align-items:center}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}}
-    .hero-card{background:linear-gradient(180deg,#131927cc,#0f1420cc);border:1px solid #253049;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
-    .hero h1{font-size:clamp(28px,4vw,44px);line-height:1.1;margin:0 0 10px}
-    .hero p.lead{color:var(--muted);font-size:clamp(16px,2.2vw,18px)}
-    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-    .badge{border:1px solid #2b3550;color:#c7d0de;background:#151b27;border-radius:999px;padding:6px 10px;font-size:13px}
-    .hero-media{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid #27314b;box-shadow:var(--shadow)}
-    .hero-media img,.hero-media video{display:block;width:100%;height:auto}
-    /* SECTION */
-    section{margin:42px 0}
-    .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-    .section-head h2{margin:0;font-size:clamp(22px,3vw,30px)}
-    .muted{color:var(--muted)}
-    /* GALLERY */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:var(--gap);
-      grid-auto-flow:dense;
-    }
-    .card{grid-column:span 4;background:linear-gradient(180deg,#121826cc,#0e1420cc);border:1px solid #26324a;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
-    .card.wide{grid-column:span 8}
-    .card.tall{ grid-row:auto; }
-    @media (min-width:1100px){
-      .card.tall .card-img{ aspect-ratio: 4/5; }
-    }
-    @media(max-width:980px){.card,.card.wide{grid-column:span 6}}
-    @media(max-width:720px){.card,.card.wide{grid-column:span 12}}
-    .card-img{position:relative;overflow:hidden;background:#0f1420}
-    .card-img img,.card-img video{width:100%;height:auto;display:block;transform:scale(1);transition:transform .4s ease}
-    .card:hover .card-img img{transform:scale(1.04)}
-    .cap{padding:16px}
-    .cap h3{margin:2px 0 6px;font-size:18px}
-    .cap p{margin:0;color:var(--muted)}
-    /* LIGHTBOX */
-    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(8,10,16,.86);backdrop-filter:blur(6px);z-index:100}
-    .lightbox.open{display:flex}
-    .lightbox img{max-width:92vw;max-height:82vh;border-radius:16px;border:1px solid #2a3552;box-shadow:var(--shadow)}
-    .lightbox .close{position:absolute;top:20px;right:26px;background:#151c2b;color:#fff;padding:8px 11px;border-radius:10px;border:1px solid #2a3552}
-    footer{margin:48px 0 24px;color:var(--muted);text-align:center}
-    video{border-radius:var(--radius);outline:none}
-  </style>
-</head>
-<body>
-  <header class="nav">
-    <div class="nav-inner wrap">
-      <div class="brand">Nikolai A. Seva <small>· Hardware & Biomechanics</small></div>
-      <nav class="nav-links">
-        <a class="btn ghost" href="index.html">Home</a>
-        <a class="btn" href="#gallery">See Work</a>
-      </nav>
-    </div>
-  </header>
-  <main class="wrap">
-    <section class="hero" id="top">
-      <div class="hero-card">
-        <h1>Prosthetic Ski Leg — concept → CAD/FEA → prototype</h1>
-        <p class="lead">
-          I focused on achieving <strong>anthropometric fit</strong>, ensuring the prosthetic foot <strong>interfaces correctly with ski bindings</strong>,
-          and verifying <strong>mechanical integrity</strong> so stress and strain remain within safe limits under rider weight.
-        </p>
-        <div class="badges">
-          <span class="badge">SolidWorks • ANSYS</span>
-          <span class="badge">Anthropometric fit</span>
-          <span class="badge">Binding compatibility</span>
-          <span class="badge">Stress/strain validation</span>
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prosthetic Ski Leg · Nikolai A. Seva</title>
+    <meta name="description" content="Prosthetic ski leg — concept to prototype. CAD, FEA, anthropometric fit, and VR validation by Nikolai Seva." />
+
+    <link rel="icon" href="pictures/hockey_about_me.jpeg" sizes="any" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0ea5e9" />
+
+    <style>
+      :root{
+        --accent:#0ea5e9;
+        --bg:#f7f7f8;
+        --text:#111111;
+        --muted:#374151;
+        --mutedSoft:#6b7280;
+        --card:#ffffffF2;
+        --border:#e5e7eb;
+        --radius:12px;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg:#0b0b0c;
+          --text:#e7e7e7;
+          --muted:#cfd3da;
+          --mutedSoft:#a1a1aa;
+          --card:#161618;
+          --border:#2a2a2a;
+        }
+      }
+
+      *{box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      html,body{margin:0;padding:0}
+      body{
+        font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+        color:var(--text);
+        background:var(--bg);
+        -webkit-text-size-adjust:100%;
+        line-height:1.6;
+      }
+      img, video{max-width:100%; height:auto}
+      a{color:var(--accent); text-decoration:none}
+      a:hover{text-decoration:underline}
+      .visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
+
+      .wide{max-width:1200px; margin-inline:auto; padding-inline:clamp(20px,3vw,48px)}
+      .narrow{max-width:800px; margin-inline:auto; padding-inline:clamp(20px,3vw,48px)}
+      .meta{color:var(--mutedSoft); font-size:.9rem}
+      p, li{color:var(--muted)}
+      h1,h2,h3{color:var(--text); margin:0 0 16px}
+      .divider{border:0; border-top:1px solid var(--border); margin:0}
+
+      /* HEADER */
+      header{
+        padding:clamp(24px,4vw,40px) clamp(20px,3vw,48px) 0;
+        max-width:1200px;
+        margin-inline:auto;
+      }
+      .header-inner{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+        flex-wrap:wrap;
+      }
+      .site-name{
+        font-size:clamp(18px,3vw,28px);
+        font-weight:300;
+        letter-spacing:.2em;
+        text-transform:uppercase;
+        color:var(--accent);
+        margin:0;
+      }
+      .site-name a{color:var(--accent)}
+      .site-name a:hover{text-decoration:none}
+      nav ul{
+        display:flex;
+        gap:clamp(12px,2vw,24px);
+        list-style:none;
+        margin:0; padding:0;
+      }
+      nav a{
+        font-size:clamp(11px,1.2vw,13px);
+        text-transform:uppercase;
+        letter-spacing:.12em;
+        color:var(--mutedSoft);
+        font-weight:500;
+        transition:color .2s;
+      }
+      nav a:hover{color:var(--accent); text-decoration:none}
+
+      /* SECTION HEADERS */
+      .section-title{
+        font-size:clamp(13px,1.4vw,15px);
+        text-transform:uppercase;
+        letter-spacing:.15em;
+        color:var(--accent);
+        margin:0 0 24px;
+        font-weight:600;
+      }
+
+      /* HERO */
+      .project-hero{
+        padding-block:clamp(40px,7vw,80px) clamp(24px,4vw,40px);
+      }
+      .project-hero h1{
+        font-size:clamp(24px,4vw,40px);
+        margin:0 0 16px;
+        line-height:1.15;
+      }
+      .project-hero .lead{
+        font-size:clamp(15px,2vw,18px);
+        color:var(--muted);
+        max-width:640px;
+      }
+      .tag{
+        display:inline-block;
+        padding:3px 10px;
+        border-radius:9999px;
+        background:var(--accent);
+        color:#fff;
+        font-size:.75rem;
+        font-weight:700;
+        margin-right:4px;
+        margin-bottom:4px;
+      }
+
+      /* HERO GRID */
+      .hero-grid{
+        display:grid;
+        grid-template-columns:1.2fr .8fr;
+        gap:24px;
+        align-items:center;
+        padding-bottom:clamp(32px,5vw,56px);
+      }
+      .hero-grid video{
+        width:100%;
+        border-radius:var(--radius);
+        border:1px solid var(--border);
+      }
+
+      /* GALLERY */
+      section{padding-block:clamp(32px,5vw,56px)}
+      section + section{border-top:1px solid var(--border)}
+
+      .gallery-grid{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:20px;
+      }
+      .gallery-item{overflow:hidden}
+      .gallery-item.wide{grid-column:span 2}
+      .gallery-item img, .gallery-item video{
+        width:100%;
+        height:auto;
+        display:block;
+        border-radius:var(--radius);
+        border:1px solid var(--border);
+        cursor:pointer;
+        transition:transform .4s ease;
+      }
+      .gallery-item:hover img{transform:scale(1.03)}
+      .gallery-item h3{font-size:.9rem; margin:8px 0 2px}
+      .gallery-item p{font-size:.85rem; margin:0}
+
+      /* BUTTON */
+      .button{
+        display:inline-block; padding:.7rem 1.3rem; border-radius:9999px;
+        background:var(--accent); color:#fff; font-weight:600; font-size:.85rem; border:0; cursor:pointer;
+        transition: transform .15s ease;
+      }
+      .button:hover{text-decoration:none; transform:scale(1.03)}
+
+      /* LIGHTBOX */
+      .lightbox{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.8); backdrop-filter:blur(6px); z-index:100}
+      .lightbox.open{display:flex}
+      .lightbox img{max-width:92vw; max-height:85vh; border-radius:var(--radius); border:1px solid var(--border)}
+      .lightbox .close{position:absolute; top:20px; right:24px; background:var(--card); color:var(--text); padding:8px 12px; border-radius:8px; border:1px solid var(--border); cursor:pointer; font-size:1rem}
+
+      /* FOOTER */
+      footer{padding-block:40px; text-align:center}
+      footer p{font-size:.85rem}
+      footer .social-links a{
+        color:var(--mutedSoft); margin:0 8px;
+        font-size:.85rem; transition:color .2s;
+      }
+      footer .social-links a:hover{color:var(--accent)}
+
+      @media (max-width:900px){
+        .hero-grid{grid-template-columns:1fr}
+        .gallery-grid{grid-template-columns:1fr 1fr}
+        .gallery-item.wide{grid-column:span 2}
+      }
+      @media (max-width:640px){
+        .header-inner{flex-direction:column; align-items:flex-start; gap:12px}
+        .gallery-grid{grid-template-columns:1fr}
+        .gallery-item.wide{grid-column:span 1}
+      }
+    </style>
+  </head>
+  <body>
+    <a class="visually-hidden" href="#main">Skip to content</a>
+
+    <header>
+      <div class="header-inner">
+        <h1 class="site-name"><a href="index.html">Nikolai A. Seva</a></h1>
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#work">Projects</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="wide hero-grid">
+        <div class="project-hero">
+          <h1>Prosthetic Ski Leg — concept → CAD/FEA → prototype</h1>
+          <p class="lead">
+            I focused on achieving <strong>anthropometric fit</strong>, ensuring the prosthetic foot <strong>interfaces correctly with ski bindings</strong>,
+            and verifying <strong>mechanical integrity</strong> so stress and strain remain within safe limits under rider weight.
+          </p>
+          <div style="margin-top:12px;">
+            <span class="tag">SolidWorks / ANSYS</span>
+            <span class="tag">Anthropometric Fit</span>
+            <span class="tag">Binding Compatibility</span>
+            <span class="tag">Stress/Strain Validation</span>
+          </div>
+        </div>
+        <div>
+          <video autoplay muted loop playsinline controls poster="ski_photos/MEC210_Ski_Prosthetic_Complete%20v4.png" style="border-radius:var(--radius); border:1px solid var(--border); width:100%;">
+            <source src="ski_photos/Prosthetic_V2_720.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
-      <figure class="hero-media">
-        <video autoplay muted loop playsinline controls poster="ski_photos/MEC210_Ski_Prosthetic_Complete%20v4.png">
-          <source src="ski_photos/Prosthetic_V2_720.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </figure>
-    </section>
-    <section id="gallery">
-      <div class="section-head">
-        <h2>Selected visuals</h2>
-        <p class="muted">Click any image to view full-size</p>
-      </div>
-      <div class="grid">
-        <article class="card wide">
-          <a class="card-img lb" href="ski_photos/MEC210_Ski_Prosthetic_Complete%20v4.png" data-caption="Full assembly render — scaled to rider anthropometrics and aligned to ski binding geometry.">
-            <img src="ski_photos/MEC210_Ski_Prosthetic_Complete%20v4.png" alt="Full assembly render" loading="lazy" />
-          </a>
-          <div class="cap">
+
+      <hr class="divider">
+
+      <section class="wide" id="gallery">
+        <h2 class="section-title">Selected Visuals</h2>
+        <p class="meta" style="margin-top:-16px; margin-bottom:24px;">Click any image to view full-size.</p>
+        <div class="gallery-grid">
+
+          <div class="gallery-item wide">
+            <a class="lb" href="ski_photos/MEC210_Ski_Prosthetic_Complete%20v4.png" data-caption="Full assembly render — scaled to rider anthropometrics and aligned to ski binding geometry.">
+              <img src="ski_photos/MEC210_Ski_Prosthetic_Complete%20v4.png" alt="Full assembly render" loading="lazy" />
+            </a>
             <h3>Assembly Render</h3>
             <p>Overall system scaled to rider anthropometrics and aligned to DIN binding geometry for safe release and consistent flex.</p>
           </div>
-        </article>
 
-        <article class="card">
-          <a class="card-img lb" href="ski_photos/IMG_0903.png" data-caption="Augmented Reality anthropometric validation using Meta Quest 3S passthrough view.">
-            <img src="ski_photos/IMG_0903.png" alt="AR anthropometric fit check with Meta Quest 3S" loading="lazy" />
-          </a>
-          <div class="cap">
+          <div class="gallery-item">
+            <a class="lb" href="ski_photos/IMG_0903.png" data-caption="Augmented Reality anthropometric validation using Meta Quest 3S passthrough view.">
+              <img src="ski_photos/IMG_0903.png" alt="AR anthropometric fit check with Meta Quest 3S" loading="lazy" />
+            </a>
             <h3>Prototype — Side</h3>
-            <p>Augmented Reality Tools to determine anthropometric fit using a Meta Quest 3S to visually see rider height in real time.</p>
+            <p>AR tools to determine anthropometric fit using a Meta Quest 3S to visually see rider height in real time.</p>
           </div>
-        </article>
 
-        <article class="card">
-          <a class="card-img lb" href="ski_photos/IMG_0911.png" data-caption="Front view — confirming stance width and binding jaw clearances.">
-            <img src="ski_photos/IMG_0911.png" alt="Prototype front" loading="lazy" />
-          </a>
-          <div class="cap">
+          <div class="gallery-item">
+            <a class="lb" href="ski_photos/IMG_0911.png" data-caption="Front view — confirming stance width and binding jaw clearances.">
+              <img src="ski_photos/IMG_0911.png" alt="Prototype front" loading="lazy" />
+            </a>
             <h3>Prototype — Front</h3>
-            <p>Front view shows stance geometry and binding clearances optimized for both comfort and mechanical balance.</p>
+            <p>Front view shows stance geometry and binding clearances optimized for comfort and mechanical balance.</p>
           </div>
-        </article>
 
-        <article class="card tall">
-          <a class="card-img lb" href="ski_photos/IMG_0942.png" data-caption="CAD Design Progress — using Fusion 360 and SolidWorks generative design tools.">
-            <img src="ski_photos/IMG_0942.png" alt="CAD design progress" loading="lazy" />
-          </a>
-          <div class="cap">
+          <div class="gallery-item">
+            <a class="lb" href="ski_photos/IMG_0942.png" data-caption="CAD Design Progress — using Fusion 360 and SolidWorks generative design tools.">
+              <img src="ski_photos/IMG_0942.png" alt="CAD design progress" loading="lazy" />
+            </a>
             <h3>CAD Design Progress</h3>
             <p>Using Fusion 360 and SolidWorks for Generative Design to optimize material usage for the tibia frames.</p>
           </div>
-        </article>
 
-        <article class="card">
-          <a class="card-img lb" href="ski_photos/IMG_7972.png" data-caption="Bench testing — verifying load distribution and strain correlation to simulation.">
-            <img src="ski_photos/IMG_7972.png" alt="Bench setup" loading="lazy" />
-          </a>
-          <div class="cap">
+          <div class="gallery-item">
+            <a class="lb" href="ski_photos/IMG_7972.png" data-caption="Bench testing — verifying load distribution and strain correlation to simulation.">
+              <img src="ski_photos/IMG_7972.png" alt="Bench setup" loading="lazy" />
+            </a>
             <h3>Bench Testing</h3>
             <p>Bench tests applied vertical and torsional loads to confirm that stresses match FEA predictions within safe limits.</p>
           </div>
-        </article>
 
-        <article class="card">
-          <a class="card-img lb" href="ski_photos/prosthetic_skis_fea.png" data-caption="Finite Element Analysis — von Mises stress contours and displacement fields used to validate load paths and safety factors.">
-            <img src="ski_photos/prosthetic_skis_fea.png" alt="FEA results for prosthetic ski foot" loading="lazy" />
-          </a>
-          <div class="cap">
+          <div class="gallery-item">
+            <a class="lb" href="ski_photos/prosthetic_skis_fea.png" data-caption="Finite Element Analysis — von Mises stress contours and displacement fields.">
+              <img src="ski_photos/prosthetic_skis_fea.png" alt="FEA results for prosthetic ski foot" loading="lazy" />
+            </a>
             <h3>FEA Simulation</h3>
-            <p>ANSYS results visualizing stress distribution and deflection under skier load; informs material selection and geometry refinement to maintain safety factors &gt; 2×.</p>
+            <p>ANSYS results visualizing stress distribution and deflection under skier load; safety factors > 2x.</p>
           </div>
-        </article>
 
-        <article class="card">
-          <a class="card-img lb" href="ski_photos/3D_printed_ski_foot.png" data-caption="3D-printed prototype — used to verify dimensional stack-up, binding engagement, and assembly tolerances before machining.">
-            <img src="ski_photos/3D_printed_ski_foot.png" alt="3D-printed ski prosthetic foot prototype" loading="lazy" />
-          </a>
-          <div class="cap">
+          <div class="gallery-item">
+            <a class="lb" href="ski_photos/3D_printed_ski_foot.png" data-caption="3D-printed prototype — verifying dimensional stack-up and binding engagement.">
+              <img src="ski_photos/3D_printed_ski_foot.png" alt="3D-printed ski prosthetic foot prototype" loading="lazy" />
+            </a>
             <h3>3D-Printed Prototype</h3>
-            <p>Printed prototype validates fit, binding lock-in, and ergonomic interface; enables quick iteration on tolerances prior to metal fabrication.</p>
+            <p>Printed prototype validates fit, binding lock-in, and ergonomic interface prior to metal fabrication.</p>
           </div>
-        </article>
 
-        <article class="card">
-          <a class="card-img lb" href="ski_photos/Building_Ski_Prosthetic.jpg" data-caption="Assembly process — after 3D printing and laser cutting the tibia frame, assembling the ski prosthetic with 5/16 bolts for secure ankle support.">
-            <img src="ski_photos/Building_Ski_Prosthetic.jpg" alt="Assembling the ski prosthetic" loading="lazy" />
-          </a>
-          <div class="cap">
+          <div class="gallery-item">
+            <a class="lb" href="ski_photos/Building_Ski_Prosthetic.jpg" data-caption="Assembly process — 3D printing and laser cutting the tibia frame, assembling with 5/16 bolts.">
+              <img src="ski_photos/Building_Ski_Prosthetic.jpg" alt="Assembling the ski prosthetic" loading="lazy" />
+            </a>
             <h3>Assembly Process</h3>
-            <p>After 3D printing and laser cutting the tibia frame, I started assembling the prosthetic. I chose to use 5/16 bolts, with washers and nuts, to provide a strong clamping force—adding strength and security around the ankle region of the ski prosthetic.</p>
+            <p>After 3D printing and laser cutting the tibia frame, assembled with 5/16 bolts for secure ankle support.</p>
           </div>
-        </article>
 
-        <article class="card wide">
-          <a class="card-img lb" href="ski_photos/Complete_Prosthetic.jpg" data-caption="Finished creating the first functional prototype that binds the ski prosthetic to the skis.">
-            <img src="ski_photos/Complete_Prosthetic.jpg" alt="Finished functional ski prosthetic prototype bound to skis" loading="lazy" />
-          </a>
-          <div class="cap">
+          <div class="gallery-item wide">
+            <a class="lb" href="ski_photos/Complete_Prosthetic.jpg" data-caption="First functional prototype that binds the ski prosthetic to the skis.">
+              <img src="ski_photos/Complete_Prosthetic.jpg" alt="Finished functional ski prosthetic prototype bound to skis" loading="lazy" />
+            </a>
             <h3>Functional Prototype</h3>
             <p>Finished creating the first functional prototype that binds the ski prosthetic to the skis.</p>
           </div>
-        </article>
 
-        <article class="card wide">
-          <a class="card-img lb" href="ski_photos/Black_Diamond_Final_Concept.png" data-caption="Black Diamond Project — Final Concept Render.">
-            <img src="ski_photos/Black_Diamond_Final_Concept.png" alt="Black Diamond Final Concept" loading="lazy" />
-          </a>
-          <div class="cap">
+          <div class="gallery-item wide">
+            <a class="lb" href="ski_photos/Black_Diamond_Final_Concept.png" data-caption="Black Diamond Project — Final Concept Render.">
+              <img src="ski_photos/Black_Diamond_Final_Concept.png" alt="Black Diamond Final Concept" loading="lazy" />
+            </a>
             <h3>Black Diamond Project — Final Concept</h3>
             <p>Final concept render of the Black Diamond prosthetic ski leg in action on the slopes.</p>
           </div>
-        </article>
 
+        </div>
+      </section>
+
+      <section class="narrow" style="text-align:center;">
+        <a class="button" href="index.html#work">← Back to Projects</a>
+      </section>
+    </main>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="close" aria-label="Close">✕</button>
+      <img src="" alt="Preview" />
+    </div>
+
+    <footer>
+      <hr class="divider">
+      <div class="narrow" style="padding-top:32px;">
+        <p><strong>Nikolai A. Seva</strong> · &copy; <span id="year"></span></p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.instagram.com/nikolaiaseva/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a>
+          <a href="mailto:nikolaiseva.engineer@gmail.com">Email</a>
+        </div>
+        <p class="meta" style="margin-top:8px;"><em>Prototype builds upon prior art referenced in US7785373B2.</em></p>
       </div>
-    </section>
+    </footer>
 
-  </main>
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="close" aria-label="Close">✕</button>
-    <img src="" alt="Preview" />
-  </div>
-  <footer class="wrap">
-    © <span id="y"></span> Nikolai A. Seva · <a href="index.html">Home</a><br>
-    <small><em>Prototype builds upon prior art referenced in US7785373B2.</em></small>
-  </footer>
-  <script>
-    const lb = document.getElementById('lightbox');
-    const lbImg = lb.querySelector('img');
-    document.querySelectorAll('.lb').forEach(a=>{
-      a.addEventListener('click',e=>{
-        e.preventDefault();
-        lbImg.src = a.getAttribute('href');
-        lbImg.alt = a.dataset.caption || 'Preview';
-        lb.classList.add('open');
-        lb.setAttribute('aria-hidden','false');
+    <script>
+      const lb = document.getElementById('lightbox');
+      const lbImg = lb.querySelector('img');
+      document.querySelectorAll('.lb').forEach(a=>{
+        a.addEventListener('click',e=>{
+          e.preventDefault();
+          lbImg.src = a.getAttribute('href');
+          lbImg.alt = a.dataset.caption || 'Preview';
+          lb.classList.add('open');
+          lb.setAttribute('aria-hidden','false');
+        });
       });
-    });
-    lb.addEventListener('click',e=>{
-      if(e.target===lb || e.target.classList.contains('close')){
-        lb.classList.remove('open');
-        lb.setAttribute('aria-hidden','true');
-        lbImg.src='';
-      }
-    });
-    document.addEventListener('keydown',e=>{
-      if(e.key==='Escape' && lb.classList.contains('open')){
-        lb.classList.remove('open');
-        lb.setAttribute('aria-hidden','true');
-        lbImg.src='';
-      }
-    });
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
-</body>
+      lb.addEventListener('click',e=>{
+        if(e.target===lb || e.target.classList.contains('close')){
+          lb.classList.remove('open');
+          lb.setAttribute('aria-hidden','true');
+          lbImg.src='';
+        }
+      });
+      document.addEventListener('keydown',e=>{
+        if(e.key==='Escape' && lb.classList.contains('open')){
+          lb.classList.remove('open');
+          lb.setAttribute('aria-hidden','true');
+          lbImg.src='';
+        }
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>
