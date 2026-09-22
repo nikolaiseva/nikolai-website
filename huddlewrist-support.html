@@ -18,9 +18,8 @@
         --text:#111111;
         --muted:#374151;
         --mutedSoft:#6b7280;
-        --card:#ffffffF2;
         --border:#e5e7eb;
-        --radius:16px;
+        --radius:12px;
       }
       @media(prefers-color-scheme:dark){
         :root{
@@ -28,70 +27,154 @@
           --text:#e7e7e7;
           --muted:#cfd3da;
           --mutedSoft:#a1a1aa;
-          --card:#161618;
           --border:#2a2a2a;
         }
       }
+
       *{box-sizing:border-box}
+      html{scroll-behavior:smooth}
       html,body{margin:0;padding:0}
       body{
         font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
-        color:var(--text);background:var(--bg);-webkit-text-size-adjust:100%;
+        color:var(--text);background:var(--bg);-webkit-text-size-adjust:100%;line-height:1.6;
       }
       img{max-width:100%;height:auto}
       a{color:var(--accent);text-decoration:none}
       a:hover{text-decoration:underline}
-      .container{max-width:720px;margin-inline:auto;padding:clamp(16px,2vw,24px)}
-      header{
-        position:sticky;top:0;
-        background:color-mix(in oklab,var(--card),transparent 20%);
-        backdrop-filter:saturate(160%) blur(8px);
-        border-bottom:1px solid var(--border);z-index:10;
-      }
-      nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
-      .brand{display:flex;align-items:center;gap:.5rem;font-weight:700;color:var(--text)}
-      h1,h2,h3{color:var(--text);margin:0 0 16px}
+      .visually-hidden{position:absolute !important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+      .narrow{max-width:720px;margin-inline:auto;padding-inline:clamp(20px,3vw,48px)}
+      .meta{color:var(--mutedSoft);font-size:.9rem}
       p,li{color:var(--muted);line-height:1.6}
-      .card{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--card);padding:24px}
-      footer{border-top:1px solid var(--border);padding-block:32px;text-align:center;opacity:.95}
-      .meta{color:var(--mutedSoft);font-size:.95rem}
-      .hero{text-align:center;padding-block:clamp(40px,8vw,80px)}
-      .hero h1{font-size:clamp(28px,5vw,48px);margin-bottom:8px}
-      .hero p{font-size:clamp(16px,2.4vw,20px)}
-      .app-icon{width:120px;height:120px;border-radius:26px;margin-bottom:20px;border:1px solid var(--border)}
-      .button{
-        display:inline-block;padding:.85rem 1.5rem;border-radius:9999px;
-        background:var(--accent);color:#fff;font-weight:700;border:0;cursor:pointer;
-        margin-top:12px;
+      h1,h2,h3{color:var(--text);margin:0 0 16px}
+      .divider{border:0;border-top:1px solid var(--border);margin:0}
+
+      /* HEADER */
+      header{
+        padding:clamp(24px,4vw,40px) clamp(20px,3vw,48px) 0;
+        max-width:1200px;
+        margin-inline:auto;
       }
-      section{padding-block:clamp(24px,4vw,48px)}
-      @media(prefers-color-scheme:dark){
-        header{background:rgba(20,20,22,.75)}
-        .card{background:var(--card);border-color:var(--border)}
+      .header-inner{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+        flex-wrap:wrap;
+      }
+      .site-name{
+        font-size:clamp(18px,3vw,28px);
+        font-weight:300;
+        letter-spacing:.2em;
+        text-transform:uppercase;
+        color:var(--accent);
+        margin:0;
+      }
+      .site-name a{color:var(--accent)}
+      .site-name a:hover{text-decoration:none}
+      nav ul{
+        display:flex;
+        gap:clamp(12px,2vw,24px);
+        list-style:none;
+        margin:0;padding:0;
+      }
+      nav a{
+        font-size:clamp(11px,1.2vw,13px);
+        text-transform:uppercase;
+        letter-spacing:.12em;
+        color:var(--mutedSoft);
+        font-weight:500;
+        transition:color .2s;
+      }
+      nav a:hover{color:var(--accent);text-decoration:none}
+
+      /* PAGE */
+      .page-hero{
+        text-align:center;
+        padding-block:clamp(40px,7vw,72px) clamp(24px,4vw,40px);
+      }
+      .page-hero h1{
+        font-size:clamp(22px,4vw,28px);
+        text-transform:uppercase;
+        letter-spacing:.15em;
+        color:var(--accent);
+        margin:0 0 8px;
+        font-weight:600;
+      }
+      .page-hero .subtitle{
+        font-size:clamp(15px,2vw,18px);
+        color:var(--muted);
+        max-width:540px;
+        margin-inline:auto;
+      }
+      .app-icon{
+        width:100px;height:100px;
+        border-radius:22px;
+        margin-bottom:20px;
+        border:1px solid var(--border);
+      }
+
+      .section-title{
+        font-size:clamp(13px,1.4vw,15px);
+        text-transform:uppercase;
+        letter-spacing:.15em;
+        color:var(--accent);
+        margin:0 0 16px;
+        font-weight:600;
+      }
+
+      section{padding-block:clamp(24px,4vw,40px)}
+      section + section{border-top:1px solid var(--border)}
+
+      /* BUTTON */
+      .button{
+        display:inline-block;padding:.7rem 1.3rem;border-radius:9999px;
+        background:var(--accent);color:#fff;font-weight:600;font-size:.85rem;border:0;cursor:pointer;
+        transition:transform .15s ease;margin-top:8px;
+      }
+      .button:hover{text-decoration:none;transform:scale(1.03)}
+
+      /* FOOTER */
+      footer{padding-block:40px;text-align:center}
+      footer p{font-size:.85rem}
+      footer .social-links a{
+        color:var(--mutedSoft);margin:0 8px;
+        font-size:.85rem;transition:color .2s;
+      }
+      footer .social-links a:hover{color:var(--accent)}
+
+      @media(max-width:640px){
+        .header-inner{flex-direction:column;align-items:flex-start;gap:12px}
       }
     </style>
   </head>
   <body>
+    <a class="visually-hidden" href="#main">Skip to content</a>
+
     <header>
-      <div class="container">
-        <nav>
-          <a class="brand" href="index.html"><span aria-hidden="true">🧊</span> Nikolai A. Seva</a>
-          <a href="index.html" class="meta">Back to Portfolio</a>
+      <div class="header-inner">
+        <h2 class="site-name"><a href="index.html">Nikolai A. Seva</a></h2>
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="huddlewrist-privacy.html">Privacy</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
         </nav>
       </div>
     </header>
 
-    <main>
-      <section class="container hero">
-        <img src="pictures/huddle_wrist.jpg" alt="HuddleWrist app icon" class="app-icon" />
-        <h1>HuddleWrist</h1>
-        <p>A quarterback's play sheet on the wrist — a digital upgrade to the traditional paper wristband.</p>
-        <p class="meta">Available for Apple Watch (watchOS) &middot; Android version coming soon</p>
-      </section>
+    <main id="main">
+      <div class="narrow">
+        <div class="page-hero">
+          <img src="pictures/huddle_wrist.jpg" alt="HuddleWrist app icon" class="app-icon" />
+          <h1>HuddleWrist</h1>
+          <p class="subtitle">A quarterback's play sheet on the wrist — a digital upgrade to the traditional paper wristband.</p>
+          <p class="meta">Available for Apple Watch (watchOS) · Android version coming soon</p>
+        </div>
 
-      <section class="container">
-        <div class="card">
-          <h2>About the App</h2>
+        <section>
+          <h2 class="section-title">About the App</h2>
           <p>HuddleWrist is a standalone smartwatch app that displays your football playbook as clear, color-coded diagrams directly on your wrist. Designed for flag and touch football, it features 24 plays with labeled player positions, route lines, and blocking assignments — all viewable with a tap and a swipe.</p>
           <ul>
             <li>24 pre-loaded plays covering run, pass, option, and trick concepts</li>
@@ -101,22 +184,18 @@
             <li>Fully offline — no internet required</li>
             <li>No account, no sign-up, no data collection</li>
           </ul>
-        </div>
-      </section>
+        </section>
 
-      <section class="container">
-        <div class="card">
-          <h2>Support</h2>
+        <section>
+          <h2 class="section-title">Support</h2>
           <p>Having an issue or want to suggest a feature? Reach out and I'll get back to you as soon as I can.</p>
           <p><strong>Email:</strong> <a href="mailto:nikolaiaseva@icloud.com">nikolaiaseva@icloud.com</a></p>
           <p>Please include your watch model and a brief description of the issue.</p>
           <a class="button" href="mailto:nikolaiaseva@icloud.com?subject=HuddleWrist%20Support">Contact Support</a>
-        </div>
-      </section>
+        </section>
 
-      <section class="container">
-        <div class="card">
-          <h2>FAQ</h2>
+        <section>
+          <h2 class="section-title">FAQ</h2>
           <h3>Do I need my phone nearby?</h3>
           <p>No. HuddleWrist is a standalone watch app — it works without a phone connection.</p>
           <h3>Does the app use the internet?</h3>
@@ -125,27 +204,23 @@
           <p>Not yet — custom play support is on the roadmap for a future update.</p>
           <h3>Which devices are supported?</h3>
           <p>Any Apple Watch running watchOS 26 or later. An Android Wear OS version is in development.</p>
-        </div>
-      </section>
-
-      <section class="container" style="text-align:center;">
-        <p class="meta">
-          <a href="huddlewrist-privacy.html">Privacy Policy</a> &middot;
-          <a href="index.html">Portfolio</a> &middot;
-          <a href="mailto:nikolaiaseva@icloud.com">Email</a>
-        </p>
-      </section>
+        </section>
+      </div>
     </main>
 
     <footer>
-      <div class="container">
-        <p><strong>Nikolai A. Seva</strong> &middot; &copy; <script>document.write(new Date().getFullYear())</script></p>
-        <p class="meta">
-          <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a> &middot;
-          <a href="https://www.youtube.com/@nikolaioftime" target="_blank" rel="noopener">YouTube</a> &middot;
+      <hr class="divider">
+      <div class="narrow" style="padding-top:32px;">
+        <p><strong>Nikolai A. Seva</strong> · &copy; <span id="year"></span></p>
+        <div class="social-links">
+          <a href="huddlewrist-privacy.html">Privacy Policy</a>
+          <a href="index.html">Portfolio</a>
+          <a href="https://www.linkedin.com/in/nikolai-seva/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="mailto:nikolaiaseva@icloud.com">Email</a>
-        </p>
+        </div>
       </div>
     </footer>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   </body>
 </html>
